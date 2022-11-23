@@ -1,0 +1,218 @@
+* {
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+}
+
+
+/* body {
+    background-color: #000;
+} */
+
+#loading_musk {
+    width: 100%;
+    height: 100%;
+    background: black;
+    position: fixed;
+}
+
+#loading_svg {
+    display: block;
+    margin: auto;
+}
+
+#loadingArrow {
+    clip-path: circle(0%);
+}
+
+#upload div {
+    background-color: #FFF;
+    display: table;
+    margin: 0 auto;
+    margin-top: 150px;
+    margin-bottom: 60px;
+    padding: 30px;
+    border-radius: 50px;
+    /* 老的 Firefox */
+    -moz-border-radius: 50px;
+    box-shadow: 0 0 10px 25px #ffffff;
+    /* margin: auto; */
+}
+
+.top {
+    display: none;
+    /* 设置宽度高度背景颜色 */
+    height: auto;
+    /*高度改为自动高度*/
+    width: 100%;
+    margin-left: 0;
+    background: rgb(189, 181, 181);
+    position: fixed;
+    /*固定在顶部*/
+    top: 0;
+    /*离顶部的距离为0*/
+    margin-bottom: 5px;
+}
+
+.top ul {
+    /* 清除ul标签的默认样式 */
+    width: auto;
+    /*宽度也改为自动*/
+    list-style-type: none;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-left: 5%;
+    /* margin-top: 0;          */
+    padding: 0;
+}
+
+.top li {
+    float: left;
+    /* 使li内容横向浮动，即横向排列  */
+    margin-right: 2%;
+    /* 两个li之间的距离*/
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* #playground {
+            margin: 0 auto;
+            display: block;
+            width: 256px;
+            height: 100%;
+        } */
+
+#points>circle:hover {
+    /* button:hover,
+        #playground1:hover,
+        #basketball_field1:hover { */
+    border: 2px solid red;
+    stroke: #ff0000;
+    fill: #ff0000;
+    stroke-miterlimit: 10;
+    stroke: width 2px;
+}
+
+.clicked {
+    stroke: #0000ff !important;
+    fill: #0000ff !important;
+}
+
+.path_start {
+    stroke: #ff0000 !important;
+    fill: #ff0000 !important;
+}
+
+#dialog_musk {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    /* opacity: 30%; */
+}
+
+#dialog_musk img {
+    position: absolute;
+    bottom: 10px;
+    left: 40px;
+}
+
+#dialog {
+    z-index: 10;
+    /* background: #fff; */
+    /* color: #fff; */
+    position: absolute;
+    bottom: 0;
+    width: 80%;
+    height: 200px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 10px;
+    /* text-align: center; */
+    border: 2px solid #a1a1a1;
+    /* padding: 10px 40px; */
+    background: rgba(0, 0, 0, 0.3);
+    /* opacity: 30%; */
+    /* color: #000; */
+    /* width: 700px; */
+    border-radius: 25px;
+    /* 老的 Firefox */
+    -moz-border-radius: 25px;
+    /* ————————————————
+版权声明：本文为CSDN博主「温文尔雅小禽兽」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_42630877/article/details/82685944 */
+    /* 初始 */
+    /* transform: translate(0, 1); */
+}
+
+#dialog p {
+    opacity: 100%;
+    margin: 10px;
+    color: #FFF;
+    font-size: x-large;
+    margin: 20px;
+    margin-right: 20px;
+    text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;
+}
+
+
+/* #dialog p,
+#dialog img {
+    float: left;
+} */
+
+#choice {
+    z-index: 10;
+    position: absolute;
+    right: 120px;
+    bottom: 220px;
+    border: 2px solid #a1a1a1;
+    /* padding: 10px 40px; */
+    background: rgba(0, 0, 0, 0.3);
+}
+
+#choice li {
+    /*删除<li>标签生成的点*/
+    color: #fff;
+    list-style: none;
+    /* background-color: #c2c1c1; */
+    border: #fff 1px solid;
+    border-radius: 3px;
+}
+
+#choice li:hover {
+    background: rgb(138, 138, 138);
+    /* color: #fff; */
+}
+
+#day {
+    background: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 100px;
+    margin-top: 200px;
+    position: absolute;
+    border-radius: 25px;
+    /* 老的 Firefox */
+    -moz-border-radius: 25px;
+    transform: scale(0, 1);
+}
+
+#day h1,
+#day p {
+    font-family: Sans-serif;
+    text-align: center;
+    font-size: xx-large;
+    /* opacity: 100%; */
+    margin: 10px auto;
+    margin-bottom: 3px;
+    color: #FFF;
+    /* font-size: x-large; */
+    margin: 20px;
+    margin-right: 20px;
+    text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;
+}
+
+#day p {
+    font-size: large;
+}
