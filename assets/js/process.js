@@ -75,7 +75,7 @@ function showDialog() {
 
     setTimeout(() => {
         enable_text_touch = true;
-    }, 0.5);
+    }, 1000);
 
     // tl2.remove();
 }
@@ -250,8 +250,10 @@ function nextStep() {
 
         if (paraList[0].type == "say") {
             say();
+            document.querySelector("html").style.overflow = "hidden";
         } else if (paraList[0].type == "ask") {
             ask();
+            document.querySelector("html").style.overflow = "hidden";
         }
 
     }
@@ -363,7 +365,7 @@ function reStart() {
     setTimeout(() => {
         nextStep(); //换下一个对话章节（询问是否记得如何管理学校，即是否跳过新手教程）
         // say();
-    }, 5000);
+    }, 1500);
 }
 
 // 跳过新手教程
