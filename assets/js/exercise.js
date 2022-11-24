@@ -1,3 +1,4 @@
+// 跑操前的准备（集合班级） => 画出所有班级
 function exercisePrepare() {
     for (i = 0; i < class_number; i++) {
         // <text transform="matrix(1 0 0 1 155.5776 203.8384)" class="st12">&#128512;</text>
@@ -6,6 +7,7 @@ function exercisePrepare() {
     }
 }
 
+// 加载完进入游戏时构建操场的动画
 function animateBike() {
     document.getElementsByTagName("svg")[0].style.display = "block";
 
@@ -43,9 +45,10 @@ function animateBike() {
             }
         );
 
-    tl.pause();
+    tl.pause(); //先暂停动画，等会再继续
 }
 
+// 编辑跑操路径
 function editPath() {
     document.getElementById("edit").disabled = true;
     document.getElementById("edit_done").disabled = false;
@@ -59,6 +62,7 @@ function editPath() {
     }
 }
 
+// 编辑结束
 function editDone() {
     document.getElementById("edit").disabled = false;
     document.getElementById("edit_done").disabled = true;
@@ -68,6 +72,7 @@ function editDone() {
     document.getElementById("redo").disabled = true;
 }
 
+// 撤销
 function undo() {
     if (point_list.length > 1) {
         clicked1 = point_list[point_list.length - 2];
@@ -90,6 +95,7 @@ function undo() {
     }
 }
 
+// 重做
 function redo() {
     if (undo_list.length != 0) {
         from_x = point_list[point_list.length - 1].cx["animVal"]["valueAsString"];
@@ -120,6 +126,7 @@ function redo() {
     }
 }
 
+// 跑操结束后的回调函数
 function exerciseFinish() {
     document.getElementById("exercise_line_edit").style.display = "block";
     document.getElementById("exercising").style.display = "none";
@@ -129,6 +136,7 @@ function exerciseFinish() {
     showDay();
 }
 
+// 开始跑操
 function exercise() {
     document.getElementById("exercise_line_edit").style.display = "none";
     document.getElementById("exercising").style.display = "block";
@@ -179,12 +187,13 @@ function exercise() {
     // if (justLoadedFromSave) {
     for (using_class = 0; using_class < class_number; using_class++) {
         // now_timeScale -= 0.1;
-        window["class" + using_class].timeScale(speed_now);
+        window["class" + using_class].timeScale(speed_now); //调速
     }
     // justLoadedFromSave = false;
     // }
 }
 
+// 班级间距大一点！
 function farther() {
     timescale_before = window["class0"].timeScale();
 
@@ -210,6 +219,7 @@ function farther() {
     }, px_per_second * 10);
 }
 
+// 班级间距小一点！
 function closer() {
     timescale_before = window["class0"].timeScale();
 
@@ -235,6 +245,7 @@ function closer() {
     }, px_per_second * 10);
 }
 
+// 跑快一点！
 function faster() {
     for (using_class = 0; using_class < class_number; using_class++) {
         // now_timeScale += 0.1;
@@ -243,6 +254,7 @@ function faster() {
     speed_now = window["class0"].timeScale();
 }
 
+// 跑慢一点！
 function slower() {
     for (using_class = 0; using_class < class_number; using_class++) {
         // now_timeScale -= 0.1;
@@ -251,6 +263,7 @@ function slower() {
     speed_now = window["class0"].timeScale();
 }
 
+// 路径点的点击事件
 document.getElementById("points").onclick = function(e) {
     if (e.target != clicked1) {
         console.log(clicked1);
