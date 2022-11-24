@@ -55,6 +55,7 @@ function showDialog() {
 
     document.getElementById("dialog").style.display = "block";
     document.getElementById("dialog_musk").style.display = "block";
+    document.getElementById("musk").style.display = "block";
     document.querySelector("html").style.overflow = "hidden";
 
     TweenMax.staggerTo(
@@ -104,6 +105,8 @@ function showChoice() {
 // 隐藏对话框
 function hideDialog() {
     enable_text_touch = false;
+
+    document.getElementById("musk").style.display = "none";
 
     tl2 = new TimelineMax();
     tl2
@@ -284,6 +287,8 @@ function receiveSave() {
             console.log("in3-");
             alert("读取成功！");
 
+            document.getElementById("musk").style.display = "block"; //用于在对话框出现前遮挡背景
+
             loadedSave = JSON.parse(fileString); //JSON解码存档
 
             // 从存档中读取数据
@@ -346,6 +351,8 @@ function receiveSave() {
 // 回答“找不到工作日志”后的回调函数
 function reStart() {
     // hideChoice();
+    document.getElementById("musk").style.display = "block"; //用于在对话框出现前遮挡背景
+
     exercisePrepare();
 
     // ask({ "question": "你记得怎么操作吗？", "choice": ["能", "不能"] });
@@ -365,7 +372,7 @@ function reStart() {
     setTimeout(() => {
         nextStep(); //换下一个对话章节（询问是否记得如何管理学校，即是否跳过新手教程）
         // say();
-    }, 1500);
+    }, 5000);
 }
 
 // 跳过新手教程
