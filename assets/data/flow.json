@@ -3,10 +3,11 @@
         "startGame": { "0": "askSave", "1": "reStart" },
         "reStart": { "0": "teachPlay", "1": "goStart" },
         "goStart": "",
-        "askSave": ""
+        "askSave": "",
+        "complain": { "0": "refuse1", "1": "giveMoney1" },
+        "teach": { "0": "teachMood", "1": "exitTeach" }
     },
     "text": {
-
         "startGame": [{
                 "type": "ask",
                 "question": { "question": "    欢迎回到雾城。<br>    你还能找到昨天的工作日志吗？", "choice": ["能", "不能"] },
@@ -93,6 +94,135 @@
                 "type": "function",
                 "name": "showDay"
             }
-        ]
+        ],
+
+        "complain": [{
+                "type": "say",
+                "text": "    ......校长，<br>    有个坏消息。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    有一名学生向上级教育机构投诉了学校。",
+                "img": "assets/images/m0.png"
+            }, {
+                "type": "say",
+                "text": "    现在调查组已经到了校门口。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    哦，拜托不要做出那种表情。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    这件事说大不大，说小不小。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    教育局向来是站在我们这边的，而不是学生那边。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    就像学生的投诉最终会由他们的年级主任为他们解决一样。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    ......不过你可能要破财免灾了。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    什么意思？你问我什么意思？<br>    难道是我说的不够明白吗？",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    好吧，我的意思是，<br>    这件事完全可以被不留痕迹的压下去，",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    完全不会成为你完美的履历上的污点。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    但你需要给他们一点......嗯......“辛苦费”。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    毕竟你也知道，平息事件是要出不少力的。<br>    并且在此期间，学校的受益也会减半。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    给的越多，他们压下去的就越快。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    但要小心，给的太多他们的胃口可是会变大的！",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    ......你问不给行不行？",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "ask",
+                "question": { "question": "    当然也可以，不过这件事大概就会变成你的履历上的污点吧。<br>    污点多了，<b>你就失业了！</b>", "choice": ["断然拒绝", "破财免灾"] },
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "exit"
+            },
+            {
+                "type": "function",
+                "name": "showDay"
+            }
+        ],
+
+        "teach": [{
+                "type": "ask",
+                "question": { "question": "    有什么要问我的吗？", "choice": ["心情值是什么？", "没有了。"] },
+                "img": "assets/images/m4.png"
+            },
+            {
+                "type": "none"
+            }
+        ],
+
+        "teachMood": [{
+                "type": "say",
+                "text": "    心情值是学生们心情的反映。<br>    当心情值降低至一定限度后，投诉会明显增多。<br>    其在跑操时的显示如下：",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    &#128512;&#128578;&#128528;&#128577;&#128543;&#128544;&#128545;&#129324;&#128520;<br>    ===============><br>    心情好&emsp;&emsp;&emsp;心情差",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    当跑操的班级里出现&#128520;时，请小心投诉！",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "function",
+                "name": "teach"
+            }
+        ],
+
+        "source": [{
+            "type": "source",
+            "img": "assets/images/cloud.png"
+        }]
     }
 }

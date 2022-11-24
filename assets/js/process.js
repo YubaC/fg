@@ -1,3 +1,9 @@
+/*
+对话框调用方法：
+设置好nowGameAt
+nextStep()
+*/
+
 // 对话框：说
 function say() {
     textok = false; //没打完字
@@ -280,11 +286,12 @@ function receiveSave() {
 
             // 从存档中读取数据
             class_number = loadedSave.class_number;
-            exercisePrepare();
             money = loadedSave.money;
             day = loadedSave.day;
             mood = loadedSave.mood;
             speed_now = loadedSave.speed;
+
+            exercisePrepare();
 
             // 从存档中读取并绘制跑操路径------------
             path_list = loadedSave.path_list;
@@ -374,7 +381,7 @@ function goStart() {
 function showDay() {
     document.querySelector("#day h1").innerHTML = "DAY " + day;
 
-    document.querySelector("#day p").innerHTML = "当前班级数： " + class_number;
+    document.querySelector("#day p").innerHTML = `当前履历污点：${stain}/100 `;
 
     timeline = new TimelineMax();
 
@@ -423,6 +430,7 @@ function getCSSPath(node) {
     return parts.join(' > ');
 }
 
+// 保存
 function save() {
     // 获取当前时间
     var date = new Date();
@@ -461,47 +469,33 @@ function save() {
 
 // 初始化游戏
 function startGame() {
-    //发起get请求
-    var url = 'assets/data/flow.json'; //读取flow.json
+    paraList = flow.text.startGame;
+    // return flow;
+    //响应的内容
+    console.log(flow.flow[nowGameAt]);
+    // map = flow.map;
+    // drawmap();
 
-    var promise = fetch(url).then(function(response) {
+    document.querySelector("html").style.overflow = "hidden";
+    dialogMusk = document.getElementById("dialog_musk");
+    dialog = document.getElementById("dialog");
 
-        //response.status表示响应的http状态码
-        if (response.status === 200) {
-            //json是返回的response提供的一个方法,会把返回的json字符串反序列化成对象,也被包装成一个Promise了
-            return response.json();
-        } else {
-            return {}
-        }
-    });
+    dialog.style.display = "block";
+    dialogMusk.style.display = "block";
 
-    promise = promise.then(function(data) {
-        flow = data;
-        nowGameAt = "startGame";
+    showDialog();
 
-        paraList = data.text.startGame;
-        // return data;
-        //响应的内容
-        console.log(data.flow[nowGameAt]);
-        // map = data.map;
-        // drawmap();
+    setTimeout(() => {
+        ask(); //询问是否读取存档
+    }, 1000);
+}
 
-        document.querySelector("html").style.overflow = "hidden";
-        dialogMusk = document.getElementById("dialog_musk");
-        dialog = document.getElementById("dialog");
-
-        dialog.style.display = "block";
-        dialogMusk.style.display = "block";
-
-        showDialog();
-
-        setTimeout(() => {
-            ask(); //询问是否读取存档
-        }, 1000);
-
-    }).catch(function(err) {
-        console.log(err);
-    })
-
-
+// 游戏结束
+function gameover() {
+    document.getElementById("exercise_line_edit").style.display = "none";
+    loading_musk = document.getElementById("loading_musk");
+    gameOverText = document.createElement("h1");
+    gameOverText.innerHTML = '<b style="color:#FFF">Game Over</b>';
+    loading_musk.appendChild(gameOverText);
+    fadeIn(loading_musk, 40, 100);
 }

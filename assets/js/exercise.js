@@ -1,9 +1,23 @@
 // 跑操前的准备（集合班级） => 画出所有班级
 function exercisePrepare() {
+
     for (i = 0; i < class_number; i++) {
         // <text transform="matrix(1 0 0 1 155.5776 203.8384)" class="st12">&#128512;</text>
+        faceToShow = Math.floor(mood / (100 / (faceList.length - 1)));
+        // console.log(faceToShow);
+        faceToShow += Math.round(Math.random() * 2 - 1);
+        console.log(faceToShow);
+        if (faceToShow > faceList.length - 1) {
+            faceToShow = faceList.length - 1;
+        } else if (faceToShow < 0) {
+            faceToShow = 0;
+        }
+        // console.log(faceToShow);
+
+        console.log(faceList[faceToShow]);
+
         document.getElementById("class").innerHTML +=
-            '<text transform="matrix(1 0 0 1 168.9 196.9)" class="st12 classes">&#128512;</text>';
+            `<text transform="matrix(1 0 0 1 168.9 196.9)" class="st12 classes">${faceList[faceToShow]}</text>`;
     }
 }
 
