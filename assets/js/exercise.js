@@ -179,7 +179,7 @@ function exercise() {
     // if (justLoadedFromSave) {
     for (using_class = 0; using_class < class_number; using_class++) {
         // now_timeScale -= 0.1;
-        window["class" + using_class].timeScale(now_speed);
+        window["class" + using_class].timeScale(speed_now);
     }
     // justLoadedFromSave = false;
     // }

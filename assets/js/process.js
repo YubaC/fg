@@ -43,6 +43,7 @@ function continueGame(choice) {
     window[nowGameAt](); // 运行这个对话章节所需要执行的函数（函数以该章节命名）
 }
 
+// 显示对话框
 function showDialog() {
     scrollTo(0, 0);
 
@@ -73,6 +74,7 @@ function showDialog() {
     // tl2.remove();
 }
 
+// 显示提问的选项
 function showChoice() {
     document.getElementById("choice").style.display = "block";
     tl2 = new TimelineMax();
@@ -93,6 +95,7 @@ function showChoice() {
     // tl2.remove();
 }
 
+// 隐藏对话框
 function hideDialog() {
     enable_text_touch = false;
 
@@ -121,6 +124,7 @@ function hideDialog() {
     }, 1000);
 }
 
+// 隐藏提问的选项
 function hideChoice() {
     tl2 = new TimelineMax();
     tl2
@@ -145,8 +149,8 @@ function hideChoice() {
 
 // 换下一句对话用
 function next() {
-    if (enable_text_touch) {
-        if (!textok) {
+    if (enable_text_touch) { //如果允许点击
+        if (!textok) { //如果没打完字 => 补全没打完的字（通过点击的方式加速对话）
             if (paraList[speakerAt].type == "say") {
                 clearInterval(timer);
                 content.innerHTML = '<p>' + text_to_type + '_</p>';
@@ -154,9 +158,9 @@ function next() {
                 str_ = text_to_type;
 
             }
-            textok = true;
+            textok = true; //现在打完字了
 
-        } else if (speakerAt < paraList.length - 1 && paraList[speakerAt].type != "ask") {
+        } else if (speakerAt < paraList.length - 1 && paraList[speakerAt].type != "ask") { //否则已经打完字了 => 继续下一句话
             speakerAt += 1;
             if (paraList[speakerAt].type == "say") {
                 hideChoice();
@@ -167,28 +171,29 @@ function next() {
             }
         }
 
-        if (paraList[speakerAt].type == "exit") {
+        if (paraList[speakerAt].type == "exit") { //如果下一句话是type="exit"（要求退出对话）
             hideDialog();
             hideChoice();
-            if (speakerAt < paraList.length - 1) {
+            if (speakerAt < paraList.length - 1) { //如果这条命令后还有命令 => 一定是要执行函数
                 speakerAt += 1;
-                next();
+                next(); //执行这个函数
             }
         }
     }
-    if (paraList[speakerAt].type == "function") {
+    if (paraList[speakerAt].type == "function") { //执行函数
         window[paraList[speakerAt].name]();
 
     }
 }
 
+// 提问
 function ask() {
-    textok = false;
+    textok = false; //没打完字
     // speakerAt = 0;
 
     question = paraList[speakerAt].question;
-    text_to_type = str = question.question;
-    str_ = '';
+    text_to_type = str = question.question; //问题文本
+    str_ = ''; //正在打的字
     let i = 0;
     content = document.getElementById('dialog');
     choice = document.getElementById('choice');
@@ -200,21 +205,24 @@ function ask() {
         if (str_.length < str.length) {
             str_ += str[i++];
             content.innerHTML = '<p>' + str_ + '_</p>'; //打印时加光标
-        } else {
+        } else { //打完字了
             clearInterval(timer);
             content.innerHTML = '<p>' + str_ + '</p>';
 
             // content.innerHTML += '</div>';
-            showChoice();
+            showChoice(); //显示选项
             textok = true;
             // setTimeout(() => {
+            // 构建问题选项------------
             choice.innerHTML = '';
             choice.innerHTML += '<ul id="choices">';
             for (i = 0; i < question.choice.length; i++) {
                 choice.innerHTML += `<li value="${i}" onclick="returnChoice(this.value)">${question.choice[i]}</li>`;
             }
             choice.innerHTML += '</ul>';
+            // ------------
 
+            // 如果问题选项宽度过小（不太好看） => 设置宽度100px
             if (document.querySelector("#choice li").clientWidth < 100) {
                 for (i = 0; i < document.querySelectorAll("#choice li").length; i++) {
                     document.querySelectorAll("#choice li")[i].style.width = "100px";
@@ -228,10 +236,10 @@ function ask() {
 
 // 换大对话章节用
 function nextStep() {
-    hideChoice();
-    if (flow.text[nowGameAt] != "none") {
-        showDialog();
-        paraList = flow.text[nowGameAt];
+    hideChoice(); //首先隐藏问题选项
+    if (flow.text[nowGameAt] != "none") { //如果有对话
+        showDialog(); //显示对话框
+        paraList = flow.text[nowGameAt]; //获取对应的对话列表
         speakerAt = 0;
 
         if (paraList[0].type == "say") {
@@ -243,6 +251,7 @@ function nextStep() {
     }
 }
 
+// 读取存档
 function askSave() {
     hideDialog();
     hideChoice();
@@ -252,6 +261,7 @@ function askSave() {
     document.getElementById("loading_musk").innerHTML += '<div id="upload"><div><input type="file" id="file"><button id="button" onclick="receiveSave()">上传</button></div></div>';
 }
 
+// 存档上传回调函数
 function receiveSave() {
     var file_ele = document.getElementById('file');
 
@@ -261,22 +271,22 @@ function receiveSave() {
         var fileString = evt.target.result; // 读取文件内容
         console.log(fileString);
 
-        // if (fileString.search("flow") != -1 && fileString.search(",") == -1 && fileString.search("\\[") && fileString.search("\\]")) {
+        // 检查存档是否完好
         if (fileString.search("class_number") != -1 && fileString.search("day") != -1 && fileString.search("mood") != -1 && fileString.search("money") != -1 && fileString.search("path_list") != -1 && fileString.search("point_list") != -1 && fileString.search("speed") != -1 && fileString.search("version") != -1) {
             console.log("in3-");
             alert("读取成功！");
 
-            loadedSave = JSON.parse(fileString);
+            loadedSave = JSON.parse(fileString); //JSON解码存档
 
+            // 从存档中读取数据
             class_number = loadedSave.class_number;
             exercisePrepare();
             money = loadedSave.money;
             day = loadedSave.day;
             mood = loadedSave.mood;
-            now_speed = loadedSave.speed;
+            speed_now = loadedSave.speed;
 
-            // justLoadedFromSave = true;
-
+            // 从存档中读取并绘制跑操路径------------
             path_list = loadedSave.path_list;
             point_list = [];
             for (i = 0; i < loadedSave.point_list.length; i++) {
@@ -298,7 +308,7 @@ function receiveSave() {
             if (clicked1 == end) {
                 document.getElementById("go").disabled = false;
             }
-
+            // ------------
             setTimeout(() => {
                 fadeOut(document.querySelector("#loading_musk"), 40, 0);
                 // fadeOut(document.querySelector("#loading_musk p"), 40, 0);
@@ -324,6 +334,7 @@ function receiveSave() {
     }
 }
 
+// 回答“找不到工作日志”后的回调函数
 function reStart() {
     // hideChoice();
     exercisePrepare();
@@ -343,11 +354,12 @@ function reStart() {
     }, 2000);
 
     setTimeout(() => {
-        nextStep();
+        nextStep(); //换下一个对话章节（询问是否记得如何管理学校，即是否跳过新手教程）
         // say();
     }, 5000);
 }
 
+// 跳过新手教程
 function goStart() {
     //     paraList = flow.text[nowGameAt];
     //     speakerAt = 0;
@@ -358,6 +370,7 @@ function goStart() {
     // }, 3000);
 }
 
+// 展示当前游戏日
 function showDay() {
     document.querySelector("#day h1").innerHTML = "DAY " + day;
 
@@ -382,6 +395,7 @@ function showDay() {
 
 }
 
+// 新手教程
 function teachPlay() {
     paraList = flow.text[nowGameAt];
     speakerAt = 0;
@@ -389,6 +403,7 @@ function teachPlay() {
     nextStep();
 }
 
+// 获取css路径
 function getCSSPath(node) {
     let parts = [];
     while (node.parentElement) {
@@ -409,6 +424,7 @@ function getCSSPath(node) {
 }
 
 function save() {
+    // 获取当前时间
     var date = new Date();
     var year = date.getFullYear(); //  返回的是年份
     var month = date.getMonth() + 1; //  返回的月份上个月的月份，记得+1才是当月
@@ -419,6 +435,7 @@ function save() {
     console.log(time);
     //返回的是： yyyy-mm-dd
 
+    // 将point_list中保存的html DOM元素转为css的路径保存
     pointToSave = [];
     for (i = 0; i < point_list.length; i++) {
         pointToSave.push(getCSSPath(point_list[i]));
@@ -434,7 +451,7 @@ function save() {
         "path_list": path_list,
         "point_list": pointToSave
     };
-    var content = JSON.stringify(data);
+    var content = JSON.stringify(data); //JSON格式化保存
     var blob = new Blob([content], {
         type: "text/plain;charset=utf-8"
     });
@@ -442,22 +459,10 @@ function save() {
 
 }
 
-// function 
-
-
-// say(
-//     '    什么是永远？有生之年就是永远。分手不是一定坏事，只是证明那个人不是你的地久天长。在时间线上，是有一个人在等你，时间到了，就会相遇。<br/>    我好像没有特别喜欢的事情,<br>但是和喜欢的朋友一起随便聊聊天,打打游戏 ,花时间做点无聊的事情,就很高兴了,因为和舒服的人一起挥霍时间本身就是很轻松快乐的事情。<br/>--红叶都枫了@163');
-// ques = {
-//     "question": "???",
-//     // "question": '    什么是永远？有生之年就是永远。分手不是一定坏事，只是证明那个人不是你的地久天长。在时间线上，是有一个人在等你，时间到了，就会相遇。<br/>    我好像没有特别喜欢的事情,<br>但是和喜欢的朋友一起随便聊聊天,打打游戏 ,花时间做点无聊的事情,就很高兴了,因为和舒服的人一起挥霍时间本身就是很轻松快乐的事情。<br/>--红叶都枫了@163',
-//     "choice": [03424564354343521342354, 1232332323434345, 2, 3, 4, 5, 6, 7]
-// }
-
-// ask(ques);
-
+// 初始化游戏
 function startGame() {
     //发起get请求
-    var url = 'assets/data/flow.json';
+    var url = 'assets/data/flow.json'; //读取flow.json
 
     var promise = fetch(url).then(function(response) {
 
@@ -491,7 +496,7 @@ function startGame() {
         showDialog();
 
         setTimeout(() => {
-            ask();
+            ask(); //询问是否读取存档
         }, 1000);
 
     }).catch(function(err) {

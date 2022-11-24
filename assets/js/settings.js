@@ -10,7 +10,7 @@ money = 10000;
 
 speed_now = 1;
 
-// justLoadedFromSave = false; //用于在上传存档后统一速度，上传前=false，上传后=true，第一次跑操开始后=false
+// // justLoadedFromSave = false; //用于在上传存档后统一速度，上传前=false，上传后=true，第一次跑操开始后=false
 
 // now_timeScale = 1; //当前速度
 
