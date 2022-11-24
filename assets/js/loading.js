@@ -1,3 +1,4 @@
+// 用于展示加载进度（由黑色变成白色的LOGO箭头）
 function show_load(now_at) {
     loaded = now_at / 10 * 7;
     document.getElementById("loadingArrow").style.clipPath = `circle(${loaded}%)`;
@@ -6,23 +7,25 @@ function show_load(now_at) {
         // setTimeout("show_load(load)", 100);
         setTimeout("show_load(load)", 10);
         load += 1;
-    } else {
+    } else { //加载完成
         console.log("done");
         setTimeout(() => {
+            // loading界面淡出
             fadeOut(document.querySelector("#loading_musk svg"), 40, 0);
             fadeOut(document.querySelector("#loading_musk p"), 40, 0);
             // document.getElementById("top").style.display = "block";
         }, 1000);
 
         setTimeout(() => {
-            startGame();
+            startGame(); //开始游戏
         }, 2000);
 
     }
 }
 
+// 用于淡出
 // https://www.jb51.net/article/74424.htm
-//底层共用 
+// 底层共用 
 iBase = {
     Id: function(name) {
         return document.getElementById(name);

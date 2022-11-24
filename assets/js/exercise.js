@@ -176,6 +176,13 @@ function exercise() {
     }
     this_class = 0;
 
+    // if (justLoadedFromSave) {
+    for (using_class = 0; using_class < class_number; using_class++) {
+        // now_timeScale -= 0.1;
+        window["class" + using_class].timeScale(now_speed);
+    }
+    // justLoadedFromSave = false;
+    // }
 }
 
 function farther() {
@@ -233,14 +240,15 @@ function faster() {
         // now_timeScale += 0.1;
         window["class" + using_class].timeScale(window["class" + using_class].timeScale() + 0.1);
     }
+    speed_now = window["class0"].timeScale();
 }
 
 function slower() {
     for (using_class = 0; using_class < class_number; using_class++) {
         // now_timeScale -= 0.1;
-        // console.log(now_timeScale);
         window["class" + using_class].timeScale(window["class" + using_class].timeScale() - 0.1);
     }
+    speed_now = window["class0"].timeScale();
 }
 
 document.getElementById("points").onclick = function(e) {

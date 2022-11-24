@@ -1,14 +1,14 @@
+// 对话框：说
 function say() {
-    textok = false;
+    textok = false; //没打完字
 
-    document.querySelector("#dialog_musk img").src = paraList[speakerAt].img;
+    document.querySelector("#dialog_musk img").src = paraList[speakerAt].img; //说话者的图片
 
     text_to_type = paraList[speakerAt].text;
-    // let str = ' 什么是永远？有生之年就是永远。分手不是一定坏事，只是证明那个人不是你的地久天长。在时间线上，是有一个人在等你，时间到了，就会相遇。<br/>    我好像没有特别喜欢的事情,<br>但是和喜欢的朋友一起随便聊聊天,打打游戏 ,花时间做点无聊的事情,就很高兴了,因为和舒服的人一起挥霍时间本身就是很轻松快乐的事情。<br/>--红叶都枫了@163';
-    let str_ = '';
+    let str_ = ''; //已经打出来的字
     let i = 0;
     content = document.getElementById('dialog');
-    timer = setInterval(() => {
+    timer = setInterval(() => { //一秒打十个字
         if (str_.length < text_to_type.length) {
             str_ += text_to_type[i++];
             content.innerHTML = '<p>' + str_ + '_</p>'; //打印时加光标
@@ -20,25 +20,27 @@ function say() {
     }, 100);
 }
 
+// ask提出的问题作答后的回调函数
 function returnChoice(choice) {
     // return (choice);
     console.log(choice);
-    speakerAt += 1;
-    next();
+    speakerAt += 1; //说话的位置+1
+    next(); //说下一句话
     // hideDialog();
     // hideChoice();
 
-    continueGame(choice);
+    continueGame(choice); //对做出的选择进行处理
 }
 
+//对做出的选择进行处理
 function continueGame(choice) {
     // console.log(flow.flow[nowGameAt][choice]);
-    if (typeof(flow.flow[nowGameAt]) == "object") {
-        nowGameAt = flow.flow[nowGameAt][choice];
-    } else {
-        nowGameAt = flow.flow[nowGameAt];
+    if (typeof(flow.flow[nowGameAt]) == "object") { //如果这一段对话有选择
+        nowGameAt = flow.flow[nowGameAt][choice]; //更新对话章节
+    } else { //我 莫得选择
+        nowGameAt = flow.flow[nowGameAt]; //更新对话章节
     }
-    window[nowGameAt]();
+    window[nowGameAt](); // 运行这个对话章节所需要执行的函数（函数以该章节命名）
 }
 
 function showDialog() {
@@ -260,7 +262,7 @@ function receiveSave() {
         console.log(fileString);
 
         // if (fileString.search("flow") != -1 && fileString.search(",") == -1 && fileString.search("\\[") && fileString.search("\\]")) {
-        if (fileString.search("class_number") != -1 && fileString.search("day") != -1 && fileString.search("mood") != -1 && fileString.search("money") != -1) {
+        if (fileString.search("class_number") != -1 && fileString.search("day") != -1 && fileString.search("mood") != -1 && fileString.search("money") != -1 && fileString.search("path_list") != -1 && fileString.search("point_list") != -1 && fileString.search("speed") != -1 && fileString.search("version") != -1) {
             console.log("in3-");
             alert("读取成功！");
 
@@ -271,6 +273,31 @@ function receiveSave() {
             money = loadedSave.money;
             day = loadedSave.day;
             mood = loadedSave.mood;
+            now_speed = loadedSave.speed;
+
+            // justLoadedFromSave = true;
+
+            path_list = loadedSave.path_list;
+            point_list = [];
+            for (i = 0; i < loadedSave.point_list.length; i++) {
+                point_list.push(document.querySelector(loadedSave.point_list[i]));
+            }
+
+            for (i = 0; i < point_list.length - 1; i++) {
+                from_x = point_list[i].cx["animVal"]["valueAsString"];
+                from_y = point_list[i].cy["animVal"]["valueAsString"];
+                to_x = point_list[i + 1].cx["animVal"]["valueAsString"];
+                to_y = point_list[i + 1].cy["animVal"]["valueAsString"];
+                // console.log(from_x, from_y, to_x, to_y);
+
+                document.getElementById("path_lines").innerHTML +=
+                    `<line x1="${from_x}" y1="${from_y}" x2="${to_x}" y2="${to_y}" style="stroke:#fa9668; stroke-width:3px; "></line>`;
+            }
+
+            clicked1 = point_list[point_list.length - 1];
+            if (clicked1 == end) {
+                document.getElementById("go").disabled = false;
+            }
 
             setTimeout(() => {
                 fadeOut(document.querySelector("#loading_musk"), 40, 0);
@@ -362,6 +389,25 @@ function teachPlay() {
     nextStep();
 }
 
+function getCSSPath(node) {
+    let parts = [];
+    while (node.parentElement) {
+        let str = node.tagName.toLowerCase()
+        if (node.id) {
+            str += `#${node.id}`;
+            parts.unshift(str);
+            break;
+        }
+
+        let siblingsArr = Array.prototype.slice.call(node.parentElement.childNodes);
+        let ind = siblingsArr.filter((n) => n.attributes).indexOf(node);
+        parts.unshift(str + `:nth-child(${ind + 1})`);
+        node = node.parentElement;
+    }
+
+    return parts.join(' > ');
+}
+
 function save() {
     var date = new Date();
     var year = date.getFullYear(); //  返回的是年份
@@ -371,13 +417,22 @@ function save() {
     if (date < 10) date = "0" + date;
     var time = year + "-" + month + "-" + dates;
     console.log(time);
-    //返回的是： 2022-07-28 
+    //返回的是： yyyy-mm-dd
+
+    pointToSave = [];
+    for (i = 0; i < point_list.length; i++) {
+        pointToSave.push(getCSSPath(point_list[i]));
+    }
 
     let data = {
+        "version": "0.99",
         "class_number": class_number, //当前班级数
         "day": day,
         "mood": mood,
         "money": money,
+        "speed": speed_now,
+        "path_list": path_list,
+        "point_list": pointToSave
     };
     var content = JSON.stringify(data);
     var blob = new Blob([content], {

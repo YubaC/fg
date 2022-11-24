@@ -2,8 +2,8 @@
     "flow": {
         "startGame": { "0": "askSave", "1": "reStart" },
         "reStart": { "0": "teachPlay", "1": "goStart" },
-        "goStart": "goStart",
-        "askSave": "readSave"
+        "goStart": "",
+        "askSave": ""
     },
     "text": {
 
@@ -20,12 +20,12 @@
         "reStart": [{
                 "type": "say",
                 "text": "    欢迎来到雾师大副高，校长“先生”。",
-                "img": ""
+                "img": "assets/images/m0.png"
             },
             {
                 "type": "ask",
                 "question": { "question": "    你还能回忆起学校的管理方法吗？", "choice": ["我忘记了", "我还记得"] },
-                "img": ""
+                "img": "assets/images/m4.png"
             },
             {
                 "type": "none"
@@ -35,7 +35,7 @@
         "goStart": [{
                 "type": "say",
                 "text": "    让我们从头开始工作吧。",
-                "img": "assets/images/cloud.png"
+                "img": "assets/images/m1.png"
             },
             {
                 "type": "exit"
@@ -49,32 +49,32 @@
         "teachPlay": [{
                 "type": "say",
                 "text": "    这下麻烦了啊......",
-                "img": ""
+                "img": "assets/images/m4.png"
             },
             {
                 "type": "say",
                 "text": "    那么我自我介绍一下吧。<br>    我大约算是你的秘书。",
-                "img": ""
+                "img": "assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    你是这里的第37任校长。",
-                "img": ""
+                "img": "assets/images/m1.png"
             },
             {
                 "type": "say",
                 "text": "    你的目标就是把这所学校经营下去，<br>    就像我的目标是帮助你把这所学校经营下去一样。",
-                "img": ""
+                "img": "assets/images/m6.png"
             },
             {
                 "type": "say",
                 "text": "    ......也许你需要小心失业。",
-                "img": ""
+                "img": "assets/images/m4.png"
             },
             {
                 "type": "say",
                 "text": "    ......我是说，总是有很多人向往着你的位子，不是吗？",
-                "img": ""
+                "img": "assets/images/m1.png"
             },
             {
                 "type": "exit"
@@ -84,7 +84,7 @@
         "askSave": [{
                 "type": "say",
                 "text": "    工作日志读取成功！",
-                "img": ""
+                "img": "assets/images/m0.png"
             },
             {
                 "type": "exit"
