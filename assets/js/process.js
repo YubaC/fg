@@ -29,13 +29,16 @@ function say() {
 // ask提出的问题作答后的回调函数
 function returnChoice(choice) {
     // return (choice);
-    console.log(choice);
-    speakerAt += 1; //说话的位置+1
-    next(); //说下一句话
-    // hideDialog();
-    // hideChoice();
+    if (enable_choice_touch) {
+        console.log(choice);
+        speakerAt += 1; //说话的位置+1
+        next(); //说下一句话
+        // hideDialog();
+        // hideChoice();
 
-    continueGame(choice); //对做出的选择进行处理
+        continueGame(choice); //对做出的选择进行处理
+        enable_choice_touch = false;
+    }
 }
 
 //对做出的选择进行处理
@@ -84,6 +87,7 @@ function showDialog() {
 // 显示提问的选项
 function showChoice() {
     document.getElementById("choice").style.display = "block";
+    enable_choice_touch = true;
     tl2 = new TimelineMax();
     tl2
         .staggerTo(

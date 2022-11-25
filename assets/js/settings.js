@@ -57,6 +57,7 @@ paraList = []; //这一次要说的话的整体集合，包含一句或多句话
 speakerAt = 0; //现在说的话在paraList中的位置（说的第几句话）
 
 enable_text_touch = false; //是否允许通过点击的方式加速对话或说下一句话
+enable_choice_touch = false; //是否允许点击对话选项
 
 fadeOut1 = true;
 
