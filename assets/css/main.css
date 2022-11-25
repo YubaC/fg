@@ -255,3 +255,53 @@ body {
 #day p {
     font-size: large;
 }
+
+
+/* 动画效果 */
+
+.muskPNG {
+    background: #87CEFA url("../images/cloud.png") no-repeat center center;
+    /* background: #000000 url("assets/images/cloud.png") no-repeat center center; */
+    background-blend-mode: screen;
+}
+
+.titlePNG {
+    animation: colorChange 2s ease-in-out 0s 1 alternate forwards;
+}
+
+.fadeOut1 {
+    animation: fadeOut1 1s ease-in-out 0s 1 alternate forwards;
+}
+
+.fadeOut2 {
+    animation: fadeOut2 1s ease-in-out 0s 1 alternate forwards;
+}
+
+@keyframes colorChange {
+    0% {
+        background: #87CEFA url("../images/cloud.png") no-repeat center center;
+    }
+    100% {
+        background: #000000 url("../images/cloud.png") no-repeat center center;
+    }
+}
+
+@keyframes fadeOut1 {
+    from {
+        background: #87CEFA url("../images/cloud.png") no-repeat center center;
+    }
+    to {
+        background: none;
+        /* background-image: none; */
+    }
+}
+
+@keyframes fadeOut2 {
+    from {
+        background: #000000 url("../images/cloud.png") no-repeat center center;
+    }
+    to {
+        background: none;
+        /* background-image: none; */
+    }
+}

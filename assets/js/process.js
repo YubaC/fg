@@ -266,10 +266,31 @@ function nextStep() {
 function askSave() {
     hideDialog();
     hideChoice();
+    document.getElementById("musk").style.display = "block";
 
     document.querySelector("html").style.overflow = "hidden";
 
-    document.getElementById("loading_musk").innerHTML += '<div id="upload"><div><input type="file" id="file"><button id="button" onclick="receiveSave()">上传</button></div></div>';
+    clearInterval(titleColorChange);
+    // document.getElementById("musk").classList.remove("titlePNG");
+    // document.getElementById("musk").classList.remove("muskPNG");
+    if (fadeOut1) {
+        document.getElementById("musk").classList.add("fadeOut1");
+    } else {
+        document.getElementById("musk").classList.add("fadeOut2");
+    }
+
+    setTimeout(() => {
+        document.getElementById("musk").style.display = "none";
+        player.load();
+
+        document.getElementById("musk").classList.remove("fadeOut1");
+        document.getElementById("musk").classList.remove("fadeOut2");
+        document.getElementById("musk").classList.remove("titlePNG");
+        document.getElementById("musk").classList.remove("muskPNG");
+
+        document.getElementById("loading_musk").innerHTML += '<div id="upload"><div><input type="file" id="file"><button id="button" onclick="receiveSave()">上传</button></div></div>';
+
+    }, 1000);
 }
 
 // 存档上传回调函数
@@ -351,6 +372,24 @@ function receiveSave() {
 // 回答“找不到工作日志”后的回调函数
 function reStart() {
     // hideChoice();
+
+    clearInterval(titleColorChange);
+    // document.getElementById("musk").classList.remove("colorChange");
+    // document.getElementById("musk").classList.remove("muskPNG");
+    if (fadeOut1) {
+        document.getElementById("musk").classList.add("fadeOut1");
+    } else {
+        document.getElementById("musk").classList.add("fadeOut2");
+    }
+
+    setTimeout(() => {
+        player.load();
+        document.getElementById("musk").classList.remove("fadeOut1");
+        document.getElementById("musk").classList.remove("fadeOut2");
+        document.getElementById("musk").classList.remove("titlePNG");
+        document.getElementById("musk").classList.remove("muskPNG");
+    }, 1000);
+
     document.getElementById("musk").style.display = "block"; //用于在对话框出现前遮挡背景
 
     exercisePrepare();
@@ -388,11 +427,19 @@ function goStart() {
 
 // 展示当前游戏日
 function showDay() {
+    newDay();
+
+    document.getElementById("musk").style.display = "block";
+
     document.querySelector("#day h1").innerHTML = "DAY " + day;
 
-    document.querySelector("#day p").innerHTML = `当前履历污点：${stain}/100 `;
+    document.querySelector("#day p").innerHTML = `今日空气污染：${airPollution}`;
 
-    timeline = new TimelineMax();
+    timeline = new TimelineMax({
+        onComplete: function() {
+            document.getElementById("musk").style.display = "none";
+        }
+    });
 
     timeline.to("#day", 1, {
         scaleX: 1,
@@ -494,9 +541,20 @@ function startGame() {
 
     showDialog();
 
+    document.getElementById("musk").classList.add("muskPNG");
+    // fadeIn(document.getElementById("titlePNG"), 40, 100);
+
+    player = new Audio(flow.bgm.theme);
+    player.play();
+
     setTimeout(() => {
         ask(); //询问是否读取存档
     }, 1000);
+
+    titleColorChange = setTimeout(() => {
+        fadeOut1 = false;
+        document.getElementById("musk").classList.add("titlePNG");
+    }, 16000);
 }
 
 // 游戏结束

@@ -5,7 +5,7 @@
         "goStart": "",
         "askSave": "",
         "complain": { "0": "refuse1", "1": "giveMoney1" },
-        "teach": { "0": "teachMood", "1": "exitTeach" }
+        "teach": { "0": "teachMood", "1": "showWeather", "2": "showMoney", "3": "showMood", "4": "exitTeach" }
     },
     "text": {
         "startGame": [{
@@ -191,7 +191,7 @@
 
         "teach": [{
                 "type": "ask",
-                "question": { "question": "    有什么要问我的吗？", "choice": ["心情值是什么？", "没有了。"] },
+                "question": { "question": "    有什么要问我的吗？", "choice": ["心情值是什么？", "今天的天气如何？", "现在学校的账面还有多少钱？", "现在学生的心情如何？", "没有了。"] },
                 "img": "assets/images/m4.png"
             },
             {
@@ -201,7 +201,12 @@
 
         "teachMood": [{
                 "type": "say",
-                "text": "    心情值是学生们心情的反映。<br>    当心情值降低至一定限度后，投诉会明显增多。<br>    其在跑操时的显示如下：",
+                "text": "    心情值是学生们心情的反映。<br>    在空气质量好的时候只要不大规模跑操心情值就不会降低。<br>    但是空气质量不好时跑操会大幅降低心情值。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    当心情值降低至一定限度后，投诉会明显增多。<br>    其在跑操时的显示如下：",
                 "img": "assets/images/m0.png"
             },
             {
@@ -221,8 +226,17 @@
         ],
 
         "source": [{
-            "type": "source",
-            "img": "assets/images/cloud.png"
-        }]
+                "type": "source",
+                "img": "assets/images/cloud.png"
+            },
+            {
+                "type": "source",
+                "img": "assets/audio/town3.ogg"
+            }
+        ]
+    },
+
+    "bgm": {
+        "theme": "assets/audio/town3.ogg"
     }
 }

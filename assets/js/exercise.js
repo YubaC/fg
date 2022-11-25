@@ -152,6 +152,8 @@ function exerciseFinish() {
 
 // 开始跑操
 function exercise() {
+    judge();
+
     document.getElementById("exercise_line_edit").style.display = "none";
     document.getElementById("exercising").style.display = "block";
 

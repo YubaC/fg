@@ -25,8 +25,8 @@ function judge() {
         }
         money += receive_now / 100 * l;
     } else {
-        // 每跑100px扣空气质量/500 点心情
-        mood -= airPollution / 500 * l;
+        // 每跑1000px扣空气质量 / 500 *2 点心情
+        mood -= airPollution / 500 * l / 100 * 2;
         money += receive_now / 100 * l;
     }
 }

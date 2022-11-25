@@ -58,6 +58,8 @@ speakerAt = 0; //现在说的话在paraList中的位置（说的第几句话）
 
 enable_text_touch = false; //是否允许通过点击的方式加速对话或说下一句话
 
+fadeOut1 = true;
+
 // 判断元素是否在数组内的函数，使用方法：contains(Array，元素)，返回true或false
 function contains(arr, obj) {
     var i = arr.length;
@@ -69,7 +71,7 @@ function contains(arr, obj) {
     return false;
 }
 
-imagesToLoad = [];
+assetsToLoad = []; //预加载的资源列表（无须手动编辑）
 
 window.onload = function() {
     // 隐藏对话框------------
@@ -119,29 +121,35 @@ window.onload = function() {
         for (i = 0; i < keys.length; i++) {
             para = flow.text[keys[i]];
             for (j = 0; j < para.length; j++) {
-                if (para[j].type == "say" || para[j].type == "ask" | para[j].type == "source") {
+                if (para[j].type == "say" || para[j].type == "ask" || para[j].type == "source") {
                     // console.log(para[j].img);
-                    if (para[j].img != "" && !contains(imagesToLoad, para[j].img)) {
-                        imagesToLoad.push(para[j].img);
+                    if (para[j].img != "" && !contains(assetsToLoad, para[j].img)) {
+                        assetsToLoad.push(para[j].img);
                     }
                 }
             }
-        }
 
-        // console.log(imagesToLoad);
-
-        for (let i = 0; i < imagesToLoad.length; i++) {
-            let img = new Image();
-            img.src = imagesToLoad[i];
-            img.onload = function() {
-                load += 100 / imagesToLoad.length;
-                show_load(load);
-            }
         }
+        // assetsToLoad = ["https://fastly.jsdelivr.net/gh/YubaC/2810security.github.io@latest/images/%E6%A0%A1%E5%9B%AD%E9%A3%8E%E6%99%AF/IMG_6837.JPG",
+        //     "https://fastly.jsdelivr.net/gh/YubaC/2810security.github.io@latest/images/%E6%A0%A1%E5%9B%AD%E9%A3%8E%E6%99%AF/IMG_6842.JPG",
+        //     "https://fastly.jsdelivr.net/gh/YubaC/2810security.github.io@latest/images/%E6%A0%A1%E5%9B%AD%E9%A3%8E%E6%99%AF/IMG_6843.JPG"
+        // ];
+        // console.log(assetsToLoad);
+
+        // for (let i = 0; i < assetsToLoad.length; i++) {
+        //     let img = new Image();
+        //     img.src = assetsToLoad[i];
+        //     img.onload = function() {
+        //         load += 100 / assetsToLoad.length;
+        //         show_load(load);
+        //     }
+        // }
+
+        loadAssets();
 
         animateBike(); //添加操场出现的动画
         editDone(); //禁用一些按钮
-        show_load(0); //加载进度条归零
+        // show_load(0); //加载进度条归零
         // startGame(); //开始游戏
 
     }).catch(function(err) {
