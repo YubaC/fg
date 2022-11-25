@@ -101,6 +101,7 @@ function load() {
 function show_load(now_at) {
     now_loaded = now_at / 10 * 7;
     document.getElementById("loadingArrow").style.clipPath = `circle(${now_loaded}%)`;
+    document.getElementById("process").innerHTML = `Loading......${now_at}%`;
 
     if (now_at < 100) {
         // setTimeout("show_load(load)", 100);
@@ -112,7 +113,8 @@ function show_load(now_at) {
             // loading界面淡出
             fadeOut(document.querySelector("#loading_musk svg"), 40, 0);
             fadeOut(document.querySelector("#loading_musk p"), 40, 0);
-            // document.getElementById("top").style.display = "block";
+            fadeOut(document.getElementById("process"), 40, 0);
+            document.getElementById("top").style.display = "block";
         }, 1000);
 
         setTimeout(() => {

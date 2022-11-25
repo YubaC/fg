@@ -545,6 +545,7 @@ function startGame() {
     // fadeIn(document.getElementById("titlePNG"), 40, 100);
 
     player = new Audio(flow.bgm.theme);
+    player.loop = "loop";
     player.play();
 
     setTimeout(() => {
