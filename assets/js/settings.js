@@ -12,6 +12,16 @@ speed_now = 1;
 
 stain = 0; //满100失业
 
+complainDays = 0; // >0 => 投诉处理中，处理期间暂不受理新的投诉，处理期间收入减半
+
+expect1 = 3000; //上级教育机构预期的封口费
+expect2 = 3000; //媒体预期的封口费
+
+received1 = 0; //上级教育机构收到的封口费
+received2 = 0; //媒体收到的封口费
+
+usedPlayClass = false; //今天是否加了体活课
+
 airPollution = 0; //空气污染程度（每天刷新）
 receive_per_100px = 100; //每跑操100px的收入
 receive_now = receive_per_100px;
@@ -59,7 +69,7 @@ speakerAt = 0; //现在说的话在paraList中的位置（说的第几句话）
 enable_text_touch = false; //是否允许通过点击的方式加速对话或说下一句话
 enable_choice_touch = false; //是否允许点击对话选项
 
-fadeOut1 = true;
+fadeOut1 = true; //开始页面变色后更换fadeOut动画
 
 // 判断元素是否在数组内的函数，使用方法：contains(Array，元素)，返回true或false
 function contains(arr, obj) {
@@ -100,7 +110,7 @@ window.onload = function() {
     // -------------
 
 
-    //发起get请求
+    //发起get请求，获取flow.json
     var url = 'assets/data/flow.json'; //读取flow.json
 
     var promise = fetch(url).then(function(response) {
@@ -119,6 +129,8 @@ window.onload = function() {
         nowGameAt = "startGame";
 
         keys = Object.keys(flow.text);
+
+        // 提取所有需要加载的资源，包括对话里的人物img、source里规定需要加载的资源
         for (i = 0; i < keys.length; i++) {
             para = flow.text[keys[i]];
             for (j = 0; j < para.length; j++) {
@@ -146,7 +158,7 @@ window.onload = function() {
         //     }
         // }
 
-        loadAssets();
+        loadAssets(); //加载资源
 
         animateBike(); //添加操场出现的动画
         editDone(); //禁用一些按钮

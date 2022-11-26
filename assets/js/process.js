@@ -5,6 +5,9 @@ nextStep()
 */
 
 // 对话框：说
+
+function none() {}
+
 function say() {
     textok = false; //没打完字
 
@@ -79,7 +82,7 @@ function showDialog() {
 
     setTimeout(() => {
         enable_text_touch = true;
-    }, 1000);
+    }, 900);
 
     // tl2.remove();
 }
@@ -110,8 +113,6 @@ function showChoice() {
 function hideDialog() {
     enable_text_touch = false;
 
-    document.getElementById("musk").style.display = "none";
-
     tl2 = new TimelineMax();
     tl2
         .staggerTo(
@@ -134,6 +135,7 @@ function hideDialog() {
         document.getElementById("dialog").style.display = "none";
         document.getElementById("dialog_musk").style.display = "none";
         document.querySelector("html").style.overflow = "auto";
+        document.getElementById("musk").style.display = "none";
     }, 1000);
 }
 
@@ -433,15 +435,22 @@ function goStart() {
 function showDay() {
     newDay();
 
-    document.getElementById("musk").style.display = "block";
-
     document.querySelector("#day h1").innerHTML = "DAY " + day;
 
     document.querySelector("#day p").innerHTML = `今日空气污染：${airPollution}`;
 
+    // 对话框会在1s后关掉musk，这里补一下
+    setTimeout(() => {
+        document.getElementById("musk").style.display = "block";
+    }, 1000);
+
     timeline = new TimelineMax({
         onComplete: function() {
+            console.log("finised")
             document.getElementById("musk").style.display = "none";
+        },
+        onStart: function() {
+            document.getElementById("musk").style.display = "block";
         }
     });
 
@@ -566,8 +575,13 @@ function startGame() {
 function gameover() {
     document.getElementById("exercise_line_edit").style.display = "none";
     loading_musk = document.getElementById("loading_musk");
+    loading_musk.innerHTML = "";
     gameOverText = document.createElement("h1");
     gameOverText.innerHTML = '<b style="color:#FFF">Game Over</b>';
+    gameOverReason = document.createElement("p");
+    gameOverReason.innerHTML = '<b style="color:#FFF">原因：声名狼藉</b>';
+    gameOverReason.style.textAlign = "center";
     loading_musk.appendChild(gameOverText);
+    loading_musk.appendChild(gameOverReason);
     fadeIn(loading_musk, 40, 100);
 }

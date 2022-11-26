@@ -114,7 +114,7 @@ function show_load(now_at) {
             fadeOut(document.querySelector("#loading_musk svg"), 40, 0);
             fadeOut(document.querySelector("#loading_musk p"), 40, 0);
             fadeOut(document.getElementById("process"), 40, 0);
-            document.getElementById("top").style.display = "block";
+            // document.getElementById("top").style.display = "block";
         }, 1000);
 
         setTimeout(() => {
