@@ -3,10 +3,23 @@ clicked1 = ""; //选中的标记点1
 path_list = []; //路线
 point_list = []; //定位点
 
-class_number = 30; //当前班级数
+// 高一，高二，高三班级数
+grade1 = 10;
+grade1Special = 1;
+grade2 = 10;
+grade2Special = 1;
+grade3 = 10;
+grade3Special = 1;
+
+grade1OK = false;
+
+class_number = grade1 + grade2 + grade3 + grade1Special + grade2Special + grade3Special; //当前班级数
 day = 0;
 mood = 100;
 money = 10000;
+
+term = 15; //一学期15天
+todayInTerm = 0; //今天是这个学期中的第几天
 
 speed_now = 1;
 
@@ -25,6 +38,8 @@ usedPlayClass = false; //今天是否加了体活课
 airPollution = 0; //空气污染程度（每天刷新）
 receive_per_100px = 100; //每跑操100px的收入
 receive_now = receive_per_100px;
+
+complainedBefore = false;
 
 // 😀🙂😐🙁😖😠😡🤬😈
 faceList = ["&#128512;", "&#128578;", "&#128528;", "&#128577;", "&#128543;", "&#128544;", "&#128545;", "&#129324;", "&#128520;"];
@@ -62,6 +77,8 @@ document.getElementsByTagName("svg")[0].style.display = "none";
 load = 0; //加载进度，数值0-100
 
 textok = false; //对话框是否打全了所有文字，打全了=true，否则false
+
+stringToFormat = []; //用于格式化的字符串
 
 paraList = []; //这一次要说的话的整体集合，包含一句或多句话（在对话框里分开说）
 speakerAt = 0; //现在说的话在paraList中的位置（说的第几句话）

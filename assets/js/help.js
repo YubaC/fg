@@ -4,94 +4,38 @@ function teach() {
 }
 
 function teachMood() {
-    nowGameAt = "teachMood";
+    // nowGameAt = "teachMood";
     nextStep();
 }
 
 function teachStain() {
-    nowGameAt = "teachStain";
+    // nowGameAt = "teachStain";
     nextStep();
 }
 
 function showWeather() {
-    hideChoice(); //首先隐藏问题选项
-    nowGameAt = "showWeather";
-    showDialog(); //显示对话框
-    speakerAt = 0;
-    paraList = [{
-                "type": "say",
-                "text": `    今天的污染指数：${airPollution}<br>    今天的空气治理专项拨款：${receive_now}元/100px。`,
-                "img": "assets/images/m0.png"
-            },
-            {
-                "type": "function",
-                "name": "teach"
-            }
-        ],
+    stringToFormat = [airPollution, receive_now];
+    // nowGameAt = "showWeather";
+    nextStep();
 
-        say();
-    document.querySelector("html").style.overflow = "hidden";
 }
 
 function showMoney() {
-    hideChoice(); //首先隐藏问题选项
-    nowGameAt = "showMoney";
-    showDialog(); //显示对话框
-    speakerAt = 0;
-    paraList = [{
-                "type": "say",
-                "text": `    现在学校的账面还有${money}元。`,
-                "img": "assets/images/m0.png"
-            },
-            {
-                "type": "function",
-                "name": "teach"
-            }
-        ],
-
-        say();
-    document.querySelector("html").style.overflow = "hidden";
+    stringToFormat = [money];
+    // nowGameAt = "showMoney";
+    nextStep();
 }
 
 function showMood() {
-    hideChoice(); //首先隐藏问题选项
-    nowGameAt = "showMood";
-    showDialog(); //显示对话框
-    speakerAt = 0;
-    faceToShow = Math.floor(mood / (100 / (faceList.length - 1)));
-    paraList = [{
-                "type": "say",
-                "text": `    现在学生的心情值为${mood}。<br>    总体心情为：${faceList[faceToShow]}。`,
-                "img": "assets/images/m0.png"
-            },
-            {
-                "type": "function",
-                "name": "teach"
-            }
-        ],
-
-        say();
-    document.querySelector("html").style.overflow = "hidden";
+    stringToFormat = [mood, faceList[faceToShow]];
+    // nowGameAt = "showMood";
+    nextStep();
 }
 
 function showStain() {
-    hideChoice(); //首先隐藏问题选项
-    nowGameAt = "showStain";
-    showDialog(); //显示对话框
-    speakerAt = 0;
-    paraList = [{
-                "type": "say",
-                "text": `    现在你的履历污点为${stain}/100。`,
-                "img": "assets/images/m0.png"
-            },
-            {
-                "type": "function",
-                "name": "teach"
-            }
-        ],
-
-        say();
-    document.querySelector("html").style.overflow = "hidden";
+    stringToFormat = [stain];
+    // nowGameAt = "showStain";
+    nextStep();
 }
 
 function exitTeach() {

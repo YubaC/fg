@@ -1,5 +1,6 @@
 // 每个游戏日刷新
 function newDay() {
+    console.log("newday");
     usedPlayClass = false;
     if (Math.round(Math.random() * 10) < 3) { //今天天气不错（30%）（<200）
         airPollution = Math.round(Math.random() * 200);
@@ -15,8 +16,18 @@ function newDay() {
         }
     }
 
+    // 投诉处理时间-1天
     if (complainDays > 0) {
         complainDays -= 1;
+    }
+
+    if (todayInTerm < term) {
+        todayInTerm += 1;
+    } else {
+        todayInTerm = 1;
+        setTimeout(() => {
+            newTerm();
+        }, 1000);
     }
 
     if (mood < 20) {
@@ -54,15 +65,58 @@ function operate() {
     nextStep();
 }
 
+// 新学年
+function newTerm() {
+    grade3 = grade2;
+    grade3Special = grade2Special;
+    grade2 = grade1;
+    grade2Special = grade1Special;
+
+    stringToFormat = [grade2, grade2Special];
+    nowGameAt = "newTerm";
+    nextStep();
+}
+
+// 招生
+function askEnroll() {
+    if (!grade1OK) {
+        grade1 = Number(window.prompt("今年高一普通班级（每个班级可收入学费800元）招生数："));
+        if (isNaN(grade1) || grade1 <= 0) {
+            askEnroll();
+        } else {
+            grade1OK = true;
+            askEnroll();
+        }
+    } else {
+        grade1Special = Number(window.prompt("今年高一校企合作班级（每个班级可收入学费30000元）招生数："));
+        if (isNaN(grade1Special) || grade1Special <= 0) {
+            askEnroll();
+        } else {
+            grade1OK = false;
+            class_number = grade1 + grade2 + grade3 + grade1Special + grade2Special + grade3Special; //当前班级数
+            money += grade1 * 800 + grade1Special * 30000;
+
+            stringToFormat = [grade1 + grade1Special, grade1, grade1Special, class_number, grade1 * 800 + grade1Special * 30000];
+
+            exercisePrepare();
+
+            // nowGameAt = "askEnroll";
+            nextStep();
+        }
+    }
+}
+
 // 放假
 function vacation() {
     showDay();
+    day += 1;
     mood += 20;
     if (mood > 100) {
         mood = 100;
     }
 
-    exerciseFinish();
+    document.getElementById("class").innerHTML = "";
+
     setTimeout(() => {
         exercisePrepare();
     }, 1000);
@@ -92,7 +146,12 @@ function playClass() {
 // 投诉
 function complain() {
     complainDays = 7;
-    nowGameAt = "complain";
+    if (!complainedBefore) {
+        nowGameAt = "complain";
+        complainedBefore = true;
+    } else {
+        nowGameAt = "quickComplain";
+    }
     nextStep();
 }
 
@@ -113,6 +172,7 @@ function giveMoney1() {
         // console.log(000000000000);
         money -= moneyToGive;
         received1 += moneyToGive;
+        console.log(received1);
         if (received1 < expect1) {
             askMore();
         } else {
@@ -128,8 +188,10 @@ function giveMoney1() {
 
 // 封口费没给够，再要一点
 function askMore() {
-    nowGameAt = "askMore";
-    nextStep();
+    setTimeout(() => {
+        nowGameAt = "askMore";
+        nextStep();
+    }, 1000);
 }
 
 // 再给一点封口费
@@ -141,8 +203,10 @@ function giveMore() {
 
 // 封口费给足了，心满意足的离开了
 function satisfied() {
-    nowGameAt = "satisfied";
-    nextStep();
+    setTimeout(() => {
+        nowGameAt = "satisfied";
+        nextStep();
+    }, timeout);
 }
 
 // 获取总跑操路程（px）

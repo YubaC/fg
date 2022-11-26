@@ -1,8 +1,19 @@
 /*
 对话框调用方法：
-设置好nowGameAt
+设置好nowGameAt （选项的同名函数不用）
 nextStep()
 */
+
+// 自定义格式化字符串，调用方法：String.format(["","",...,""])
+String.prototype.format = function() {
+    if (arguments.length == 0) {
+        return this;
+    }
+    for (var s = this, i = 0; i < arguments[0].length; i++) {
+        s = s.replace(new RegExp("\\{" + i + "\\}", "g"), arguments[0][i]);
+    }
+    return s;
+};
 
 // 这个函数什么也不做,用于避免ask的回调函数因找不到函数而报错
 function none() {}
@@ -13,10 +24,11 @@ function say() {
 
     document.querySelector("#dialog_musk img").src = paraList[speakerAt].img; //说话者的图片
 
-    text_to_type = paraList[speakerAt].text;
+    text_to_type = paraList[speakerAt].text.format(stringToFormat);
     let str_ = ''; //已经打出来的字
     let i = 0;
     content = document.getElementById('dialog');
+    paraList.innerHTML = "";
     timer = setInterval(() => { //一秒打十个字
         if (str_.length < text_to_type.length) {
             str_ += text_to_type[i++];
@@ -191,13 +203,18 @@ function next() {
             hideChoice();
             if (speakerAt < paraList.length - 1) { //如果这条命令后还有命令 => 一定是要执行函数
                 speakerAt += 1;
-                next(); //执行这个函数
+                // next(); //执行这个函数
             }
         }
-    }
-    if (paraList[speakerAt].type == "function") { //执行函数
-        window[paraList[speakerAt].name]();
 
+        if (paraList[speakerAt].type == "function") { //执行函数
+            window[paraList[speakerAt].name]();
+            // console.log("next");
+        }
+    }
+
+    if (speakerAt == paraList.length - 1) { //完成对话后清空用于格式化的字符串
+        stringToFormat = [];
     }
 }
 
@@ -207,11 +224,12 @@ function ask() {
     // speakerAt = 0;
 
     question = paraList[speakerAt].question;
-    text_to_type = str = question.question; //问题文本
+    text_to_type = str = question.question.format(stringToFormat); //问题文本
     str_ = ''; //正在打的字
     let i = 0;
     content = document.getElementById('dialog');
     choice = document.getElementById('choice');
+    paraList.innerHTML = "";
 
     document.querySelector("#dialog_musk img").src = paraList[speakerAt].img;
 
@@ -256,6 +274,7 @@ function nextStep() {
         showDialog(); //显示对话框
         paraList = flow.text[nowGameAt]; //获取对应的对话列表
         speakerAt = 0;
+        document.getElementById("dialog").innerHTML = "";
 
         if (paraList[0].type == "say") {
             say();
@@ -310,7 +329,7 @@ function receiveSave() {
         console.log(fileString);
 
         // 检查存档是否完好
-        if (fileString.search("class_number") != -1 && fileString.search("day") != -1 && fileString.search("mood") != -1 && fileString.search("money") != -1 && fileString.search("path_list") != -1 && fileString.search("point_list") != -1 && fileString.search("speed") != -1 && fileString.search("version") != -1) {
+        if (fileString.search("version") != -1 && JSON.parse(fileString).version == flow.version) {
             console.log("in3-");
             alert("读取成功！");
 
@@ -324,6 +343,26 @@ function receiveSave() {
             day = loadedSave.day;
             mood = loadedSave.mood;
             speed_now = loadedSave.speed;
+
+            grade1 = loadedSave.grade1;
+            grade1Special = loadedSave.grade1Special;
+            grade2 = loadedSave.grade2;
+            grade2Special = loadedSave.grade2Special;
+            grade3 = loadedSave.grade3;
+            grade3Special = loadedSave.grade3Special;
+
+            class_number = grade1 + grade2 + grade3 + grade1Special + grade2Special + grade3Special; //当前班级数
+
+            todayInTerm = loadedSave.todayInTerm; //今天是这个学期中的第几天
+
+            stain = loadedSave.stain; //满100失业
+
+            complainDays = loadedSave.complainDays; // >0 => 投诉处理中，处理期间暂不受理新的投诉，处理期间收入减半
+
+            expect1 = loadedSave.expect1; //上级教育机构预期的封口费
+            expect2 = loadedSave.expect2; //媒体预期的封口费
+
+            complainedBefore = loadedSave.complainedBefore;
 
             exercisePrepare();
 
@@ -435,9 +474,9 @@ function goStart() {
 function showDay() {
     newDay();
 
-    document.querySelector("#day h1").innerHTML = "DAY " + day;
+    document.querySelector("#day h1").innerHTML = "DAY " + day + 1;
 
-    document.querySelector("#day p").innerHTML = `今日空气污染：${airPollution}`;
+    document.querySelector("#day p").innerHTML = `今日空气污染：${airPollution}&emsp;学期日${todayInTerm}/${term}`;
 
     // 对话框会在1s后关掉musk，这里补一下
     setTimeout(() => {
@@ -519,8 +558,26 @@ function save() {
     }
 
     let data = {
-        "version": "0.99",
-        "class_number": class_number, //当前班级数
+        "version": "0.0.9",
+        "todayInTerm": todayInTerm, //今天是这个学期中的第几天
+
+        "grade1": grade1,
+        "grade1Special": grade1Special,
+        "grade2": grade2,
+        "grade2Special": grade2Special,
+        "grade3": grade3,
+        "grade3Special": grade3Special,
+
+        "stain": stain, //满100失业
+
+        "complainDays": complainDays, // >0 => 投诉处理中，处理期间暂不受理新的投诉，处理期间收入减半
+
+        "expect1": expect1, //上级教育机构预期的封口费
+        "expect2": expect2, //媒体预期的封口费
+
+        "complainedBefore": complainedBefore,
+
+        // "class_number": class_number, //当前班级数
         "day": day,
         "mood": mood,
         "money": money,
