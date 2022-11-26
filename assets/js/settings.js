@@ -14,7 +14,7 @@ grade3Special = 1;
 grade1OK = false;
 
 class_number = grade1 + grade2 + grade3 + grade1Special + grade2Special + grade3Special; //当前班级数
-day = 0;
+day = 1;
 mood = 100;
 money = 10000;
 

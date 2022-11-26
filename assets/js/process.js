@@ -474,7 +474,7 @@ function goStart() {
 function showDay() {
     newDay();
 
-    document.querySelector("#day h1").innerHTML = "DAY " + day + 1;
+    document.querySelector("#day h1").innerHTML = "DAY " + day;
 
     document.querySelector("#day p").innerHTML = `今日空气污染：${airPollution}&emsp;学期日${todayInTerm}/${term}`;
 
