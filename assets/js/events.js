@@ -20,12 +20,12 @@ function newDay() {
     }
 
     if (mood < 20) {
-        if (mood <= 0) {
+        if (mood <= 0) { //心情小于等于0直接触发投诉（不在受理投诉日期内）
             mood = 0;
             if (!complainDays) {
                 complain();
             }
-        } else {
+        } else { //心情低于20大于0每天60%概率触发投诉
             if (!complainDays && Math.round(Math.random() * 10) > 3) {
                 complain();
             }
@@ -54,6 +54,7 @@ function operate() {
     nextStep();
 }
 
+// 放假
 function vacation() {
     showDay();
     mood += 20;
@@ -67,6 +68,7 @@ function vacation() {
     }, 1000);
 }
 
+// 体活课
 function playClass() {
     if (!usedPlayClass) {
         mood += 5;
@@ -87,12 +89,14 @@ function playClass() {
     }
 }
 
+// 投诉
 function complain() {
     complainDays = 7;
     nowGameAt = "complain";
     nextStep();
 }
 
+// 拒绝给上级教育机构封口费
 function refuse1() {
     stain += Math.round(Math.random() * 100);
     if (stain >= 100) {
@@ -100,6 +104,7 @@ function refuse1() {
     }
 }
 
+// 给上级教育机构封口费
 function giveMoney1() {
     moneyToGive = Math.round(Number(window.prompt(`你要给多少封口费？（现在学校的账面还有${money}元）`)));
     if (isNaN(moneyToGive) || moneyToGive > money) {
@@ -121,22 +126,26 @@ function giveMoney1() {
     }
 }
 
+// 封口费没给够，再要一点
 function askMore() {
     nowGameAt = "askMore";
     nextStep();
 }
 
+// 再给一点封口费
 function giveMore() {
     setTimeout(() => {
         giveMoney1();
     }, 1000);
 }
 
+// 封口费给足了，心满意足的离开了
 function satisfied() {
     nowGameAt = "satisfied";
     nextStep();
 }
 
+// 获取总跑操路程（px）
 function getTotalDistance() {
     var l = 0;
     for (i = 1; i < path_list.length; i++) {

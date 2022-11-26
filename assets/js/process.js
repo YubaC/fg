@@ -4,10 +4,10 @@
 nextStep()
 */
 
-// 对话框：说
-
+// 这个函数什么也不做,用于避免ask的回调函数因找不到函数而报错
 function none() {}
 
+// 对话框：说
 function say() {
     textok = false; //没打完字
 
