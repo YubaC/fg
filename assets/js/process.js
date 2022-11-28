@@ -640,5 +640,6 @@ function gameover(reason) {
     gameOverReason.style.textAlign = "center";
     loading_musk.appendChild(gameOverText);
     loading_musk.appendChild(gameOverReason);
+    loading_musk.style.zIndex = 999;
     fadeIn(loading_musk, 40, 100);
 }

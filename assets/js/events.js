@@ -196,8 +196,10 @@ function rebuildConstruction() {
 
             if (levelChanged <= 0) {
                 stringToFormat.unshift(`修改基建收入了${-levelChanged*costPerLevel}元。`);
+                stringToFormat.push(flow.text.rebuildConstructionReturnText[Math.round(Math.random() * (flow.text.rebuildConstructionReturnText.length - 1))]);
             } else {
                 stringToFormat.unshift(`修改基建花费了${levelChanged*costPerLevel}元。`);
+                stringToFormat.push("......");
             }
 
             money -= levelChanged * costPerLevel;
