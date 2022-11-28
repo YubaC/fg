@@ -5,7 +5,7 @@ function newDay() {
 
     // 每日开销、心情（宿舍、食堂）
     money -= costPerLevel * (diningHallLevel + dormitoryLevel);
-    mood += moodPerLevel * (diningHallMaxLevel / 2 - diningHallLevel + dormitoryMaxLevel / 2 - dormitoryLevel);
+    mood += moodPerLevel * (diningHallLevel - diningHallMaxLevel / 2 + dormitoryLevel - dormitoryMaxLevel / 2);
 
     if (Math.round(Math.random() * 10) < 3) { //今天天气不错（30%）（<200）
         airPollution = Math.round(Math.random() * 200);

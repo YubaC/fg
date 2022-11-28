@@ -39,7 +39,7 @@ function showStain() {
 }
 
 function showConstruction() {
-    stringToFormat = [diningHallLevel, diningHallMaxLevel, dormitoryLevel, dormitoryMaxLevel, costPerLevel * (diningHallLevel + dormitoryLevel), moodPerLevel * (diningHallMaxLevel / 2 - diningHallLevel + dormitoryMaxLevel / 2 - dormitoryLevel)];
+    stringToFormat = [diningHallLevel, diningHallMaxLevel, dormitoryLevel, dormitoryMaxLevel, costPerLevel * (diningHallLevel + dormitoryLevel), moodPerLevel * (diningHallLevel - diningHallMaxLevel / 2 + dormitoryLevel - dormitoryMaxLevel / 2)];
     // nowGameAt = "showConstruction";
     nextStep();
 }
