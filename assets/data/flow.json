@@ -10,7 +10,8 @@
         "quickComplain": { "0": "refuse1", "1": "giveMoney1" },
         "teach": { "0": "teachMood", "1": "teachStain", "2": "showWeather", "3": "showMoney", "4": "showMood", "5": "showStain", "6": "exitTeach" },
         "operate": { "0": "vacation", "1": "playClass", "2": "none" },
-        "askMore": { "0": "giveMore", "1": "refuse1" },
+        "askMore1": { "0": "giveMore1", "1": "refuse1" },
+        "askMore2": { "0": "giveMore2", "1": "refuse2" },
         "newTerm": { "0": "askEnroll" }
 
     },
@@ -27,7 +28,7 @@
 
         "reStart": [{
                 "type": "say",
-                "text": "    欢迎来到雾师大副高，校长“先生”。",
+                "text": "    欢迎来到雾高，校长“先生”。",
                 "img": "assets/images/m0.png"
             },
             {
@@ -76,13 +77,178 @@
             },
             {
                 "type": "say",
-                "text": "    ......也许你需要小心失业。",
+                "text": "    ......但是很少有人能够在这个位子上干满20年的。",
                 "img": "assets/images/m4.png"
             },
             {
                 "type": "say",
                 "text": "    ......我是说，总是有很多人向往着你的位子，不是吗？",
                 "img": "assets/images/m1.png"
+            },
+            {
+                "type": "say",
+                "text": "    ......言归正传。我来大体向你介绍一下学校的情况。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    我看看学校的介绍手册......",
+                "img": "assets/images/m4.png"
+            },
+            {
+                "type": "say",
+                "text": "    ......“雾高是一所具有人文气息的高中......”<br>    啊，这段没用。",
+                "img": "assets/images/m4.png"
+            },
+            {
+                "type": "say",
+                "text": "    办学历史70余年......办学条件......办学成果......文化传统......",
+                "img": "assets/images/m4.png"
+            },
+            {
+                "type": "say",
+                "text": "    ......算了，还是不看招生手册了。<br>    上面全是些糊弄新生的漂亮话。",
+                "img": "assets/images/m4.png"
+            },
+            {
+                "type": "say",
+                "text": "    对你我来说是没用的。",
+                "img": "assets/images/m4.png"
+            },
+            {
+                "type": "say",
+                "text": "    .还是我来亲自介绍一下吧。",
+                "img": "assets/images/m1.png"
+            },
+            {
+                "type": "say",
+                "text": "    就像我之前说的那样，你的目标是在这个位子上坐二十年直到退休。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    但在执政期间你会遇到不少挑战。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    对，执政。<br>    你在这所学校是至高无上的。SUPREME.",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    ......哦，什么？你说上级教育机构？<br>    别开玩笑了。",
+                "img": "assets/images/m1.png"
+            },
+            {
+                "type": "say",
+                "text": "    “天高皇帝远”，他们想管也管不到我们。<br>    而且你完全可以在检查的时候一个样，他们走了后另一个样。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    更何况雾城的检举机制使得为表重视他们的年级主任会亲自处理学生们向上级机构的检举。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    因此，在这里，你就是最高的。<br>    就像古代的县令的权利最大，被称为“父母官”一样。",
+                "img": "assets/images/m1.png"
+            },
+            {
+                "type": "say",
+                "text": "    但是你执政的时候要平衡好学校的收支，对外和上级“打好关系”，对内“安抚”师生情绪。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    但是你无需担心。<br>    第36任校长给你留下了一笔宝贵的遗产。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    最为宝贵的就是“学生会”。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    ......虽然他们可能什么都不会。<br>    但他们对你绝对忠心。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    他们会忠实的执行你说的一切。<br>    有事让他们干就行。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    高产出，低消耗。<br>    唯一的消耗是每年换届的时候需要给每个人一张奖状。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    他们获得了奖状，可以填报综招；你获得了免费劳动力。<br>    这是“双赢”，嗯？",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    ......又扯偏了。<br>    还是来说一说你每天的工作吧。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    你的工作很简单。<br>    就是规划并操控学生每天的跑操。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    哦，拜托不要做出那种表情。<br>    这是学校主要的资金来源。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    你是外地人，可能对雾城本地不太了解。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    雾城里终年弥漫着雾霾，<br>    是个空气被严重污染的地方。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    政府会根据学生出门跑操的距离每天给学习一笔空气治理专项拨款。<br>    跑操的距离越长，给的钱越多。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    但是污染越严重，学生的心情值掉的越快。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    你可以做的就是每天规划调整跑操路线。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    看到上面的那个“EDIT”的按钮了吗？<br>    点一下，然后通过点击冒出来的路径点的方式规划跑操路线",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    记得最后要把路径连接到那个绿点上。<br>    然后点击“OK”退出编辑。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    这样就可以点击“GO”开始跑操了。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    祝你好运！。",
+                "img": "assets/images/m0.png"
             },
             {
                 "type": "exit"
@@ -124,7 +290,7 @@
 
         "askEnroll": [{
                 "type": "say",
-                "text": "    ......如你所愿。",
+                "text": "    ......校长高见。",
                 "img": "assets/images/m0.png"
             },
             {
@@ -250,7 +416,17 @@
             }
         ],
 
-        "askMore": [{
+        "askMore1": [{
+                "type": "ask",
+                "question": { "question": "    ......校长，他们似乎不太满足。<br>    要不再给点儿？", "choice": ["行", "算了"] },
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "exit"
+            }
+        ],
+
+        "askMore2": [{
                 "type": "ask",
                 "question": { "question": "    ......校长，他们似乎不太满足。<br>    要不再给点儿？", "choice": ["行", "算了"] },
                 "img": "assets/images/m0.png"

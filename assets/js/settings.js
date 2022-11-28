@@ -25,10 +25,14 @@ speed_now = 1;
 
 stain = 0; //满100失业
 
+dailyCostEachClass = 2000; //学校每日每个班级开销
+receive_per_100px = 100; //每跑操100px的收入
+receive_now = receive_per_100px;
+
 complainDays = 0; // >0 => 投诉处理中，处理期间暂不受理新的投诉，处理期间收入减半
 
-expect1 = 3000; //上级教育机构预期的封口费
-expect2 = 3000; //媒体预期的封口费
+expect1 = 30000; //上级教育机构预期的封口费
+expect2 = 30000; //媒体预期的封口费
 
 received1 = 0; //上级教育机构收到的封口费
 received2 = 0; //媒体收到的封口费
@@ -36,8 +40,6 @@ received2 = 0; //媒体收到的封口费
 usedPlayClass = false; //今天是否加了体活课
 
 airPollution = 0; //空气污染程度（每天刷新）
-receive_per_100px = 100; //每跑操100px的收入
-receive_now = receive_per_100px;
 
 complainedBefore = false;
 

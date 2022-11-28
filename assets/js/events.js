@@ -56,7 +56,11 @@ function judge() {
     } else {
         // 每跑1000px扣空气质量 / 500 *2 点心情
         mood -= airPollution / 500 * l / 100 * 2;
-        money += Math.round(receive_now / 100 * l);
+        money += Math.round(receive_now * class_number / 100 * l);
+        money -= dailyCostEachClass * class_number;
+        if (money <= 0) {
+            gameover("原因：入不敷出");
+        }
     }
 }
 
@@ -108,14 +112,19 @@ function askEnroll() {
 
 // 放假
 function vacation() {
-    showDay();
     day += 1;
+    showDay();
     mood += 20;
     if (mood > 100) {
         mood = 100;
     }
 
     document.getElementById("class").innerHTML = "";
+
+    money -= dailyCostEachClass / 5 * class_number;
+    if (money <= 0) {
+        gameover("原因：入不敷出");
+    }
 
     setTimeout(() => {
         exercisePrepare();
@@ -155,11 +164,14 @@ function complain() {
     nextStep();
 }
 
+// 媒体曝光
+function digOut() {}
+
 // 拒绝给上级教育机构封口费
 function refuse1() {
     stain += Math.round(Math.random() * 100);
     if (stain >= 100) {
-        gameover();
+        gameover("原因：声名狼藉");
     }
 }
 
@@ -174,7 +186,7 @@ function giveMoney1() {
         received1 += moneyToGive;
         console.log(received1);
         if (received1 < expect1) {
-            askMore();
+            askMore1();
         } else {
             if (received1 - expect1 > 1000) {
                 expect1 += (received1 - expect1) / 2;
@@ -186,27 +198,69 @@ function giveMoney1() {
     }
 }
 
+// 拒绝给媒体封口费
+function refuse2() {
+    gameover("原因：声名狼藉");
+}
+
+// 给媒体封口费
+function giveMoney2() {
+    moneyToGive = Math.round(Number(window.prompt(`你要给多少封口费？（现在学校的账面还有${money}元）`)));
+    if (isNaN(moneyToGive) || moneyToGive > money) {
+        giveMoney2();
+    } else {
+        // console.log(000000000000);
+        money -= moneyToGive;
+        received2 += moneyToGive;
+        console.log(received2);
+        if (received2 < expect2) {
+            askMore2();
+        } else {
+            if (received2 - expect2 > 1000) {
+                expect2 += (received2 - expect2) / 2;
+                expect2 += 300;
+            }
+            satisfied();
+        }
+    }
+}
+
+
 // 封口费没给够，再要一点
-function askMore() {
+function askMore1() {
     setTimeout(() => {
-        nowGameAt = "askMore";
+        nowGameAt = "askMore1";
         nextStep();
     }, 1000);
 }
 
+// 封口费没给够，再要一点
+function askMore2() {
+    setTimeout(() => {
+        nowGameAt = "askMore2";
+        nextStep();
+    }, 1000);
+}
+
+
 // 再给一点封口费
-function giveMore() {
+function giveMore1() {
     setTimeout(() => {
         giveMoney1();
     }, 1000);
 }
-
+// 再给一点封口费
+function giveMore2() {
+    setTimeout(() => {
+        giveMoney2();
+    }, 1000);
+}
 // 封口费给足了，心满意足的离开了
 function satisfied() {
     setTimeout(() => {
         nowGameAt = "satisfied";
         nextStep();
-    }, timeout);
+    }, 1000);
 }
 
 // 获取总跑操路程（px）
