@@ -595,7 +595,7 @@ function save() {
     var blob = new Blob([content], {
         type: "text/plain;charset=utf-8"
     });
-    saveAs(blob, `${time}某副高校长工作日志.json`);
+    saveAs(blob, `${time}某高中校长工作日志.json`);
 
 }
 
