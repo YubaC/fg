@@ -17,7 +17,7 @@ diningHallLevelOK = false;
 class_number = grade1 + grade2 + grade3 + grade1Special + grade2Special + grade3Special; //当前班级数
 day = 1;
 mood = 100;
-money = 10000;
+money = 100000;
 
 term = 15; //一学期15天
 todayInTerm = 0; //今天是这个学期中的第几天
