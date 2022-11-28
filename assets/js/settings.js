@@ -12,6 +12,7 @@ grade3 = 10;
 grade3Special = 1;
 
 grade1OK = false;
+diningHallLevelOK = false;
 
 class_number = grade1 + grade2 + grade3 + grade1Special + grade2Special + grade3Special; //当前班级数
 day = 1;
@@ -40,6 +41,15 @@ received2 = 0; //媒体收到的封口费
 usedPlayClass = false; //今天是否加了体活课
 
 airPollution = 0; //空气污染程度（每天刷新）
+
+diningHallLevel = 5;
+diningHallMaxLevel = 10;
+
+dormitoryLevel = 5;
+dormitoryMaxLevel = 10;
+
+costPerLevel = 1000;
+moodPerLevel = 2;
 
 complainedBefore = false;
 

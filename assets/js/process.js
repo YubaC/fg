@@ -417,7 +417,6 @@ function receiveSave() {
 // 回答“找不到工作日志”后的回调函数
 function reStart() {
     // hideChoice();
-
     clearInterval(titleColorChange);
     // document.getElementById("musk").classList.remove("colorChange");
     // document.getElementById("musk").classList.remove("muskPNG");
@@ -433,6 +432,7 @@ function reStart() {
         document.getElementById("musk").classList.remove("fadeOut2");
         document.getElementById("musk").classList.remove("titlePNG");
         document.getElementById("musk").classList.remove("muskPNG");
+        document.getElementById("musk").style.display = "block"; //用于在对话框出现前遮挡背景
     }, 1000);
 
     document.getElementById("musk").style.display = "block"; //用于在对话框出现前遮挡背景

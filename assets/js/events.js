@@ -2,6 +2,11 @@
 function newDay() {
     console.log("newday");
     usedPlayClass = false;
+
+    // 每日开销、心情（宿舍、食堂）
+    money -= costPerLevel * (diningHallLevel + dormitoryLevel);
+    mood += moodPerLevel * (diningHallMaxLevel / 2 - diningHallLevel + dormitoryMaxLevel / 2 - dormitoryLevel);
+
     if (Math.round(Math.random() * 10) < 3) { //今天天气不错（30%）（<200）
         airPollution = Math.round(Math.random() * 200);
         // 今天赚的钱-50%
@@ -64,6 +69,7 @@ function judge() {
     }
 }
 
+// function
 function operate() {
     nowGameAt = "operate";
     nextStep();
@@ -152,6 +158,51 @@ function playClass() {
     }
 }
 
+// 修改基建
+function rebuildConstruction() {
+    if (!diningHallLevelOK) {
+        newDiningHallLevel = Number(window.prompt(`你要将食堂的基建等级调整为lv.？（当前的等级为lv.${diningHallLevel}/${diningHallMaxLevel}）`));
+        if (isNaN(newDiningHallLevel) || newDiningHallLevel < 0 || newDiningHallLevel > diningHallMaxLevel) {
+            rebuildConstruction();
+        } else {
+            diningHallLevelOK = true;
+            if (newDiningHallLevel != null) {
+                levelChanged = newDiningHallLevel - diningHallLevel;
+                diningHallLevel = newDiningHallLevel;
+            }
+            rebuildConstruction();
+        }
+    } else {
+        nweDormitoryLevel = Number(window.prompt(`你要将宿舍的基建等级调整为lv.？（当前的等级为lv.${dormitoryLevel}/${dormitoryMaxLevel}）`));
+        if (isNaN(nweDormitoryLevel) || nweDormitoryLevel < 0 || nweDormitoryLevel > dormitoryMaxLevel) {
+            rebuildConstruction();
+        } else {
+            diningHallLevelOK = false;
+            if (nweDormitoryLevel != null) {
+                levelChanged += nweDormitoryLevel - dormitoryLevel;
+                dormitoryLevel = nweDormitoryLevel;
+            }
+
+            stringToFormat = [diningHallLevel, diningHallMaxLevel, dormitoryLevel, dormitoryMaxLevel, costPerLevel * (diningHallLevel + dormitoryLevel), moodPerLevel * (diningHallLevel - diningHallMaxLevel / 2 + dormitoryLevel - dormitoryMaxLevel / 2)];
+
+            if (levelChanged <= 0) {
+                stringToFormat.unshift(`修改基建收入了${-levelChanged*costPerLevel}元。`);
+            } else {
+                stringToFormat.unshift(`修改基建花费了${levelChanged*costPerLevel}元。`);
+            }
+
+            money -= levelChanged * costPerLevel;
+
+            nowGameAt = "rebuildConstructionReturn";
+
+            document.getElementById("musk").style.display = "block";
+            setTimeout(() => {
+                nextStep();
+            }, 1000);
+        }
+    }
+}
+
 // 投诉
 function complain() {
     complainDays = 7;
@@ -225,7 +276,6 @@ function giveMoney2() {
     }
 }
 
-
 // 封口费没给够，再要一点
 function askMore1() {
     setTimeout(() => {
@@ -242,19 +292,20 @@ function askMore2() {
     }, 1000);
 }
 
-
 // 再给一点封口费
 function giveMore1() {
     setTimeout(() => {
         giveMoney1();
     }, 1000);
 }
+
 // 再给一点封口费
 function giveMore2() {
     setTimeout(() => {
         giveMoney2();
     }, 1000);
 }
+
 // 封口费给足了，心满意足的离开了
 function satisfied() {
     setTimeout(() => {

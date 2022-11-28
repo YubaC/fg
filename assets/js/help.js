@@ -38,6 +38,12 @@ function showStain() {
     nextStep();
 }
 
+function showConstruction() {
+    stringToFormat = [diningHallLevel, diningHallMaxLevel, dormitoryLevel, dormitoryMaxLevel, costPerLevel * (diningHallLevel + dormitoryLevel), moodPerLevel * (diningHallMaxLevel / 2 - diningHallLevel + dormitoryMaxLevel / 2 - dormitoryLevel)];
+    // nowGameAt = "showConstruction";
+    nextStep();
+}
+
 function exitTeach() {
     hideDialog();
     hideChoice();

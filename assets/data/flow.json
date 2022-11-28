@@ -8,8 +8,8 @@
         "askSave": "",
         "complain": { "0": "refuse1", "1": "giveMoney1" },
         "quickComplain": { "0": "refuse1", "1": "giveMoney1" },
-        "teach": { "0": "teachMood", "1": "teachStain", "2": "showWeather", "3": "showMoney", "4": "showMood", "5": "showStain", "6": "exitTeach" },
-        "operate": { "0": "vacation", "1": "playClass", "2": "none" },
+        "teach": { "0": "teachMood", "1": "teachStain", "2": "showWeather", "3": "showMoney", "4": "showMood", "5": "showStain", "6": "showConstruction", "7": "exitTeach" },
+        "operate": { "0": "vacation", "1": "playClass", "2": "rebuildConstruction", "3": "none" },
         "askMore1": { "0": "giveMore1", "1": "refuse1" },
         "askMore2": { "0": "giveMore2", "1": "refuse2" },
         "newTerm": { "0": "askEnroll" }
@@ -117,7 +117,7 @@
             },
             {
                 "type": "say",
-                "text": "    .还是我来亲自介绍一下吧。",
+                "text": "    还是我来亲自介绍一下吧。",
                 "img": "assets/images/m1.png"
             },
             {
@@ -247,7 +247,7 @@
             },
             {
                 "type": "say",
-                "text": "    祝你好运！。",
+                "text": "有什么问题可以再来问我。    <br>    祝你好运！。",
                 "img": "assets/images/m0.png"
             },
             {
@@ -312,7 +312,8 @@
                 "type": "say",
                 "text": "    有一名学生向上级教育机构投诉了学校。",
                 "img": "assets/images/m0.png"
-            }, {
+            },
+            {
                 "type": "say",
                 "text": "    现在调查组已经到了校门口。",
                 "img": "assets/images/m0.png"
@@ -448,7 +449,7 @@
 
         "teach": [{
                 "type": "ask",
-                "question": { "question": "    有什么要问我的吗？", "choice": ["心情值是什么？", "我的履历污点是什么？", "今天的天气如何？", "现在学校的账面还有多少钱？", "现在学生的心情如何？", "我当前的履历如何？", "没有了。"] },
+                "question": { "question": "    有什么要问我的吗？", "choice": ["心情值是什么？", "我的履历污点是什么？", "今天的天气如何？", "现在学校的账面还有多少钱？", "现在学生的心情如何？", "我当前的履历如何？", "现在学校的基建如何？", "没有了。"] },
                 "img": "assets/images/m4.png"
             },
             {
@@ -505,7 +506,7 @@
 
         "operate": [{
                 "type": "ask",
-                "question": { "question": "    你要发布什么手谕吗？", "choice": ["今天放假吧", "今天加一节体活吧", "算了"] },
+                "question": { "question": "    你要发布什么手谕吗？", "choice": ["今天放假吧", "今天加一节体活吧", "调整基建", "算了"] },
                 "img": "assets/images/m0.png"
             },
             {
@@ -563,6 +564,41 @@
             {
                 "type": "function",
                 "name": "teach"
+            }
+        ],
+        "showConstruction": [{
+                "type": "say",
+                "text": "    食堂的等级为{0}/{1}，<br>    宿舍的等级为{2}/{3}。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    基建每日开销为{4}元，<br>    每日心情加成为{5}点。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "function",
+                "name": "teach"
+            }
+        ],
+
+        "rebuildConstructionReturn": [{
+                "type": "say",
+                "text": "    修改成功！<br>    {0}",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    食堂的等级为{1}/{2}，<br>    宿舍的等级为{3}/{4}。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    基建每日开销为{5}元，<br>    每日心情加成为{6}点。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "exit"
             }
         ],
 
