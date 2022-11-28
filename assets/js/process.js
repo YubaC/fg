@@ -353,6 +353,9 @@ function receiveSave() {
 
             class_number = grade1 + grade2 + grade3 + grade1Special + grade2Special + grade3Special; //当前班级数
 
+            diningHallLevel - loadedSave.diningHallLevel;
+            dormitoryLevel = loadedSave.dormitoryLevel;
+
             todayInTerm = loadedSave.todayInTerm; //今天是这个学期中的第几天
 
             stain = loadedSave.stain; //满100失业
@@ -558,7 +561,7 @@ function save() {
     }
 
     let data = {
-        "version": "0.0.9",
+        "version": flow.version,
         "todayInTerm": todayInTerm, //今天是这个学期中的第几天
 
         "grade1": grade1,
@@ -576,6 +579,9 @@ function save() {
         "expect2": expect2, //媒体预期的封口费
 
         "complainedBefore": complainedBefore,
+
+        "diningHallLevel": diningHallLevel,
+        "dormitoryLevel": dormitoryLevel,
 
         // "class_number": class_number, //当前班级数
         "day": day,
