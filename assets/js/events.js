@@ -1,7 +1,10 @@
 // 每个游戏日刷新
 function newDay() {
     console.log("newday");
+
+    // 每日刷新
     usedPlayClass = false;
+    eventHappend = false;
 
     // 每日开销、心情（宿舍、食堂）
     money -= costPerLevel * (diningHallLevel + dormitoryLevel);
@@ -40,12 +43,18 @@ function newDay() {
             mood = 0;
             if (!complainDays) {
                 complain();
+                eventHappend = true;
             }
         } else { //心情低于20大于0每天60%概率触发投诉
             if (!complainDays && Math.round(Math.random() * 10) > 3) {
                 complain();
+                eventHappend = true;
             }
         }
+    }
+    if (mood < 10 && !eventHappend && Math.round(Math.random() * 10) > 4) { //50%
+        digOut();
+        eventHappend = true;
     }
 }
 
@@ -216,7 +225,10 @@ function complain() {
 }
 
 // 媒体曝光
-function digOut() {}
+function digOut() {
+    nowGameAt = "digOut";
+    nextStep();
+}
 
 // 拒绝给上级教育机构封口费
 function refuse1() {

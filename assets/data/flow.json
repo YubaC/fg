@@ -8,6 +8,7 @@
         "askSave": "",
         "complain": { "0": "refuse1", "1": "giveMoney1" },
         "quickComplain": { "0": "refuse1", "1": "giveMoney1" },
+        "digOut": { "0": "refuse2", "1": "giveMoney2" },
         "teach": { "0": "teachMood", "1": "teachStain", "2": "showWeather", "3": "showMoney", "4": "showMood", "5": "showStain", "6": "showConstruction", "7": "exitTeach" },
         "operate": { "0": "vacation", "1": "playClass", "2": "rebuildConstruction", "3": "none" },
         "askMore1": { "0": "giveMore1", "1": "refuse1" },
@@ -310,7 +311,7 @@
             },
             {
                 "type": "say",
-                "text": "    有一名学生向上级教育机构投诉了学校。",
+                "text": "    有一个学生向上级教育机构投诉了学校。",
                 "img": "assets/images/m0.png"
             },
             {
@@ -395,16 +396,37 @@
 
         "quickComplain": [{
                 "type": "say",
-                "text": "    ......校长，<br>    有一名学生向上级教育机构投诉了学校。",
+                "text": "    ......校长，<br>    有一个学生向上级教育机构投诉了学校。",
                 "img": "assets/images/m0.png"
             },
             {
                 "type": "say",
-                "text": "    ",
-                "img": "assets/images/m0.png"
-            }, {
-                "type": "say",
                 "text": "    现在调查组又来了。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "ask",
+                "question": { "question": "    ......老规矩？", "choice": ["断然拒绝", "破财免灾"] },
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "exit"
+            }
+        ],
+
+        "digOut": [{
+                "type": "say",
+                "text": "    ......校长，很不幸的通知你，<br>    有一个学生累到了，进了ICU。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    ......也许他是吸了太多雾霾？",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "say",
+                "text": "    总之现在媒体听说了这件事，他们像嗅到血腥味的鲨鱼一样靠过来了。",
                 "img": "assets/images/m0.png"
             },
             {
