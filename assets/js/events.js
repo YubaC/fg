@@ -56,6 +56,11 @@ function newDay() {
         digOut();
         eventHappend = true;
     }
+
+    // 退休
+    if (day > 150) {
+        retire();
+    }
 }
 
 // 最终收入支出判定
@@ -197,9 +202,11 @@ function rebuildConstruction() {
             if (levelChanged <= 0) {
                 stringToFormat.unshift(`修改基建收入了${-levelChanged*costPerLevel}元。`);
                 stringToFormat.push(flow.text.rebuildConstructionReturnText[Math.round(Math.random() * (flow.text.rebuildConstructionReturnText.length - 1))]);
-            } else {
+            } else if (money - costPerLevel * (diningHallLevel + dormitoryLevel) >= 0) {
                 stringToFormat.unshift(`修改基建花费了${levelChanged*costPerLevel}元。`);
                 stringToFormat.push("......");
+            } else {
+                window.alert("余额不足！")
             }
 
             money -= levelChanged * costPerLevel;
@@ -338,4 +345,14 @@ function getTotalDistance() {
             ]) - parseFloat(path_list[i - 1][1])) ** 2) ** 0.5;
     }
     return l;
+}
+
+//退休
+function retire() {
+    gameover('成功退休！<span id="retired" style="display:none">......吗？</span>');
+
+    retired = document.getElementById("retired");
+    setTimeout(() => {
+        fadeIn(retired, 40, 100);
+    }, 5000);
 }
