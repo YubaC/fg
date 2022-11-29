@@ -117,16 +117,16 @@ function newTerm() {
 // 招生
 function askEnroll() {
     if (!grade1OK) {
-        grade1 = Number(window.prompt("今年高一普通班级（每个班级可收入学费800元）招生数："));
-        if (isNaN(grade1) || grade1 <= 0) {
+        grade1 = Number(window.prompt("今年高一普通班级（每个班级可收入学费800元，最多招收12个班）招生数："));
+        if (isNaN(grade1) || grade1 <= 0 || grade1 > 12) {
             askEnroll();
         } else {
             grade1OK = true;
             askEnroll();
         }
     } else {
-        grade1Special = Number(window.prompt("今年高一校企合作班级（每个班级可收入学费30000元）招生数："));
-        if (isNaN(grade1Special) || grade1Special <= 0) {
+        grade1Special = Number(window.prompt("今年高一校企合作班级（每个班级可收入学费30000元，最多招收三个班）招生数："));
+        if (isNaN(grade1Special) || grade1Special <= 0 || grade1Special > 3) {
             askEnroll();
         } else {
             grade1OK = false;
