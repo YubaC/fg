@@ -35,6 +35,14 @@ function newDay() {
 
     if (todayInTerm < term) {
         todayInTerm += 1;
+    } else {
+        todayInTerm = 1;
+        setTimeout(() => {
+            newTerm();
+        }, 1000);
+    }
+
+    if (!justLoadedFromSave && todayInTerm != 1) { //不是招生日并且不是刚读取存档
         if (mood < 20) {
             if (mood <= 0) { //心情小于等于0直接触发投诉（不在受理投诉日期内）
                 mood = 0;
@@ -51,12 +59,8 @@ function newDay() {
         } else if (Math.round(Math.random() * 9) < 3) { //每天30%概率触发小事件
             miniEvent();
         }
-
-    } else {
-        todayInTerm = 1;
-        setTimeout(() => {
-            newTerm();
-        }, 1000);
+    } else if (justLoadedFromSave) {
+        justLoadedFromSave = false;
     }
 
     // 退休

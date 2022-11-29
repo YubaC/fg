@@ -333,6 +333,7 @@ function receiveSave() {
         // 检查存档是否完好
         if (fileString.search("version") != -1 && JSON.parse(fileString).version == flow.version) {
             console.log("in3-");
+            justLoadedFromSave = true;
             alert("读取成功！");
 
             document.getElementById("musk").style.display = "block"; //用于在对话框出现前遮挡背景
@@ -342,7 +343,7 @@ function receiveSave() {
             // 从存档中读取数据
             class_number = loadedSave.class_number;
             money = loadedSave.money;
-            day = loadedSave.day;
+            day = loadedSave.day + 1;
             mood = loadedSave.mood;
             speed_now = loadedSave.speed;
 
@@ -477,6 +478,7 @@ function goStart() {
     // }, 3000);
 }
 
+// 从保存的cookie中读取地图
 function loadFromCookie() {
     var fileString = getCookie("mapSaved"); // 读取文件内容
     // console.log(fileString);
@@ -484,7 +486,8 @@ function loadFromCookie() {
     // 检查存档是否完好
     if (fileString.search("version") != -1 && JSON.parse(fileString).version == flow.version) {
         console.log("in3-");
-        alert("读取成功！");
+        justLoadedFromSave = true;
+        // alert("读取成功！");
 
         document.getElementById("musk").style.display = "block"; //用于在对话框出现前遮挡背景
 
@@ -493,7 +496,7 @@ function loadFromCookie() {
         // 从存档中读取数据
         class_number = loadedSave.class_number;
         money = loadedSave.money;
-        day = loadedSave.day;
+        day = loadedSave.day + 1;
         mood = loadedSave.mood;
         speed_now = loadedSave.speed;
 
