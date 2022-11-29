@@ -684,6 +684,11 @@
                 "img": "assets/images/m0.png"
             },
             {
+                "type": "say",
+                "text": "    请注意，超收班费时学生的心情是以指数的速度下降的！",
+                "img": "assets/images/m0.png"
+            },
+            {
                 "type": "exit"
             }
         ],
