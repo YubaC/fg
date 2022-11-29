@@ -33,6 +33,32 @@ function newDay() {
         classFundDays -= 1;
     }
 
+    if (todayInTerm < term) {
+        todayInTerm += 1;
+        if (mood < 20) {
+            if (mood <= 0) { //心情小于等于0直接触发投诉（不在受理投诉日期内）
+                mood = 0;
+                if (!complainDays) {
+                    complain();
+                }
+            } else { //心情低于20大于0每天60%概率触发投诉
+                if (!complainDays && Math.round(Math.random() * 9) > 3) {
+                    complain();
+                }
+            }
+        } else if (mood < 10 && Math.round(Math.random() * 9) > 4) { //心情小于10的时候50%触发媒体判定
+            digOut();
+        } else if (Math.round(Math.random() * 9) < 3) { //每天30%概率触发小事件
+            miniEvent();
+        }
+
+    } else {
+        todayInTerm = 1;
+        setTimeout(() => {
+            newTerm();
+        }, 1000);
+    }
+
     // 退休
     if (day > 150) {
         retire();
@@ -57,33 +83,6 @@ function judge() {
 
     if (l >= 7500) { //跑得太远了，取消投诉保护
         complainDays = 0;
-    }
-
-    if (todayInTerm < term) {
-        todayInTerm += 1;
-
-        if (mood < 20) {
-            if (mood <= 0) { //心情小于等于0直接触发投诉（不在受理投诉日期内）
-                mood = 0;
-                if (!complainDays) {
-                    complain();
-                }
-            } else { //心情低于20大于0每天60%概率触发投诉
-                if (!complainDays && Math.round(Math.random() * 9) > 3) {
-                    complain();
-                }
-            }
-        } else if (mood < 10 && Math.round(Math.random() * 9) > 4) { //心情小于10的时候50%触发媒体判定
-            digOut();
-        } else if (Math.round(Math.random() * 9) < 3) { //每天30%概率触发小事件
-            miniEvent();
-        }
-
-    } else {
-        todayInTerm = 1;
-        setTimeout(() => {
-            newTerm();
-        }, 1000);
     }
 
     if (money <= 0) {
@@ -179,7 +178,6 @@ function askEnroll() {
 // 放假
 function vacation() {
     day += 1;
-    showDay();
     mood += 20;
     if (mood > 100) {
         mood = 100;
@@ -194,6 +192,7 @@ function vacation() {
 
     setTimeout(() => {
         exercisePrepare();
+        showDay();
     }, 1000);
 }
 
