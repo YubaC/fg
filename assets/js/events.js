@@ -120,7 +120,7 @@ function classFund() {
         classFundDays = 3;
 
         setTimeout(() => {
-            stringToFormat = [1000 * class_number, classFundNumber + 1, 5 * classFundNumber];
+            stringToFormat = [1000 * class_number, classFundNumber + 1, 5 * classFundNumber ** 3];
             nowGameAt = "classFund2";
             nextStep();
             document.getElementById("class").innerHTML = "";
