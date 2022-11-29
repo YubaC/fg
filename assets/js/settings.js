@@ -20,7 +20,7 @@ mood = 100;
 money = 100000;
 
 term = 15; //一学期15天
-todayInTerm = 0; //今天是这个学期中的第几天
+todayInTerm = 1; //今天是这个学期中的第几天
 
 speed_now = 1;
 
@@ -31,6 +31,8 @@ receive_per_100px = 100; //每跑操100px的收入
 receive_now = receive_per_100px;
 
 complainDays = 0; // >0 => 投诉处理中，处理期间暂不受理新的投诉，处理期间收入减半
+classFundDays = 0; // >0 => 刚收了班费，等两天再割韭菜，如果再收=>心情 - 5 * classFundNumber
+classFundNumber = 0; //班费收取次数
 
 expect1 = 30000; //上级教育机构预期的封口费
 expect2 = 30000; //媒体预期的封口费

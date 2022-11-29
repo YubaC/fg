@@ -29,6 +29,10 @@ function newDay() {
         complainDays -= 1;
     }
 
+    if (classFundDays > 0) {
+        classFundDays -= 1;
+    }
+
     // 退休
     if (day > 150) {
         retire();
@@ -94,6 +98,35 @@ function miniEvent() {
     stringToFormat = [flow.text.miniEventText[Math.round(Math.random() * (flow.text.miniEventText.length - 1))], moneyToGive];
     money -= moneyToGive;
     nextStep();
+}
+
+// 班费
+function classFund() {
+    if (classFundDays == 0) {
+        money += 1000 * class_number;
+        classFundNumber = 0;
+        classFundDays = 3;
+
+        setTimeout(() => {
+            stringToFormat = [1000 * class_number];
+            nowGameAt = "classFund1";
+            nextStep();
+        }, 1000);
+
+    } else {
+        money += 1000 * class_number;
+        mood -= 5 * classFundNumber;
+        classFundNumber += 1;
+        classFundDays = 3;
+
+        setTimeout(() => {
+            stringToFormat = [1000 * class_number, classFundNumber + 1, 5 * classFundNumber];
+            nowGameAt = "classFund2";
+            nextStep();
+            document.getElementById("class").innerHTML = "";
+            exercisePrepare();
+        }, 1000);
+    }
 }
 
 // function

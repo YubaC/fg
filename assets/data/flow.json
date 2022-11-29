@@ -10,7 +10,7 @@
         "quickComplain": { "0": "refuse1", "1": "giveMoney1" },
         "digOut": { "0": "refuse2", "1": "giveMoney2" },
         "teach": { "0": "teachMood", "1": "teachStain", "2": "showWeather", "3": "showMoney", "4": "showMood", "5": "showStain", "6": "showConstruction", "7": "exitTeach" },
-        "operate": { "0": "vacation", "1": "playClass", "2": "rebuildConstruction", "3": "none" },
+        "operate": { "0": "vacation", "1": "playClass", "2": "rebuildConstruction", "3": "classFund", "4": "none" },
         "askMore1": { "0": "giveMore1", "1": "refuse1" },
         "askMore2": { "0": "giveMore2", "1": "refuse2" },
         "newTerm": { "0": "askEnroll" }
@@ -528,7 +528,7 @@
 
         "operate": [{
                 "type": "ask",
-                "question": { "question": "    你要发布什么手谕吗？", "choice": ["今天放假吧", "今天加一节体活吧", "调整基建", "算了"] },
+                "question": { "question": "    你要发布什么手谕吗？", "choice": ["今天放假吧", "今天加一节体活吧", "调整基建", "收取班费", "算了"] },
                 "img": "assets/images/m0.png"
             },
             {
@@ -666,6 +666,26 @@
             "学校食堂饭菜吃出事来了。",
             "有个学生身体不舒服但是因为没有三甲医院证明，无法请假跑操，所以在跑操的时候晕倒了。",
             "刚刚有家长举报，图书馆里的《挪威的森林》等书含有言情色情成分，要求撤下去。"
+        ],
+
+        "classFund1": [{
+                "type": "say",
+                "text": "    共收取班费{0}元。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "exit"
+            }
+        ],
+
+        "classFund2": [{
+                "type": "say",
+                "text": "    共收取班费{0}元。<br>    ......这是我们近三天第{1}次收班费了。全校学生心情下降了{2}点。",
+                "img": "assets/images/m0.png"
+            },
+            {
+                "type": "exit"
+            }
         ],
 
         "source": [{
