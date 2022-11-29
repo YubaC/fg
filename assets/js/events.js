@@ -187,7 +187,7 @@ function vacation() {
 
     document.getElementById("class").innerHTML = "";
 
-    money -= dailyCostEachClass / 5 * class_number;
+    money -= Math.round(dailyCostEachClass / 5 * class_number);
     if (money <= 0) {
         gameover("原因：入不敷出");
     }

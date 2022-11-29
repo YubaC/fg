@@ -44,6 +44,17 @@ function showConstruction() {
     nextStep();
 }
 
+function showExpense() {
+    stringToFormat = [
+        costPerLevel * (diningHallLevel + dormitoryLevel) + dailyCostEachClass * class_number,
+        costPerLevel * (diningHallLevel + dormitoryLevel),
+        dailyCostEachClass * class_number,
+        Math.round(dailyCostEachClass / 5 * class_number)
+    ];
+    // nowGameAt = "showConstruction";
+    nextStep();
+}
+
 function exitTeach() {
     hideDialog();
     hideChoice();
