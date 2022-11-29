@@ -320,6 +320,8 @@ function askSave() {
 
 // 存档上传回调函数
 function receiveSave() {
+    alreadyLoaded = true;
+
     var file_ele = document.getElementById('file');
 
     var reader = new FileReader(); //新建一个FileReader
@@ -419,6 +421,8 @@ function receiveSave() {
 
 // 回答“找不到工作日志”后的回调函数
 function reStart() {
+    alreadyLoaded = true;
+
     // hideChoice();
     clearInterval(titleColorChange);
     // document.getElementById("musk").classList.remove("colorChange");
@@ -471,6 +475,117 @@ function goStart() {
     // setTimeout(() => {
     //     showDay();
     // }, 3000);
+}
+
+function loadFromCookie() {
+    var fileString = getCookie("mapSaved"); // 读取文件内容
+    // console.log(fileString);
+
+    // 检查存档是否完好
+    if (fileString.search("version") != -1 && JSON.parse(fileString).version == flow.version) {
+        console.log("in3-");
+        alert("读取成功！");
+
+        document.getElementById("musk").style.display = "block"; //用于在对话框出现前遮挡背景
+
+        loadedSave = JSON.parse(fileString); //JSON解码存档
+
+        // 从存档中读取数据
+        class_number = loadedSave.class_number;
+        money = loadedSave.money;
+        day = loadedSave.day;
+        mood = loadedSave.mood;
+        speed_now = loadedSave.speed;
+
+        grade1 = loadedSave.grade1;
+        grade1Special = loadedSave.grade1Special;
+        grade2 = loadedSave.grade2;
+        grade2Special = loadedSave.grade2Special;
+        grade3 = loadedSave.grade3;
+        grade3Special = loadedSave.grade3Special;
+
+        class_number = grade1 + grade2 + grade3 + grade1Special + grade2Special + grade3Special; //当前班级数
+
+        diningHallLevel - loadedSave.diningHallLevel;
+        dormitoryLevel = loadedSave.dormitoryLevel;
+
+        todayInTerm = loadedSave.todayInTerm; //今天是这个学期中的第几天
+
+        stain = loadedSave.stain; //满100失业
+
+        complainDays = loadedSave.complainDays; // >0 => 投诉处理中，处理期间暂不受理新的投诉，处理期间收入减半
+
+        expect1 = loadedSave.expect1; //上级教育机构预期的封口费
+        expect2 = loadedSave.expect2; //媒体预期的封口费
+
+        complainedBefore = loadedSave.complainedBefore;
+
+        exercisePrepare();
+
+        // 从存档中读取并绘制跑操路径------------
+        path_list = loadedSave.path_list;
+        point_list = [];
+        for (i = 0; i < loadedSave.point_list.length; i++) {
+            point_list.push(document.querySelector(loadedSave.point_list[i]));
+        }
+
+        for (i = 0; i < point_list.length - 1; i++) {
+            from_x = point_list[i].cx["animVal"]["valueAsString"];
+            from_y = point_list[i].cy["animVal"]["valueAsString"];
+            to_x = point_list[i + 1].cx["animVal"]["valueAsString"];
+            to_y = point_list[i + 1].cy["animVal"]["valueAsString"];
+            // console.log(from_x, from_y, to_x, to_y);
+
+            document.getElementById("path_lines").innerHTML +=
+                `<line x1="${from_x}" y1="${from_y}" x2="${to_x}" y2="${to_y}" style="stroke:#fa9668; stroke-width:3px; "></line>`;
+        }
+
+        clicked1 = point_list[point_list.length - 1];
+        if (clicked1 == end) {
+            document.getElementById("go").disabled = false;
+        }
+
+        clearInterval(titleColorChange);
+        // document.getElementById("musk").classList.remove("colorChange");
+        // document.getElementById("musk").classList.remove("muskPNG");
+        if (fadeOut1) {
+            document.getElementById("musk").classList.add("fadeOut1");
+        } else {
+            document.getElementById("musk").classList.add("fadeOut2");
+        }
+
+        setTimeout(() => {
+            player.load();
+            document.getElementById("musk").classList.remove("fadeOut1");
+            document.getElementById("musk").classList.remove("fadeOut2");
+            document.getElementById("musk").classList.remove("titlePNG");
+            document.getElementById("musk").classList.remove("muskPNG");
+            document.getElementById("musk").style.display = "block"; //用于在对话框出现前遮挡背景
+        }, 1000);
+
+        document.getElementById("musk").style.display = "block"; //用于在对话框出现前遮挡背景
+
+        exercisePrepare();
+
+        // ask({ "question": "你记得怎么操作吗？", "choice": ["能", "不能"] });
+        setTimeout(() => {
+            fadeOut(document.querySelector("#loading_musk"), 40, 0);
+            // fadeOut(document.querySelector("#loading_musk p"), 40, 0);
+            // startGame();
+
+        }, 1000);
+
+        setTimeout(() => {
+            document.getElementById("top").style.display = "block";
+            document.querySelector("html").style.overflow = "auto";
+            tl.play();
+        }, 2000);
+
+        setTimeout(() => {
+            nextStep(); //换下一个对话章节（询问是否记得如何管理学校，即是否跳过新手教程）
+            // say();
+        }, 5000);
+    }
 }
 
 // 展示当前游戏日
@@ -542,7 +657,7 @@ function getCSSPath(node) {
 }
 
 // 保存
-function save() {
+function save(saveType) {
     // 获取当前时间
     var date = new Date();
     var year = date.getFullYear(); //  返回的是年份
@@ -592,16 +707,25 @@ function save() {
         "point_list": pointToSave
     };
     var content = JSON.stringify(data); //JSON格式化保存
-    var blob = new Blob([content], {
-        type: "text/plain;charset=utf-8"
-    });
-    saveAs(blob, `${time}某高中校长工作日志.json`);
+
+    switch (saveType) {
+        case ("json"):
+            var blob = new Blob([content], {
+                type: "text/plain;charset=utf-8"
+            });
+            saveAs(blob, `${time}某高中校长工作日志.json`);
+            break;
+        case ("cookie"):
+            setCookie("mapSaved", content, 30 * 365);
+            break;
+    }
+
 
 }
 
 // 初始化游戏
 function startGame() {
-    paraList = flow.text.startGame;
+    paraList = flow.text[nowGameAt];
     // return flow;
     //响应的内容
     console.log(flow.flow[nowGameAt]);

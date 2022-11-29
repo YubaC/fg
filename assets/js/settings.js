@@ -1,3 +1,5 @@
+alreadyLoaded = false;
+
 // clicked_points = 0; //已选中的标记点个数
 clicked1 = ""; //选中的标记点1
 path_list = []; //路线
@@ -102,6 +104,15 @@ enable_choice_touch = false; //是否允许点击对话选项
 
 fadeOut1 = true; //开始页面变色后更换fadeOut动画
 
+// 退出提示
+window.onbeforeunload = function() {
+    if (alreadyLoaded) {
+        save("cookie");
+        console.log("leave");
+        return "确认离开当前页面吗？未保存的数据将会丢失";
+    }
+}
+
 // 判断元素是否在数组内的函数，使用方法：contains(Array，元素)，返回true或false
 function contains(arr, obj) {
     var i = arr.length;
@@ -111,6 +122,44 @@ function contains(arr, obj) {
         }
     }
     return false;
+}
+
+// cookie操作
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname + "=" + cvalue + "; " + expires + "; SameSite=None; Secure";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i].trim();
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function getOs() { //浏览器类型判定
+    if (navigator.userAgent.indexOf("MSIE") > 0) {
+        return "IE"; //InternetExplor
+    } else if (isFirefox = navigator.userAgent.indexOf("Firefox") > 0) {
+        return "FF"; //firefox
+    } else if (isSafari = navigator.userAgent.indexOf("Safari") > 0) {
+        return "SF"; //Safari
+    } else if (isCamino = navigator.userAgent.indexOf("Camino") > 0) {
+        return "C"; //Camino
+    } else if (isMozilla = navigator.userAgent.indexOf("Gecko/") > 0) {
+        return "G"; //Gecko
+    } else if (isMozilla = navigator.userAgent.indexOf("Opera") >= 0) {
+        return "O"; //opera
+    } else {
+        return 'Other';
+    }
 }
 
 assetsToLoad = []; //预加载的资源列表（无须手动编辑）
@@ -157,7 +206,11 @@ window.onload = function() {
 
     promise = promise.then(function(data) {
         flow = data;
-        nowGameAt = "startGame";
+        if (getCookie("mapSaved") != "") {
+            nowGameAt = "startGame2";
+        } else {
+            nowGameAt = "startGame";
+        }
 
         keys = Object.keys(flow.text);
 

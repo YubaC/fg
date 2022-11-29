@@ -3,6 +3,7 @@
 
     "flow": {
         "startGame": { "0": "askSave", "1": "reStart" },
+        "startGame2": { "0": "askSave", "1": "reStart", "2": "loadFromCookie" },
         "reStart": { "0": "teachPlay", "1": "goStart" },
         "goStart": "",
         "askSave": "",
@@ -19,7 +20,17 @@
     "text": {
         "startGame": [{
                 "type": "ask",
-                "question": { "question": "    欢迎回到雾城。<br>    你还能找到昨天的工作日志吗？", "choice": ["能", "不能"] },
+                "question": { "question": "    欢迎回到雾城。<br>    你还能找到昨天的工作日志吗？", "choice": ["我能找到", "我找不到了"] },
+                "img": ""
+            },
+            {
+                "type": "exit"
+            }
+        ],
+
+        "startGame2": [{
+                "type": "ask",
+                "question": { "question": "    欢迎回到雾城。<br>    你还能找到昨天的工作日志吗？", "choice": ["我能找到", "我找不到了", "找找这里留下的工作日志"] },
                 "img": ""
             },
             {
@@ -45,6 +56,20 @@
         "goStart": [{
                 "type": "say",
                 "text": "    让我们从头开始工作吧。",
+                "img": "assets/images/m1.png"
+            },
+            {
+                "type": "exit"
+            },
+            {
+                "type": "function",
+                "name": "showDay"
+            }
+        ],
+
+        "loadFromCookie": [{
+                "type": "say",
+                "text": "    太棒了，我们成功找到了上次你走时落下的工作日志。",
                 "img": "assets/images/m1.png"
             },
             {
