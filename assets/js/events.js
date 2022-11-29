@@ -10,7 +10,7 @@ function newDay() {
     money -= costPerLevel * (diningHallLevel + dormitoryLevel);
     mood += moodPerLevel * (diningHallLevel - diningHallMaxLevel / 2 + dormitoryLevel - dormitoryMaxLevel / 2);
 
-    if (Math.round(Math.random() * 10) < 3) { //今天天气不错（30%）（<200）
+    if (Math.round(Math.random() * 9) < 3) { //今天天气不错（30%）（<200）
         airPollution = Math.round(Math.random() * 200);
         // 今天赚的钱-50%
         receive_now = receive_per_100px / 2;
@@ -29,41 +29,13 @@ function newDay() {
         complainDays -= 1;
     }
 
-    if (todayInTerm < term) {
-        todayInTerm += 1;
-    } else {
-        todayInTerm = 1;
-        setTimeout(() => {
-            newTerm();
-        }, 1000);
-    }
-
-    if (mood < 20) {
-        if (mood <= 0) { //心情小于等于0直接触发投诉（不在受理投诉日期内）
-            mood = 0;
-            if (!complainDays) {
-                complain();
-                eventHappend = true;
-            }
-        } else { //心情低于20大于0每天60%概率触发投诉
-            if (!complainDays && Math.round(Math.random() * 10) > 3) {
-                complain();
-                eventHappend = true;
-            }
-        }
-    }
-    if (mood < 10 && !eventHappend && Math.round(Math.random() * 10) > 4) { //50%
-        digOut();
-        eventHappend = true;
-    }
-
     // 退休
     if (day > 150) {
         retire();
     }
 }
 
-// 最终收入支出判定
+// 最终收入支出判定以及事件判定
 function judge() {
     l = getTotalDistance();
     // 超出5000px后每多100px会扣1点心情
@@ -77,10 +49,51 @@ function judge() {
         mood -= airPollution / 500 * l / 100 * 2;
         money += Math.round(receive_now * class_number / 100 * l);
         money -= dailyCostEachClass * class_number;
-        if (money <= 0) {
-            gameover("原因：入不敷出");
-        }
     }
+
+    if (l >= 7500) { //跑得太远了，取消投诉保护
+        complainDays = 0;
+    }
+
+    if (todayInTerm < term) {
+        todayInTerm += 1;
+
+        if (mood < 20) {
+            if (mood <= 0) { //心情小于等于0直接触发投诉（不在受理投诉日期内）
+                mood = 0;
+                if (!complainDays) {
+                    complain();
+                }
+            } else { //心情低于20大于0每天60%概率触发投诉
+                if (!complainDays && Math.round(Math.random() * 9) > 3) {
+                    complain();
+                }
+            }
+        } else if (mood < 10 && Math.round(Math.random() * 9) > 4) { //心情小于10的时候50%触发媒体判定
+            digOut();
+        } else if (Math.round(Math.random() * 9) < 3) { //每天30%概率触发小事件
+            miniEvent();
+        }
+
+    } else {
+        todayInTerm = 1;
+        setTimeout(() => {
+            newTerm();
+        }, 1000);
+    }
+
+    if (money <= 0) {
+        gameover("原因：入不敷出");
+    }
+}
+
+// 小事件
+function miniEvent() {
+    moneyToGive = Math.round(Math.random() * 9000);
+    nowGameAt = "miniEvent";
+    stringToFormat = [flow.text.miniEventText[Math.round(Math.random() * (flow.text.miniEventText.length - 1))], moneyToGive];
+    money -= moneyToGive;
+    nextStep();
 }
 
 // function
@@ -241,7 +254,7 @@ function digOut() {
 
 // 拒绝给上级教育机构封口费
 function refuse1() {
-    stain += Math.round(Math.random() * 100);
+    stain += Math.round(Math.random() * 90);
     if (stain >= 100) {
         gameover("原因：声名狼藉");
     }

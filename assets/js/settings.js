@@ -26,8 +26,6 @@ speed_now = 1;
 
 stain = 0; //满100失业
 
-eventHappend = false;
-
 dailyCostEachClass = 2000; //学校每日每个班级开销
 receive_per_100px = 100; //每跑操100px的收入
 receive_now = receive_per_100px;
