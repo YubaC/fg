@@ -1,5 +1,7 @@
 alreadyLoaded = false;
 
+PC = !IsPc();
+
 // clicked_points = 0; //已选中的标记点个数
 clicked1 = ""; //选中的标记点1
 path_list = []; //路线
@@ -144,22 +146,13 @@ function getCookie(cname) {
     return "";
 }
 
-function getOs() { //浏览器类型判定
-    if (navigator.userAgent.indexOf("MSIE") > 0) {
-        return "IE"; //InternetExplor
-    } else if (isFirefox = navigator.userAgent.indexOf("Firefox") > 0) {
-        return "FF"; //firefox
-    } else if (isSafari = navigator.userAgent.indexOf("Safari") > 0) {
-        return "SF"; //Safari
-    } else if (isCamino = navigator.userAgent.indexOf("Camino") > 0) {
-        return "C"; //Camino
-    } else if (isMozilla = navigator.userAgent.indexOf("Gecko/") > 0) {
-        return "G"; //Gecko
-    } else if (isMozilla = navigator.userAgent.indexOf("Opera") >= 0) {
-        return "O"; //opera
-    } else {
-        return 'Other';
-    }
+function IsPc() { //是PC→false，是移动端→true
+    let userAgent = navigator.userAgent,
+        Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+    console.log('userAgent:', userAgent)
+    return Agents.some((i) => {
+        return userAgent.includes(i)
+    })
 }
 
 assetsToLoad = []; //预加载的资源列表（无须手动编辑）
@@ -221,7 +214,10 @@ window.onload = function() {
                 if (para[j].type == "say" || para[j].type == "ask" || para[j].type == "source") {
                     // console.log(para[j].img);
                     if (para[j].img != "" && !contains(assetsToLoad, para[j].img)) {
-                        assetsToLoad.push(para[j].img);
+                        if (!PC && para[j].mobile != "none" || PC) {
+                            assetsToLoad.push(para[j].img);
+                            console.log(para[j].img);
+                        }
                     }
                 }
             }
