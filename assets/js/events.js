@@ -87,7 +87,7 @@ function judge() {
     }
 
     if (money <= 0) {
-        gameover("原因：入不敷出");
+        gameover("Bad End", "原因：入不敷出");
     }
 }
 
@@ -189,7 +189,7 @@ function vacation() {
 
     money -= Math.round(dailyCostEachClass / 5 * class_number);
     if (money <= 0) {
-        gameover("原因：入不敷出");
+        gameover("Bad End", "原因：入不敷出");
     }
 
     setTimeout(() => {
@@ -289,7 +289,7 @@ function digOut() {
 function refuse1() {
     stain += Math.round(Math.random() * 90);
     if (stain >= 100) {
-        gameover("原因：声名狼藉");
+        gameover("Bad End", "原因：声名狼藉");
     }
 }
 
@@ -318,7 +318,7 @@ function giveMoney1() {
 
 // 拒绝给媒体封口费
 function refuse2() {
-    gameover("原因：声名狼藉");
+    gameover("Bad End", "原因：声名狼藉");
 }
 
 // 给媒体封口费
@@ -395,7 +395,7 @@ function getTotalDistance() {
 
 //退休
 function retire() {
-    gameover('成功退休！<span id="retired" style="display:none">......吗？</span>');
+    gameover("Happy End", '成功退休！<span id="retired" style="display:none">......吗？</span>');
 
     retired = document.getElementById("retired");
     setTimeout(() => {

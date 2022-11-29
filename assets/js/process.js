@@ -760,12 +760,12 @@ function startGame() {
 }
 
 // 游戏结束
-function gameover(reason) {
+function gameover(endType, reason) {
     document.getElementById("exercise_line_edit").style.display = "none";
     loading_musk = document.getElementById("loading_musk");
     loading_musk.innerHTML = "";
     gameOverText = document.createElement("h1");
-    gameOverText.innerHTML = '<b style="color:#FFF">Game Over</b>';
+    gameOverText.innerHTML = `<b style="color:#FFF">${endType}</b>`;
     gameOverReason = document.createElement("p");
     gameOverReason.innerHTML = `<b style="color:#FFF">${reason}</b>`;
     gameOverReason.style.textAlign = "center";
