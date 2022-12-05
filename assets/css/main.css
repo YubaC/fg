@@ -4,6 +4,17 @@
     overflow: hidden;
 }
 
+@font-face {
+    /*font-properties*/
+    font-family: "s";
+    src: url('../font/seguisym.ttf');
+    /*IE9*/
+}
+
+.emojiFont {
+    font-family: "s" !important;
+}
+
 body {
     -webkit-touch-callout: none;
     /*系统默认菜单被禁用*/

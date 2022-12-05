@@ -736,6 +736,10 @@ function startGame() {
     // map = flow.map;
     // drawmap();
 
+    if (isChrome) {
+        document.body.classList.add("emojiFont");
+    }
+
     document.querySelector("html").style.overflow = "hidden";
     dialogMusk = document.getElementById("dialog_musk");
     dialog = document.getElementById("dialog");

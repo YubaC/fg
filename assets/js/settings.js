@@ -223,6 +223,14 @@ window.onload = function() {
             }
 
         }
+
+        // 判断是否为chrome浏览器
+        isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+        // alert(isChrome);
+        if (isChrome) {
+            assetsToLoad.push(flow.font.chrome);
+        }
+
         // assetsToLoad = ["https://fastly.jsdelivr.net/gh/YubaC/2810security.github.io@latest/images/%E6%A0%A1%E5%9B%AD%E9%A3%8E%E6%99%AF/IMG_6837.JPG",
         //     "https://fastly.jsdelivr.net/gh/YubaC/2810security.github.io@latest/images/%E6%A0%A1%E5%9B%AD%E9%A3%8E%E6%99%AF/IMG_6842.JPG",
         //     "https://fastly.jsdelivr.net/gh/YubaC/2810security.github.io@latest/images/%E6%A0%A1%E5%9B%AD%E9%A3%8E%E6%99%AF/IMG_6843.JPG"
