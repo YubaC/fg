@@ -192,6 +192,11 @@ window.onload = function() {
         }
     }
 
+    // 如果是移动端则提示最好在PC端打开
+    if (IsPc()) {
+        window.alert("我们推荐在PC端打开本网页，以获得最佳体验。")
+    }
+
     // 隐藏对话框------------
     document.getElementById("dialog").style.display = "none";
     document.getElementById("dialog_musk").style.display = "none";
