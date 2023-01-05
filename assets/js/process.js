@@ -736,9 +736,13 @@ function startGame() {
     // map = flow.map;
     // drawmap();
 
-    if (isChrome) {
-        document.body.classList.add("emojiFont");
-    }
+    // --------------------------------
+    // TODO: 以下代码用于判断是否为chrome浏览器，如果是chrome浏览器则加载chrome字体，否则加载微软雅黑字体
+    // TODO: 但是目前在移动端钉钉浏览器上似乎有问题，所以暂时注释掉
+    // if (isChrome) {
+    //     document.body.classList.add("emojiFont");
+    // }
+    // --------------------------------
 
     document.querySelector("html").style.overflow = "hidden";
     dialogMusk = document.getElementById("dialog_musk");
