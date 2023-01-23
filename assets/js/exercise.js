@@ -6,7 +6,7 @@ function exercisePrepare() {
         faceToShow = Math.floor(mood / (100 / (faceList.length - 1)));
         // console.log(faceToShow);
         faceToShow += Math.round(Math.random() * 2 - 1);
-        console.log(faceToShow);
+        // console.log(faceToShow);
         if (faceToShow > faceList.length - 1) {
             faceToShow = faceList.length - 1;
         } else if (faceToShow < 0) {
@@ -14,7 +14,7 @@ function exercisePrepare() {
         }
         // console.log(faceToShow);
 
-        console.log(faceList[faceToShow]);
+        // console.log(faceList[faceToShow]);
 
         document.getElementById("class").innerHTML +=
             `<text transform="matrix(1 0 0 1 168.9 196.9)" class="st12 classes">${faceList[faceToShow]}</text>`;

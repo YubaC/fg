@@ -118,8 +118,8 @@ function classFund() {
 
     } else {
         money += 1000 * class_number;
-        mood -= 5 * classFundNumber;
         classFundNumber += 1;
+        mood -= 5 * 3 ** classFundNumber;
         classFundDays = 3;
 
         setTimeout(() => {
