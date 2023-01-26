@@ -1,6 +1,8 @@
 alreadyLoaded = false;
 
-PC = !IsPc();
+// *取消移动端不预加载Theme
+// PC = !IsPc();
+PC = true;
 
 // clicked_points = 0; //已选中的标记点个数
 clicked1 = ""; //选中的标记点1
