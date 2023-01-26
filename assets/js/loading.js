@@ -15,8 +15,23 @@ function loadAssets() {
             show_load(100);
             break;
         default:
+            getSize();
             //some other protocol
     }
+
+    showAdText(0);
+}
+
+// 滚动循环播放flow.text.adText里的内容
+function showAdText(i) {
+    document.getElementById("adText").innerText = flow.text.adText[i];
+    i++;
+    if (i > flow.text.adText.length) {
+        i = 0;
+    }
+    adText = setTimeout(() => {
+        showAdText(i)
+    }, 5000);
 }
 
 function getSize() {
@@ -109,6 +124,7 @@ function show_load(now_at) {
         // load += 1;
     } else { //加载完成
         console.log("done");
+        clearInterval(adText);
         setTimeout(() => {
             // loading界面淡出
             fadeOut(document.querySelector("#loading_musk svg"), 40, 0);
