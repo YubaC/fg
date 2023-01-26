@@ -125,19 +125,20 @@ function show_load(now_at) {
     } else { //加载完成
         console.log("done");
         clearInterval(adText);
-        setTimeout(() => {
+        document.querySelector("#process").innerText = "PRESS TO START"
+        document.getElementById("#loading_musk").onclick = function() {
             // loading界面淡出
             fadeOut(document.querySelector("#loading_musk svg"), 40, 0);
+            fadeOut(document.querySelector("#loading_musk p"), 40, 0);
             fadeOut(document.querySelector("#process"), 40, 0);
             fadeOut(document.querySelector("#adText"), 40, 0);
             fadeOut(document.getElementById("process"), 40, 0);
             // document.getElementById("top").style.display = "block";
-        }, 1000);
-
-        setTimeout(() => {
-            startGame(); //开始游戏
-        }, 2000);
-
+            setTimeout(() => {
+                startGame(); //开始游戏
+                document.getElementById("#loading_musk").onclick = "";
+            }, 2000);
+        }
     }
 }
 
