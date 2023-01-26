@@ -403,5 +403,7 @@ function retire() {
     retired = document.getElementById("retired");
     setTimeout(() => {
         fadeIn(retired, 40, 100);
+        // 播放Ending Theme
+        new Audio(flow.bgm.ed).play();
     }, 5000);
 }

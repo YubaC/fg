@@ -748,7 +748,8 @@
     },
 
     "bgm": {
-        "theme": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/audio/Town3.ogg"
+        "theme": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/audio/Town3.ogg",
+        "ed": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/audio/mero.ogg"
     },
 
     "font": {
