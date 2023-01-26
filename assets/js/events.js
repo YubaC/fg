@@ -401,9 +401,9 @@ function retire() {
     gameover("Happy End", '成功退休！<span id="retired" style="display:none">......吗？</span>');
 
     retired = document.getElementById("retired");
+    new Audio("https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/audio/mero.ogg").play();
     setTimeout(() => {
         fadeIn(retired, 40, 100);
         // 播放Ending Theme
-        new Audio(flow.bgm.ed).play();
     }, 5000);
 }

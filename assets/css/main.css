@@ -272,7 +272,7 @@ body {
 
 .muskPNG {
     background: #87CEFA url("../images/cloud.png") no-repeat center center;
-    /* background: #000000 url("assets/images/cloud.png") no-repeat center center; */
+    /* background: #000000 url("https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/cloud.png") no-repeat center center; */
     background-blend-mode: screen;
 }
 
