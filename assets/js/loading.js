@@ -26,7 +26,7 @@ function loadAssets() {
 function showAdText(i) {
     document.getElementById("adText").innerText = flow.text.adText[i];
     i++;
-    if (i > flow.text.adText.length) {
+    if (i >= flow.text.adText.length) {
         i = 0;
     }
     adText = setTimeout(() => {
