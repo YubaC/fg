@@ -41,12 +41,12 @@
         "reStart": [{
                 "type": "say",
                 "text": "    欢迎来到雾高，校长“先生”。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "ask",
                 "question": { "question": "    你还能回忆起学校的管理方法吗？", "choice": ["我忘记了", "我还记得"] },
-                "img": "assets/images/m4.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m4.png"
             },
             {
                 "type": "none"
@@ -56,7 +56,7 @@
         "goStart": [{
                 "type": "say",
                 "text": "    让我们从头开始工作吧。",
-                "img": "assets/images/m1.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m1.png"
             },
             {
                 "type": "exit"
@@ -70,7 +70,7 @@
         "loadFromCookie": [{
                 "type": "say",
                 "text": "    太棒了，我们成功找到了上次你走时落下的工作日志。",
-                "img": "assets/images/m1.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m1.png"
             },
             {
                 "type": "exit"
@@ -84,197 +84,197 @@
         "teachPlay": [{
                 "type": "say",
                 "text": "    这下麻烦了啊......",
-                "img": "assets/images/m4.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m4.png"
             },
             {
                 "type": "say",
                 "text": "    那么我自我介绍一下吧。<br>    我大约算是你的秘书。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    你是这里的第37任校长。",
-                "img": "assets/images/m1.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m1.png"
             },
             {
                 "type": "say",
                 "text": "    你的目标就是把这所学校经营下去，<br>    就像我的目标是帮助你把这所学校经营下去一样。",
-                "img": "assets/images/m6.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m6.png"
             },
             {
                 "type": "say",
                 "text": "    ......但是很少有人能够在这个位子上干满10年的。",
-                "img": "assets/images/m4.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m4.png"
             },
             {
                 "type": "say",
                 "text": "    ......我是说，总是有很多人向往着你的位子，不是吗？",
-                "img": "assets/images/m1.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m1.png"
             },
             {
                 "type": "say",
                 "text": "    ......言归正传。我来大体向你介绍一下学校的情况。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    我看看学校的介绍手册......",
-                "img": "assets/images/m4.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m4.png"
             },
             {
                 "type": "say",
                 "text": "    ......“雾高是一所具有人文气息的高中......”<br>    啊，这段没用。",
-                "img": "assets/images/m4.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m4.png"
             },
             {
                 "type": "say",
                 "text": "    办学历史70余年......办学条件......办学成果......文化传统......",
-                "img": "assets/images/m4.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m4.png"
             },
             {
                 "type": "say",
                 "text": "    ......算了，还是不看招生手册了。<br>    上面全是些糊弄新生的漂亮话。",
-                "img": "assets/images/m4.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m4.png"
             },
             {
                 "type": "say",
                 "text": "    对你我来说是没用的。",
-                "img": "assets/images/m4.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m4.png"
             },
             {
                 "type": "say",
                 "text": "    还是我来亲自介绍一下吧。",
-                "img": "assets/images/m1.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m1.png"
             },
             {
                 "type": "say",
                 "text": "    就像我之前说的那样，你的目标是在这个位子上坐十年直到退休。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    但在执政期间你会遇到不少挑战。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    对，执政。<br>    你在这所学校是至高无上的。SUPREME.",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    ......哦，什么？你说上级教育机构？<br>    别开玩笑了。",
-                "img": "assets/images/m1.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m1.png"
             },
             {
                 "type": "say",
                 "text": "    “天高皇帝远”，他们想管也管不到我们。<br>    而且你完全可以在检查的时候一个样，他们走了后另一个样。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    更何况雾城的检举机制使得为表重视他们的年级主任会亲自处理学生们向上级机构的检举。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    因此，在这里，你就是最高的。<br>    就像古代的县令的权利最大，被称为“父母官”一样。",
-                "img": "assets/images/m1.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m1.png"
             },
             {
                 "type": "say",
                 "text": "    但是你执政的时候要平衡好学校的收支，对外和上级“打好关系”，对内“安抚”师生情绪。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    但是你无需担心。<br>    第36任校长给你留下了一笔宝贵的遗产。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    最为宝贵的就是“学生会”。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    ......虽然他们可能什么都不会。<br>    但他们对你绝对忠心。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    他们会忠实的执行你说的一切。<br>    有事让他们干就行。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    高产出，低消耗。<br>    唯一的消耗是每年换届的时候需要给每个人一张奖状。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    他们获得了奖状，可以填报综招；你获得了免费劳动力。<br>    这是“双赢”，嗯？",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    ......又扯偏了。<br>    还是来说一说你每天的工作吧。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    你的工作很简单。<br>    就是规划并操控学生每天的跑操。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    哦，拜托不要做出那种表情。<br>    这是学校主要的资金来源。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    你是外地人，可能对雾城本地不太了解。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    雾城里终年弥漫着雾霾，<br>    是个空气被严重污染的地方。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    政府会根据学生出门跑操的距离每天给学习一笔空气治理专项拨款。<br>    跑操的距离越长，给的钱越多。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    但是污染越严重，学生的心情值掉的越快。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    你可以做的就是每天规划调整跑操路线。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    看到上面的那个“EDIT”的按钮了吗？<br>    点一下，然后通过点击冒出来的路径点的方式规划跑操路线",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    记得最后要把路径连接到那个绿点上。<br>    然后点击“OK”退出编辑。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    这样就可以点击“GO”开始跑操了。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "有什么问题可以再来问我。    <br>    祝你好运！。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "exit"
@@ -288,7 +288,7 @@
         "askSave": [{
                 "type": "say",
                 "text": "    工作日志读取成功！",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "exit"
@@ -302,12 +302,12 @@
         "newTerm": [{
                 "type": "say",
                 "text": "    ......时间过得真快啊。<br>    又一个学年过去了。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "ask",
                 "question": { "question": "    去年我们通过正常渠道招生{0}个班，校企合作{1}个班。<br>    今年你准备招生几个班？", "choice": ["听我口谕"] },
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "none"
@@ -317,12 +317,12 @@
         "askEnroll": [{
                 "type": "say",
                 "text": "    ......校长高见。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    我校今年新招收{0}个班，其中普通班级{1}个，校企合作班级{2}个，全校现有班级{3}个，收入学费{4}元。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "exit"
@@ -332,87 +332,87 @@
         "complain": [{
                 "type": "say",
                 "text": "    ......校长，<br>    有个坏消息。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    有一个学生向上级教育机构投诉了学校。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    现在调查组已经到了校门口。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    哦，拜托不要做出那种表情。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    这件事说大不大，说小不小。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    教育局向来是站在我们这边的，而不是学生那边。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    就像学生的投诉最终会由他们的年级主任为他们解决一样。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    ......不过你可能要破财免灾了。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    什么意思？你问我什么意思？<br>    难道是我说的不够明白吗？",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    好吧，我的意思是，<br>    这件事完全可以被不留痕迹的压下去，",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    完全不会成为你完美的履历上的污点。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    但你需要给他们一点......嗯......“辛苦费”。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    毕竟你也知道，平息事件是要出不少力的。<br>    并且在此期间，学校的收益也会减半。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    给的越多，他们压下去的就越快。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    但要小心，给的太多他们的胃口可是会变大的！",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    ......你问不给行不行？",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "ask",
                 "question": { "question": "    当然也可以，不过这件事大概就会变成你的履历上的污点吧。<br>    污点多了，<b>你就失业了！</b>", "choice": ["断然拒绝", "破财免灾"] },
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "exit"
@@ -422,17 +422,17 @@
         "quickComplain": [{
                 "type": "say",
                 "text": "    ......校长，<br>    有一个学生向上级教育机构投诉了学校。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    现在调查组又来了。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "ask",
                 "question": { "question": "    ......老规矩？", "choice": ["断然拒绝", "破财免灾"] },
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "exit"
@@ -442,22 +442,22 @@
         "digOut": [{
                 "type": "say",
                 "text": "    ......校长，很不幸的通知你，<br>    有一个学生累到了，进了ICU。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    ......也许他是吸了太多雾霾？",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    总之现在媒体听说了这件事，他们像嗅到血腥味的鲨鱼一样靠过来了。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "ask",
                 "question": { "question": "    ......老规矩？", "choice": ["断然拒绝", "破财免灾"] },
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "exit"
@@ -467,7 +467,7 @@
         "askMore1": [{
                 "type": "ask",
                 "question": { "question": "    ......校长，他们似乎不太满足。<br>    要不再给点儿？", "choice": ["行", "算了"] },
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "exit"
@@ -477,7 +477,7 @@
         "askMore2": [{
                 "type": "ask",
                 "question": { "question": "    ......校长，他们似乎不太满足。<br>    要不再给点儿？", "choice": ["行", "算了"] },
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "exit"
@@ -487,7 +487,7 @@
         "satisfied": [{
                 "type": "say",
                 "text": "    ......他们满意地走了。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "exit"
@@ -497,7 +497,7 @@
         "teach": [{
                 "type": "ask",
                 "question": { "question": "    有什么要问我的吗？", "choice": ["心情值是什么？", "我的履历污点是什么？", "今天的天气如何？", "现在学校的账面还有多少钱？", "现在学生的心情如何？", "我当前的履历如何？", "现在学校的基建如何？", "现在学校的每日开销是多少？", "没有了。"] },
-                "img": "assets/images/m4.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m4.png"
             },
             {
                 "type": "none"
@@ -507,22 +507,22 @@
         "teachMood": [{
                 "type": "say",
                 "text": "    心情值是学生们心情的反映。<br>    在空气质量好的时候只要不大规模跑操心情值就不会降低。<br>    但是空气质量不好时跑操会大幅降低心情值。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    当心情值降低至一定限度后，投诉会明显增多。<br>    其在跑操时的显示如下：",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    &#128512;&#128578;&#128528;&#128577;&#128543;&#128544;&#128545;&#129324;&#128520;<br>    ===============><br>    心情好&emsp;&emsp;&emsp;心情差",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    当跑操的班级里出现&#128520;时，请小心投诉！",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "function",
@@ -533,17 +533,17 @@
         "teachStain": [{
                 "type": "say",
                 "text": "    污点是你完美的履历上的污点。<br>    污点满了，你就会失业。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    不过请放心。<br>    时间会逐渐抚平一切。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    那些存在着的和曾经存在过的，最终都会被忘记。<br>    ......也许是被压下去？",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "function",
@@ -554,7 +554,7 @@
         "operate": [{
                 "type": "ask",
                 "question": { "question": "    你要发布什么手谕吗？", "choice": ["今天放假吧", "今天加一节体活吧", "调整基建", "收取班费", "算了"] },
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "exit"
@@ -564,7 +564,7 @@
         "alreadyHavedPlayClass": [{
                 "type": "say",
                 "text": "    今天已经上过体活课了。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "exit"
@@ -574,7 +574,7 @@
         "showWeather": [{
                 "type": "say",
                 "text": "    今天的污染指数：{0}<br>    今天的空气治理专项拨款：{1}元/100px。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "function",
@@ -585,7 +585,7 @@
         "showMoney": [{
                 "type": "say",
                 "text": "    现在学校的账面还有{0}元。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "function",
@@ -596,7 +596,7 @@
         "showMood": [{
                 "type": "say",
                 "text": "    现在学生的心情值为{0}。<br>    总体心情为：{1}。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "function",
@@ -606,7 +606,7 @@
         "showStain": [{
                 "type": "say",
                 "text": "    现在你的履历污点为{0}/100。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "function",
@@ -616,12 +616,12 @@
         "showConstruction": [{
                 "type": "say",
                 "text": "    食堂的等级为{0}/{1}，<br>    宿舍的等级为{2}/{3}。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    基建每日开销为{4}元，<br>    每日心情加成为{5}点。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "function",
@@ -632,22 +632,22 @@
         "rebuildConstructionReturn": [{
                 "type": "say",
                 "text": "    修改成功！<br>    {0}",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    食堂的等级为{1}/{2}，<br>    宿舍的等级为{3}/{4}。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    基建每日开销为{5}元，<br>    每日心情加成为{6}点。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    {7}",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "exit"
@@ -657,12 +657,12 @@
         "showExpense": [{
                 "type": "say",
                 "text": "    当前学校的每日开销为{0}元，其中宿舍和食堂开销{1}元，班级开销{2}元。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    如果今天放假，则开销为{3}元。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "function",
@@ -683,17 +683,17 @@
         "miniEvent": [{
                 "type": "say",
                 "text": "    校长，学生会汇报，",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    {0}",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    哦，别担心，现在已经解决了。<br>    他们花了{1}元压下去了。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
 
             },
             {
@@ -713,7 +713,7 @@
         "classFund1": [{
                 "type": "say",
                 "text": "    共收取班费{0}元。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "exit"
@@ -723,12 +723,12 @@
         "classFund2": [{
                 "type": "say",
                 "text": "    共收取班费{0}元。<br>    ......这是我们近三天第{1}次收班费了。全校学生心情下降了{2}点。",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "say",
                 "text": "    请注意，超收班费时学生的心情是以指数的速度下降的！",
-                "img": "assets/images/m0.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/m0.png"
             },
             {
                 "type": "exit"
@@ -737,21 +737,21 @@
 
         "source": [{
                 "type": "source",
-                "img": "assets/images/cloud.png"
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/images/cloud.png"
             },
             {
                 "type": "source",
-                "img": "assets/audio/Town3.ogg",
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/audio/Town3.ogg",
                 "mobile": "none"
             }
         ]
     },
 
     "bgm": {
-        "theme": "assets/audio/Town3.ogg"
+        "theme": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/audio/Town3.ogg"
     },
 
     "font": {
-        "chrome": "assets/font/seguisym.ttf"
+        "chrome": "https://gcore.jsdelivr.net/gh/YubaC/fg@latest/assets/font/seguisym.ttf"
     }
 }
