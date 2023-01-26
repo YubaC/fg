@@ -128,7 +128,8 @@ function show_load(now_at) {
         setTimeout(() => {
             // loading界面淡出
             fadeOut(document.querySelector("#loading_musk svg"), 40, 0);
-            fadeOut(document.querySelector("#loading_musk p"), 40, 0);
+            fadeOut(document.querySelector("#process"), 40, 0);
+            fadeOut(document.querySelector("#adText"), 40, 0);
             fadeOut(document.getElementById("process"), 40, 0);
             // document.getElementById("top").style.display = "block";
         }, 1000);
