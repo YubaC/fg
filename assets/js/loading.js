@@ -124,7 +124,6 @@ function show_load(now_at) {
         // load += 1;
     } else { //加载完成
         console.log("done");
-        clearInterval(adText);
         document.querySelector("#process").innerHTML = '<p style="border: 1px solid white">PRESS TO START</p>';
         document.getElementById("loading_musk").onclick = function() {
             // loading界面淡出
@@ -134,6 +133,7 @@ function show_load(now_at) {
             fadeOut(document.querySelector("#adText"), 40, 0);
             fadeOut(document.getElementById("process"), 40, 0);
             // document.getElementById("top").style.display = "block";
+            clearInterval(adText);
             setTimeout(() => {
                 startGame(); //开始游戏
                 document.getElementById("loading_musk").onclick = "";
