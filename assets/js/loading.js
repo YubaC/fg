@@ -125,8 +125,8 @@ function show_load(now_at) {
     } else { //加载完成
         console.log("done");
         clearInterval(adText);
-        document.querySelector("#process").innerText = "PRESS TO START"
-        document.getElementById("#loading_musk").onclick = function() {
+        document.querySelector("#process").innerHTML = '<p style="border: 1px solid white">PRESS TO START</p>';
+        document.getElementById("loading_musk").onclick = function() {
             // loading界面淡出
             fadeOut(document.querySelector("#loading_musk svg"), 40, 0);
             fadeOut(document.querySelector("#loading_musk p"), 40, 0);
@@ -136,7 +136,7 @@ function show_load(now_at) {
             // document.getElementById("top").style.display = "block";
             setTimeout(() => {
                 startGame(); //开始游戏
-                document.getElementById("#loading_musk").onclick = "";
+                document.getElementById("loading_musk").onclick = "";
             }, 2000);
         }
     }
