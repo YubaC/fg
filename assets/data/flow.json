@@ -769,14 +769,14 @@
             },
             {
                 "type": "source",
-                "img": "assets/audio/Town3.ogg",
+                "img": "https://gcore.jsdelivr.net/gh/YubaC/fg/assets/audio/Town3.ogg",
                 "mobile": "none"
             }
         ]
     },
 
     "bgm": {
-        "theme": "assets/audio/Town3.ogg"
+        "theme": "https://gcore.jsdelivr.net/gh/YubaC/fg/assets/audio/Town3.ogg"
     },
 
     "font": {
