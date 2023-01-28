@@ -298,7 +298,6 @@ function askSave() {
     clearInterval(titleColorChange);
     // document.getElementById("musk").classList.remove("titlePNG");
     // document.getElementById("musk").classList.remove("muskPNG");
-
     if (fadeOut1) {
         document.getElementById("musk").classList.add("fadeOut1");
     } else {
@@ -307,7 +306,6 @@ function askSave() {
 
     setTimeout(() => {
         document.getElementById("musk").style.display = "none";
-        document.getElementById("musk").background = "none";
         player.load();
 
         document.getElementById("musk").classList.remove("fadeOut1");
@@ -454,7 +452,6 @@ function reStart() {
 
     setTimeout(() => {
         player.load();
-        document.getElementById("musk").background = "none";
         document.getElementById("musk").classList.remove("fadeOut1");
         document.getElementById("musk").classList.remove("fadeOut2");
         document.getElementById("musk").classList.remove("titlePNG");
@@ -508,7 +505,7 @@ function loadFromCookie() {
         justLoadedFromSave = true;
         // alert("读取成功！");
 
-        // document.getElementById("musk").style.display = "block"; //用于在对话框出现前遮挡背景
+        document.getElementById("musk").style.display = "block"; //用于在对话框出现前遮挡背景
 
         loadedSave = JSON.parse(fileString); //JSON解码存档
 
@@ -578,7 +575,6 @@ function loadFromCookie() {
 
         setTimeout(() => {
             player.load();
-            document.getElementById("musk").background = "none";
             document.getElementById("musk").classList.remove("fadeOut1");
             document.getElementById("musk").classList.remove("fadeOut2");
             document.getElementById("musk").classList.remove("titlePNG");
