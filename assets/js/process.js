@@ -298,6 +298,7 @@ function askSave() {
     clearInterval(titleColorChange);
     // document.getElementById("musk").classList.remove("titlePNG");
     // document.getElementById("musk").classList.remove("muskPNG");
+
     if (fadeOut1) {
         document.getElementById("musk").classList.add("fadeOut1");
     } else {
@@ -306,6 +307,7 @@ function askSave() {
 
     setTimeout(() => {
         document.getElementById("musk").style.display = "none";
+        document.getElementById("musk").background = "none";
         player.load();
 
         document.getElementById("musk").classList.remove("fadeOut1");
@@ -313,19 +315,26 @@ function askSave() {
         document.getElementById("musk").classList.remove("titlePNG");
         document.getElementById("musk").classList.remove("muskPNG");
 
-        document.getElementById("loading_musk").innerHTML += '<div id="upload"><div><input type="file" id="file"><button id="button" onclick="receiveSave()">上传</button></div></div>';
+        // document.getElementById("loading_musk").innerHTML += '<div id="upload"><div><input type="file" id="file"><button id="button" onclick="receiveSave()">上传</button></div></div>';
 
+        var fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.id = "file";
+        fileInput.style.display = 'none';
+        fileInput.onchange = function() {
+                receiveSave(this.files[0]);
+            }
+            // 触发点击事件
+        fileInput.click();
     }, 1000);
 }
 
 // 存档上传回调函数
-function receiveSave() {
+function receiveSave(fileInputed) {
     alreadyLoaded = true;
 
-    var file_ele = document.getElementById('file');
-
     var reader = new FileReader(); //新建一个FileReader
-    reader.readAsText(file_ele.files[0], "UTF-8"); //读取文件
+    reader.readAsText(fileInputed, "UTF-8"); //读取文件
     reader.onload = function(evt) { //读取完文件之后会回来这里
         var fileString = evt.target.result; // 读取文件内容
         console.log(fileString);
@@ -416,6 +425,15 @@ function receiveSave() {
         } else {
             console.log("in4-");
             alert("ERROR:存档不符合要求或已损坏");
+            if (getCookie("mapSaved") != "") {
+                nowGameAt = "startGame2";
+            } else {
+                nowGameAt = "startGame";
+            }
+            paraList = flow.text[nowGameAt];
+            nextStep();
+            // showDialog();
+            // showChoice();
         }
     }
 }
@@ -436,6 +454,7 @@ function reStart() {
 
     setTimeout(() => {
         player.load();
+        document.getElementById("musk").background = "none";
         document.getElementById("musk").classList.remove("fadeOut1");
         document.getElementById("musk").classList.remove("fadeOut2");
         document.getElementById("musk").classList.remove("titlePNG");
@@ -489,7 +508,7 @@ function loadFromCookie() {
         justLoadedFromSave = true;
         // alert("读取成功！");
 
-        document.getElementById("musk").style.display = "block"; //用于在对话框出现前遮挡背景
+        // document.getElementById("musk").style.display = "block"; //用于在对话框出现前遮挡背景
 
         loadedSave = JSON.parse(fileString); //JSON解码存档
 
@@ -559,6 +578,7 @@ function loadFromCookie() {
 
         setTimeout(() => {
             player.load();
+            document.getElementById("musk").background = "none";
             document.getElementById("musk").classList.remove("fadeOut1");
             document.getElementById("musk").classList.remove("fadeOut2");
             document.getElementById("musk").classList.remove("titlePNG");

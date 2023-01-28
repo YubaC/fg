@@ -16,6 +16,7 @@ function loadAssets() {
             break;
         default:
             getSize();
+            break;
             //some other protocol
     }
 
@@ -134,9 +135,9 @@ function show_load(now_at) {
             fadeOut(document.getElementById("process"), 40, 0);
             // document.getElementById("top").style.display = "block";
             clearInterval(adText);
+            document.getElementById("loading_musk").onclick = "";
             setTimeout(() => {
                 startGame(); //开始游戏
-                document.getElementById("loading_musk").onclick = "";
             }, 2000);
         }
     }

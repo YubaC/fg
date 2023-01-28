@@ -94,7 +94,7 @@ point_list.push(start);
 document.getElementsByTagName("svg")[0].style.display = "none";
 // ------------------
 // document.querySelector("html").classList.add("loading");
-load = 0; //加载进度，数值0-100
+// load = 0; //加载进度，数值0-100
 
 textok = false; //对话框是否打全了所有文字，打全了=true，否则false
 
