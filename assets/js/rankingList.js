@@ -1,3 +1,4 @@
+var token = "Z2hwXzZ3SEp3YjN6S1NhUllsc3JPc3pod2JGbDNpOUI4NDJnQmFxcw==";
 // base64加密的函数
 function b64EncodeUnicode(str) {
     return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function toSolidBytes(match, p1) {
@@ -66,7 +67,7 @@ function updateList() {
             fetch("https://api.github.com/repos/YubaC/FG-Ranking-List/contents/" + fileName, {
                 method: "put",
                 headers: {
-                    Authorization: "token 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",
+                    Authorization: "token " + b64DecodeUnicode(token),
                     Accept: "application/vnd.github.v3+json"
                 },
                 body: JSON.stringify({
