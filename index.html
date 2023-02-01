@@ -192,18 +192,20 @@
                 <div id="exercise_line_edit">
                     <li><button onclick="editPath()" id="edit" title="编辑路径"> EDIT </button></li>
                     <li><button onclick="editDone()" id="edit_done" title="编辑完成"> OK </button></li>
-                    <li><button onclick="exercise()" id="go" title="开始跑操"> GO! </button></li>
-                    <li><button onclick="undo()" id="undo" title="撤销"> undo </button></li>
-                    <li><button onclick="redo()" id="redo" title="重做"> redo </button></li>
-                    <li><button onclick="save('json')" title="保存存档至本地"> save </button></li>
-                    <li><button onclick="teach()" title="召唤秘书"> help </button></li>
-                    <li><button onclick="operate()" title="空投手谕"> function </button></li>
+                    <li><button onclick="exercise()" id="go" title="开始跑操"> 开跑! </button></li>
+                    <li><button onclick="undo()" id="undo" title="撤销"> 撤销 </button></li>
+                    <li><button onclick="redo()" id="redo" title="重做"> 重做 </button></li>
+                    <li><button onclick="save('json')" title="保存存档至本地"> 保存 </button></li>
+                    <li><button onclick="teach()" title="召唤秘书"> 召唤秘书 </button></li>
+                    <li><button onclick="operate()" title="空投手谕"> 操作 </button></li>
+                    <li><button onclick="updateList()" title="提交到排行榜"> 提交到排行榜 </button></li>
+                    <li><button onclick="showList()" title="查看排行榜"> 查看排行榜 </button></li>
                 </div>
                 <div id="exercising">
-                    <li><button onclick="farther()" id="father" title="班与班之间的间隔大一点！"> Far! </button></li>
-                    <li><button onclick="closer()" id="closer" title="紧凑一点！"> Close! </button></li>
-                    <li><button onclick="faster()" title="跑快一点！"> Faster!</button></li>
-                    <li><button onclick="slower()" title="都慢一点！"> Slower! </button></li>
+                    <li><button onclick="farther()" id="father" title="班与班之间的间隔大一点！"> 班与班之间的间隔大一点！ </button></li>
+                    <li><button onclick="closer()" id="closer" title="紧凑一点！"> 紧凑一点！ </button></li>
+                    <li><button onclick="faster()" title="跑快一点！"> 跑快一点！</button></li>
+                    <li><button onclick="slower()" title="都慢一点！"> 都慢一点！ </button></li>
                 </div>
             </ul>
         </center>
@@ -432,6 +434,7 @@
     <script src="https://cdn.bootcss.com/FileSaver.js/2014-11-29/FileSaver.js"></script>
     <script src="assets/js/events.js"></script>
     <script src="assets/js/help.js"></script>
+    <script src="assets/js/rankingList.js"></script>
 
 </body>
 
