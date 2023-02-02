@@ -17,7 +17,38 @@ function updateList() {
     // 保存游戏
     save("cookie");
     // 读取游戏
-    var fileString = getCookie("mapSaved");
+    // var fileString = getCookie("mapSaved");
+    var mapData = {
+        "version": flow.version,
+        "todayInTerm": todayInTerm, //今天是这个学期中的第几天
+
+        "grade1": grade1,
+        "grade1Special": grade1Special,
+        "grade2": grade2,
+        "grade2Special": grade2Special,
+        "grade3": grade3,
+        "grade3Special": grade3Special,
+
+        "stain": stain, //满100失业
+
+        "complainDays": complainDays, // >0 => 投诉处理中，处理期间暂不受理新的投诉，处理期间收入减半
+
+        "expect1": expect1, //上级教育机构预期的封口费
+        "expect2": expect2, //媒体预期的封口费
+
+        "complainedBefore": complainedBefore,
+
+        "diningHallLevel": diningHallLevel,
+        "dormitoryLevel": dormitoryLevel,
+
+        // "class_number": class_number, //当前班级数
+        "day": day,
+        "mood": mood,
+        "money": money,
+        "speed": speed_now,
+        "path_list": path_list,
+        "point_list": pointToSave
+    };
 
     // 如果有名称为schoolName的cookie就读取，没有就创建
     if (getCookie("schoolName") == "") {
@@ -47,13 +78,13 @@ function updateList() {
             var flag = 0;
             for (var i = 0; i < rankingList.list.length; i++) {
                 if (rankingList.list[i].schoolName == schoolName) {
-                    rankingList.list[i].data = JSON.parse(fileString);
+                    rankingList.list[i].data = mapData;
                     flag = 1;
                     break;
                 }
             }
             if (flag == 0) {
-                rankingList.list.push({ schoolName: schoolName, data: JSON.parse(fileString) });
+                rankingList.list.push({ schoolName: schoolName, data: mapData });
             }
 
             // base64加密fileString
