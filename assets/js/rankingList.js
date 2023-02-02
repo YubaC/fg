@@ -68,7 +68,7 @@ function updateList() {
                     Accept: "application/vnd.github.v3+json"
                 },
                 body: JSON.stringify({
-                    "message": "Update rankingList.json",
+                    "message": "Update " + schoolName + "'s ranking list",
                     "committer": {
                         "name": "Begonia",
                         "email": "octocat@github.com"
@@ -136,7 +136,7 @@ function renameSchool() {
                     Accept: "application/vnd.github.v3+json"
                 },
                 body: JSON.stringify({
-                    "message": "Rename school name",
+                    "message": "Rename " + schoolNameOld + " to " + schoolName,
                     "committer": {
                         "name": "Begonia",
                         "email": "octocat@github.com"
