@@ -21,7 +21,7 @@ function updateList() {
 
     // 如果有名称为schoolName的cookie就读取，没有就创建
     if (getCookie("schoolName") == "") {
-        schoolName = window.prompt("请输入你的学校名称", "雾高");
+        var schoolName = window.prompt("请输入你的学校名称", "雾高");
         setCookie("schoolName", schoolName, 30 * 365);
     }
 
@@ -33,9 +33,6 @@ function updateList() {
         }).then((res) => {
             // console.log(res);
             return res.json();
-        }).then((data) => {
-            console.log(data);
-            return (data);
         }).then((data) => {
             // 从data.download_url获取json文件
             // console.log(res);
@@ -71,7 +68,7 @@ function updateList() {
                     Accept: "application/vnd.github.v3+json"
                 },
                 body: JSON.stringify({
-                    "message": "my commit message",
+                    "message": "Update rankingList.json",
                     "committer": {
                         "name": "Begonia",
                         "email": "octocat@github.com"
@@ -93,4 +90,64 @@ function showList() {
     save("cookie");
     // 跳转页面
     window.location.href = "https://yubac.github.io/FG-Ranking-List/index.html";
+}
+
+// 重命名学校
+function renameSchool() {
+    var schoolNameOld = getCookie("schoolName");
+    var schoolName = window.prompt("请输入你的学校名称", schoolNameOld);
+    setCookie("schoolName", schoolName, 30 * 365);
+
+    if (getCookie("schoolName") != "") {
+        var fileName = "rankingList.json"
+            // 获取fileName的sha
+        fetch("https://api.github.com/repos/YubaC/FG-Ranking-List/contents/" + fileName, {
+            method: "get",
+        }).then((res) => {
+            // console.log(res);
+            return res.json();
+        }).then((data) => {
+            // 从data.download_url获取json文件
+            // console.log(res);
+            rankingList = JSON.parse(b64DecodeUnicode(data.content));
+            console.log(rankingList);
+
+            // rankingList示例：{"list": [{schooName: "雾高", data: fileString}]}
+            // var schoolName = getCookie("schoolName");
+            // console.log(schoolName);
+
+            // 遍历rankingList.list
+            for (var i = 0; i < rankingList.list.length; i++) {
+                if (rankingList.list[i].schoolName == schoolNameOld) {
+                    rankingList.list[i].schoolName = schoolName;
+                    break;
+                }
+            }
+
+            // base64加密fileString
+            var fileStringBase64 = b64EncodeUnicode(JSON.stringify(rankingList));
+            // var fileName = Date.now() + "_" + ".txt"
+            //本次上传的message,类似于每次commit添加的信息
+            // var message = "测试信息"
+            fetch("https://api.github.com/repos/YubaC/FG-Ranking-List/contents/" + fileName, {
+                method: "put",
+                headers: {
+                    Authorization: "token " + b64DecodeUnicode(token),
+                    Accept: "application/vnd.github.v3+json"
+                },
+                body: JSON.stringify({
+                    "message": "Rename school name",
+                    "committer": {
+                        "name": "Begonia",
+                        "email": "octocat@github.com"
+                    },
+                    "content": fileStringBase64,
+                    "sha": data.sha
+                }),
+            }).then((res) => {
+                console.log(res);
+                window.alert("提交成功！");
+            });
+        });
+    }
 }
