@@ -45,7 +45,7 @@ function newDay() {
     if (!justLoadedFromSave && todayInTerm != 1) { //不是招生日并且不是刚读取存档
         if (mood < 20) {
             if (mood <= 0) { //心情小于等于0直接触发投诉（不在受理投诉日期内）
-                mood = 0;
+                // mood = 0;
                 if (!complainDays) {
                     complain();
                 }

@@ -1,3 +1,13 @@
+version = "v0.10.0";
+updateText = "v0.10.0更新：我们删除了心情值为负数时第二天自动归零的特性。现在负数的心情值可以一直保留了。";
+
+// 读取version的cookie
+if (getCookie("version") == "" || getCookie("version") != version) {
+    window.alert("更新日志：\n" + updateText);
+    setCookie("version", version, 30 * 365);
+}
+
+
 alreadyLoaded = false;
 
 // *取消移动端不预加载Theme
