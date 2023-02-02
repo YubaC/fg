@@ -25,7 +25,7 @@ function updateList() {
         setCookie("schoolName", schoolName, 30 * 365);
     }
 
-    if (getCookie("schoolName") != "") {
+    if (getCookie("schoolName") != "" && schoolName != "") {
         var fileName = "rankingList.json"
             // 获取fileName的sha
         fetch("https://api.github.com/repos/YubaC/FG-Ranking-List/contents/" + fileName, {
