@@ -127,6 +127,80 @@ window.onbeforeunload = function() {
     }
 }
 
+function getUrlParam(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象  
+    var r = window.location.search.substr(1).match(reg); //匹配目标参数   
+    if (r != null) return unescape(r[2]);
+    return null; //返回参数值  
+}
+
+function loadSave(fileString) {
+    // 检查存档是否完好
+    if (fileString.search("version") != -1) {
+        console.log("in3-");
+        justLoadedFromSave = true;
+        // alert("读取成功！");
+
+        document.getElementById("musk").style.display = "block"; //用于在对话框出现前遮挡背景
+
+        loadedSave = JSON.parse(fileString); //JSON解码存档
+
+        // 从存档中读取数据
+        class_number = loadedSave.class_number;
+        money = loadedSave.money;
+        day = loadedSave.day + 1;
+        mood = loadedSave.mood;
+        speed_now = loadedSave.speed;
+
+        grade1 = loadedSave.grade1;
+        grade1Special = loadedSave.grade1Special;
+        grade2 = loadedSave.grade2;
+        grade2Special = loadedSave.grade2Special;
+        grade3 = loadedSave.grade3;
+        grade3Special = loadedSave.grade3Special;
+
+        class_number = grade1 + grade2 + grade3 + grade1Special + grade2Special + grade3Special; //当前班级数
+
+        diningHallLevel - loadedSave.diningHallLevel;
+        dormitoryLevel = loadedSave.dormitoryLevel;
+
+        todayInTerm = loadedSave.todayInTerm; //今天是这个学期中的第几天
+
+        stain = loadedSave.stain; //满100失业
+
+        complainDays = loadedSave.complainDays; // >0 => 投诉处理中，处理期间暂不受理新的投诉，处理期间收入减半
+
+        expect1 = loadedSave.expect1; //上级教育机构预期的封口费
+        expect2 = loadedSave.expect2; //媒体预期的封口费
+
+        complainedBefore = loadedSave.complainedBefore;
+
+        exercisePrepare();
+
+        // 从存档中读取并绘制跑操路径------------
+        path_list = loadedSave.path_list;
+        point_list = [];
+        for (i = 0; i < loadedSave.point_list.length; i++) {
+            point_list.push(document.querySelector(loadedSave.point_list[i]));
+        }
+
+        for (i = 0; i < point_list.length - 1; i++) {
+            from_x = point_list[i].cx["animVal"]["valueAsString"];
+            from_y = point_list[i].cy["animVal"]["valueAsString"];
+            to_x = point_list[i + 1].cx["animVal"]["valueAsString"];
+            to_y = point_list[i + 1].cy["animVal"]["valueAsString"];
+            // console.log(from_x, from_y, to_x, to_y);
+
+            document.getElementById("path_lines").innerHTML +=
+                `<line x1="${from_x}" y1="${from_y}" x2="${to_x}" y2="${to_y}" style="stroke:#fa9668; stroke-width:3px; "></line>`;
+        }
+
+        return true;
+    } else {
+        return false;
+    }
+}
+
 // 判断元素是否在数组内的函数，使用方法：contains(Array，元素)，返回true或false
 function contains(arr, obj) {
     var i = arr.length;
@@ -232,6 +306,46 @@ window.onload = function() {
 
     hideChoice(); //隐藏选项框
     // -------------
+
+    // 如果getURLParam("onVisit")为true，就进行参观模式的设置
+    if (getUrlParam("onVisit") == "true") {
+        // 移除saveBtn、rankingListBtn、renameBtn
+        document.getElementById("saveBtn").style.display = "none";
+        document.getElementById("rankingListBtn").style.display = "none";
+        document.getElementById("renameBtn").style.display = "none";
+
+        // 移除退出提示
+        window.onbeforeunload = function() {}
+
+        // 获取地图
+        var fileName = "rankingList.json"
+            // 获取fileName的sha
+        fetch("https://api.github.com/repos/YubaC/FG-Ranking-List/contents/" + fileName, {
+            method: "get",
+        }).then((res) => {
+            // console.log(res);
+            return res.json();
+        }).then((data) => {
+            return (JSON.parse(b64DecodeUnicode(data.content)));
+        }).then((data) => {
+            // 取出地图
+            var schools = data.list;
+            console.log(schools);
+            var targetSchool = decodeURI(decodeURI(getUrlParam("targetSchool")));
+            for (var school of schools) {
+                if (school.schoolName == targetSchool) {
+                    map = school.data;
+                    break;
+                }
+            }
+
+            // 加载存档
+            loadSave(JSON.stringify(map));
+            // 隐藏#musk
+            document.getElementById("musk").style.display = "none";
+            window.alert(`您正在参观${targetSchool}，您的操作不会被记录。`);
+        })
+    }
 
 
     //发起get请求，获取flow.json

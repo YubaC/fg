@@ -498,67 +498,7 @@ function goStart() {
 function loadFromCookie() {
     var fileString = getCookie("mapSaved"); // 读取文件内容
     // console.log(fileString);
-
-    // 检查存档是否完好
-    if (fileString.search("version") != -1 && JSON.parse(fileString).version == flow.version) {
-        console.log("in3-");
-        justLoadedFromSave = true;
-        // alert("读取成功！");
-
-        document.getElementById("musk").style.display = "block"; //用于在对话框出现前遮挡背景
-
-        loadedSave = JSON.parse(fileString); //JSON解码存档
-
-        // 从存档中读取数据
-        class_number = loadedSave.class_number;
-        money = loadedSave.money;
-        day = loadedSave.day + 1;
-        mood = loadedSave.mood;
-        speed_now = loadedSave.speed;
-
-        grade1 = loadedSave.grade1;
-        grade1Special = loadedSave.grade1Special;
-        grade2 = loadedSave.grade2;
-        grade2Special = loadedSave.grade2Special;
-        grade3 = loadedSave.grade3;
-        grade3Special = loadedSave.grade3Special;
-
-        class_number = grade1 + grade2 + grade3 + grade1Special + grade2Special + grade3Special; //当前班级数
-
-        diningHallLevel - loadedSave.diningHallLevel;
-        dormitoryLevel = loadedSave.dormitoryLevel;
-
-        todayInTerm = loadedSave.todayInTerm; //今天是这个学期中的第几天
-
-        stain = loadedSave.stain; //满100失业
-
-        complainDays = loadedSave.complainDays; // >0 => 投诉处理中，处理期间暂不受理新的投诉，处理期间收入减半
-
-        expect1 = loadedSave.expect1; //上级教育机构预期的封口费
-        expect2 = loadedSave.expect2; //媒体预期的封口费
-
-        complainedBefore = loadedSave.complainedBefore;
-
-        exercisePrepare();
-
-        // 从存档中读取并绘制跑操路径------------
-        path_list = loadedSave.path_list;
-        point_list = [];
-        for (i = 0; i < loadedSave.point_list.length; i++) {
-            point_list.push(document.querySelector(loadedSave.point_list[i]));
-        }
-
-        for (i = 0; i < point_list.length - 1; i++) {
-            from_x = point_list[i].cx["animVal"]["valueAsString"];
-            from_y = point_list[i].cy["animVal"]["valueAsString"];
-            to_x = point_list[i + 1].cx["animVal"]["valueAsString"];
-            to_y = point_list[i + 1].cy["animVal"]["valueAsString"];
-            // console.log(from_x, from_y, to_x, to_y);
-
-            document.getElementById("path_lines").innerHTML +=
-                `<line x1="${from_x}" y1="${from_y}" x2="${to_x}" y2="${to_y}" style="stroke:#fa9668; stroke-width:3px; "></line>`;
-        }
-
+    if (loadSave(fileString)) {
         clicked1 = point_list[point_list.length - 1];
         if (clicked1 == end) {
             document.getElementById("go").disabled = false;
@@ -745,45 +685,66 @@ function save(saveType) {
 
 // 初始化游戏
 function startGame() {
-    paraList = flow.text[nowGameAt];
-    // return flow;
-    //响应的内容
-    console.log(flow.flow[nowGameAt]);
-    // map = flow.map;
-    // drawmap();
+    if (getUrlParam("onVisit") == "true") {
+        // 参观模式
+        document.querySelector("html").style.overflow = "hidden";
+        dialogMusk = document.getElementById("dialog_musk");
+        dialog = document.getElementById("dialog");
+        // ask({ "question": "你记得怎么操作吗？", "choice": ["能", "不能"] });
+        setTimeout(() => {
+            fadeOut(document.querySelector("#loading_musk"), 40, 0);
+            // fadeOut(document.querySelector("#loading_musk p"), 40, 0);
+            // startGame();
 
-    // --------------------------------
-    // TODO: 以下代码用于判断是否为chrome浏览器，如果是chrome浏览器则加载chrome字体，否则加载微软雅黑字体
-    // TODO: 但是目前在移动端钉钉浏览器上似乎有问题，所以暂时注释掉
-    // if (isChrome) {
-    //     document.body.classList.add("emojiFont");
-    // }
-    // --------------------------------
+        }, 1000);
 
-    document.querySelector("html").style.overflow = "hidden";
-    dialogMusk = document.getElementById("dialog_musk");
-    dialog = document.getElementById("dialog");
+        setTimeout(() => {
+            document.getElementById("top").style.display = "block";
+            document.querySelector("html").style.overflow = "auto";
+            tl.play();
+        }, 2000);
 
-    dialog.style.display = "block";
-    dialogMusk.style.display = "block";
+    } else {
+        paraList = flow.text[nowGameAt];
+        // return flow;
+        //响应的内容
+        console.log(flow.flow[nowGameAt]);
+        // map = flow.map;
+        // drawmap();
 
-    showDialog();
+        // --------------------------------
+        // TODO: 以下代码用于判断是否为chrome浏览器，如果是chrome浏览器则加载chrome字体，否则加载微软雅黑字体
+        // TODO: 但是目前在移动端钉钉浏览器上似乎有问题，所以暂时注释掉
+        // if (isChrome) {
+        //     document.body.classList.add("emojiFont");
+        // }
+        // --------------------------------
 
-    document.getElementById("musk").classList.add("muskPNG");
-    // fadeIn(document.getElementById("titlePNG"), 40, 100);
+        document.querySelector("html").style.overflow = "hidden";
+        dialogMusk = document.getElementById("dialog_musk");
+        dialog = document.getElementById("dialog");
 
-    player = new Audio(flow.bgm.theme);
-    player.loop = "loop";
-    player.play();
+        dialog.style.display = "block";
+        dialogMusk.style.display = "block";
 
-    setTimeout(() => {
-        ask(); //询问是否读取存档
-    }, 1000);
+        showDialog();
 
-    titleColorChange = setTimeout(() => {
-        fadeOut1 = false;
-        document.getElementById("musk").classList.add("titlePNG");
-    }, 16000);
+        document.getElementById("musk").classList.add("muskPNG");
+        // fadeIn(document.getElementById("titlePNG"), 40, 100);
+
+        player = new Audio(flow.bgm.theme);
+        player.loop = "loop";
+        player.play();
+
+        setTimeout(() => {
+            ask(); //询问是否读取存档
+        }, 1000);
+
+        titleColorChange = setTimeout(() => {
+            fadeOut1 = false;
+            document.getElementById("musk").classList.add("titlePNG");
+        }, 16000);
+    }
 }
 
 // 游戏结束
