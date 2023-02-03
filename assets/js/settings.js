@@ -344,6 +344,9 @@ window.onload = function() {
             // 隐藏#musk
             document.getElementById("musk").style.display = "none";
             window.alert(`您正在参观${targetSchool}，您的操作不会被记录。`);
+
+            // 设置title为targetSchool
+            document.title = targetSchool;
         })
     }
 
