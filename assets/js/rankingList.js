@@ -1,4 +1,7 @@
 var token = "Z2l0aHViX3BhdF8xMUFMM0xYTlEwMmRSVmE4RDF6WFhYX3kzaExPVkRvb2NhSHJoN3Z3dFJDYTc5aFFKSmYxaUZMSDJ6WGZuR0RBTUlMVUVCTU1SVGtVRUZtbDMz";
+var rankingListBtn = document.getElementById("rankingListBtn");
+var renameBtn = document.getElementById("renameBtn");
+
 // base64加密的函数
 function b64EncodeUnicode(str) {
     return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function toSolidBytes(match, p1) {
@@ -14,6 +17,9 @@ function b64DecodeUnicode(str) {
 }
 
 function updateList() {
+    // 禁用按钮
+    rankingListBtn.innerHTML = "正在上传...";
+    rankingListBtn.disabled = true;
     // 保存游戏
     save("cookie");
     // 读取游戏
@@ -110,6 +116,8 @@ function updateList() {
             }).then((res) => {
                 console.log(res);
                 window.alert("提交成功！");
+                rankingListBtn.innerHTML = "提交到排行榜";
+                rankingListBtn.disabled = false;
             });
         });
     }
@@ -125,6 +133,10 @@ function showList() {
 
 // 重命名学校
 function renameSchool() {
+    // 禁用按钮
+    renameBtn.disabled = true;
+    renameBtn.innerHTML = "正在重命名...";
+
     var schoolNameOld = getCookie("schoolName");
     var schoolName = window.prompt("请输入你的学校名称", schoolNameOld);
     setCookie("schoolName", schoolName, 30 * 365);
@@ -178,6 +190,8 @@ function renameSchool() {
             }).then((res) => {
                 console.log(res);
                 window.alert("提交成功！");
+                renameBtn.innerHTML = "重命名学校";
+                renameBtn.disabled = false;
             });
         });
     }
