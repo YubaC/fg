@@ -701,6 +701,8 @@ function startGame() {
         setTimeout(() => {
             document.getElementById("top").style.display = "block";
             document.querySelector("html").style.overflow = "auto";
+            // 解禁起跑按钮
+            document.getElementById("go").disabled = false;
             tl.play();
         }, 2000);
 
