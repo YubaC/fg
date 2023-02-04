@@ -338,7 +338,7 @@ function giveMoney2() {
         money -= moneyToGive;
         received2 += moneyToGive;
         console.log(received2);
-        if (received1 < 0) {
+        if (received2 < 0) {
             gameover("Bad End", "媒体很生气，你声名狼藉。");
         }
         if (received2 < expect2) {
