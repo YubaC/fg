@@ -306,6 +306,10 @@ function giveMoney1() {
         money -= moneyToGive;
         received1 += moneyToGive;
         console.log(received1);
+        // 如果小于零就直接Game Over
+        if (received1 < 0) {
+            gameover("Bad End", "调查组很生气，你声名狼藉。");
+        }
         if (received1 < expect1) {
             askMore1();
         } else {
@@ -334,6 +338,9 @@ function giveMoney2() {
         money -= moneyToGive;
         received2 += moneyToGive;
         console.log(received2);
+        if (received1 < 0) {
+            gameover("Bad End", "媒体很生气，你声名狼藉。");
+        }
         if (received2 < expect2) {
             askMore2();
         } else {
