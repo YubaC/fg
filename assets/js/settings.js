@@ -29,7 +29,8 @@ grade3Special = 1;
 grade1OK = false;
 diningHallLevelOK = false;
 
-class_number = grade1 + grade2 + grade3 + grade1Special + grade2Special + grade3Special; //当前班级数
+class_number =
+    grade1 + grade2 + grade3 + grade1Special + grade2Special + grade3Special; //当前班级数
 day = 1;
 mood = 100;
 money = 100000;
@@ -71,7 +72,17 @@ moodPerLevel = 2;
 complainedBefore = false;
 
 // 😀🙂😐🙁😖😠😡🤬😈
-faceList = ["&#128512;", "&#128578;", "&#128528;", "&#128577;", "&#128543;", "&#128544;", "&#128545;", "&#129324;", "&#128520;"];
+faceList = [
+    "&#128512;",
+    "&#128578;",
+    "&#128528;",
+    "&#128577;",
+    "&#128543;",
+    "&#128544;",
+    "&#128545;",
+    "&#129324;",
+    "&#128520;",
+];
 faceList.reverse();
 justLoadedFromSave = false; //用于在上传存档后第一天避免事件的干扰，上传前=false，上传后=true，第一次跑操开始后=false
 
@@ -95,9 +106,10 @@ end = document.getElementById("exerciseEnd"); //结束点
 start.classList.add("path_start");
 clicked1 = start;
 // clicked1.setAttribute("class", "clicked");
-path_list.push([start.cx["animVal"]["valueAsString"], start.cy["animVal"][
-    "valueAsString"
-]]);
+path_list.push([
+    start.cx["animVal"]["valueAsString"],
+    start.cy["animVal"]["valueAsString"],
+]);
 point_list.push(start);
 
 document.getElementsByTagName("svg")[0].style.display = "none";
@@ -118,19 +130,19 @@ enable_choice_touch = false; //是否允许点击对话选项
 fadeOut1 = true; //开始页面变色后更换fadeOut动画
 
 // 退出提示
-window.onbeforeunload = function() {
+window.onbeforeunload = function () {
     if (alreadyLoaded) {
         save("cookie");
         console.log("leave");
         return "确认离开当前页面吗？未保存的数据将会丢失";
     }
-}
+};
 
 function getUrlParam(name) {
-    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象  
-    var r = window.location.search.substr(1).match(reg); //匹配目标参数   
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+    var r = window.location.search.substr(1).match(reg); //匹配目标参数
     if (r != null) return unescape(r[2]);
-    return null; //返回参数值  
+    return null; //返回参数值
 }
 
 function loadSave(fileString) {
@@ -158,7 +170,13 @@ function loadSave(fileString) {
         grade3 = loadedSave.grade3;
         grade3Special = loadedSave.grade3Special;
 
-        class_number = grade1 + grade2 + grade3 + grade1Special + grade2Special + grade3Special; //当前班级数
+        class_number =
+            grade1 +
+            grade2 +
+            grade3 +
+            grade1Special +
+            grade2Special +
+            grade3Special; //当前班级数
 
         diningHallLevel - loadedSave.diningHallLevel;
         dormitoryLevel = loadedSave.dormitoryLevel;
@@ -190,8 +208,9 @@ function loadSave(fileString) {
             to_y = point_list[i + 1].cy["animVal"]["valueAsString"];
             // console.log(from_x, from_y, to_x, to_y);
 
-            document.getElementById("path_lines").innerHTML +=
-                `<line x1="${from_x}" y1="${from_y}" x2="${to_x}" y2="${to_y}" style="stroke:#fa9668; stroke-width:3px; "></line>`;
+            document.getElementById(
+                "path_lines"
+            ).innerHTML += `<line x1="${from_x}" y1="${from_y}" x2="${to_x}" y2="${to_y}" style="stroke:#fa9668; stroke-width:3px; "></line>`;
         }
 
         return true;
@@ -214,14 +233,15 @@ function contains(arr, obj) {
 // cookie操作
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
     var expires = "expires=" + d.toGMTString();
-    document.cookie = cname + "=" + cvalue + "; " + expires + "; SameSite=None; Secure";
+    document.cookie =
+        cname + "=" + cvalue + "; " + expires + "; SameSite=None; Secure";
 }
 
 function getCookie(cname) {
     var name = cname + "=";
-    var ca = document.cookie.split(';');
+    var ca = document.cookie.split(";");
     for (var i = 0; i < ca.length; i++) {
         var c = ca[i].trim();
         if (c.indexOf(name) == 0) {
@@ -231,55 +251,76 @@ function getCookie(cname) {
     return "";
 }
 
-function IsPc() { //是PC→false，是移动端→true
+function IsPc() {
+    //是PC→false，是移动端→true
     let userAgent = navigator.userAgent,
-        Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
-    console.log('userAgent:', userAgent)
+        Agents = [
+            "Android",
+            "iPhone",
+            "SymbianOS",
+            "Windows Phone",
+            "iPad",
+            "iPod",
+        ];
+    console.log("userAgent:", userAgent);
     return Agents.some((i) => {
-        return userAgent.includes(i)
-    })
+        return userAgent.includes(i);
+    });
 }
 
 assetsToLoad = []; //预加载的资源列表（无须手动编辑）
 
-window.onload = function() {
+window.onload = function () {
     // 提示浏览器
     var browser = {
-        versions: function() {
+        versions: (function () {
             var u = navigator.userAgent,
                 app = navigator.appVersion;
-            return { //移动终端浏览器版本信息
-                trident: u.indexOf('Trident') > -1, //IE内核
-                presto: u.indexOf('Presto') > -1, //opera内核
-                webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
-                gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+            return {
+                //移动终端浏览器版本信息
+                trident: u.indexOf("Trident") > -1, //IE内核
+                presto: u.indexOf("Presto") > -1, //opera内核
+                webKit: u.indexOf("AppleWebKit") > -1, //苹果、谷歌内核
+                gecko: u.indexOf("Gecko") > -1 && u.indexOf("KHTML") == -1, //火狐内核
                 mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
                 ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
-                android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器
-                iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
-                iPad: u.indexOf('iPad') > -1, //是否iPad
-                webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+                android: u.indexOf("Android") > -1 || u.indexOf("Linux") > -1, //android终端或uc浏览器
+                iPhone: u.indexOf("iPhone") > -1, //是否为iPhone或者QQHD浏览器
+                iPad: u.indexOf("iPad") > -1, //是否iPad
+                webApp: u.indexOf("Safari") == -1, //是否web应该程序，没有头部与底部
             };
-        }(),
-        language: (navigator.browserLanguage || navigator.language).toLowerCase()
-    }
+        })(),
+        language: (
+            navigator.browserLanguage || navigator.language
+        ).toLowerCase(),
+    };
 
-    if (browser.versions.mobile) { //判断是否是移动设备打开。browser代码在下面
+    if (browser.versions.mobile) {
+        //判断是否是移动设备打开。browser代码在下面
         var ua = navigator.userAgent.toLowerCase(); //获取判断用的对象
-        if (ua.match(/MicroMessenger/i) == "micromessenger") { //在微信中打开
-            window.alert("您正在使用微信内置的浏览器，将无法进行存档，如需存档请在浏览器里打开本网页！");
+        if (ua.match(/MicroMessenger/i) == "micromessenger") {
+            //在微信中打开
+            window.alert(
+                "您正在使用微信内置的浏览器，将无法进行存档，如需存档请在浏览器里打开本网页！"
+            );
         }
-        if (ua.match(/WeiBo/i) == "weibo") { //在新浪微博客户端打开
-            window.alert("您正在使用新浪微博客户端内置的浏览器，将无法进行存档，如需存档请在浏览器里打开本网页！");
+        if (ua.match(/WeiBo/i) == "weibo") {
+            //在新浪微博客户端打开
+            window.alert(
+                "您正在使用新浪微博客户端内置的浏览器，将无法进行存档，如需存档请在浏览器里打开本网页！"
+            );
         }
-        if (ua.match(/QQ/i) == "qq") { //在QQ空间打开
-            window.alert("您正在使用QQ内置的浏览器，将无法进行存档，如需存档请在浏览器里打开本网页！");
+        if (ua.match(/QQ/i) == "qq") {
+            //在QQ空间打开
+            window.alert(
+                "您正在使用QQ内置的浏览器，将无法进行存档，如需存档请在浏览器里打开本网页！"
+            );
         }
     }
 
     // 如果是移动端则提示最好在PC端打开
     if (IsPc()) {
-        window.alert("我们推荐在PC端打开本网页，以获得最佳体验。")
+        window.alert("我们推荐在PC端打开本网页，以获得最佳体验。");
     }
 
     // 隐藏对话框------------
@@ -293,7 +334,8 @@ window.onload = function() {
             "#dialog",
             "#dialog_musk",
         ],
-        1, {
+        1,
+        {
             scaleX: 0,
             // scaleY: 0,
             transformOrigin: "left",
@@ -314,118 +356,107 @@ window.onload = function() {
         document.getElementById("renameBtn").style.display = "none";
 
         // 移除退出提示
-        window.onbeforeunload = function() {}
+        window.onbeforeunload = function () {};
 
         // 获取地图
-        var fileName = "rankingList.json"
-            // 获取fileName的sha
-        fetch("https://api.github.com/repos/YubaC/FG-Ranking-List/contents/" + fileName, {
-            method: "get",
-        }).then((res) => {
-            // console.log(res);
-            return res.json();
-        }).then((data) => {
-            return (JSON.parse(b64DecodeUnicode(data.content)));
-        }).then((data) => {
-            // 取出地图
-            var schools = data.list;
-            console.log(schools);
-            var targetSchool = decodeURI(decodeURI(getUrlParam("targetSchool")));
-            for (var school of schools) {
-                if (school.schoolName == targetSchool) {
-                    map = school.data;
-                    break;
-                }
+        var fileName = "rankingList.json";
+        // 获取fileName的sha
+        fetch(
+            "https://api.github.com/repos/YubaC/FG-Ranking-List/contents/" +
+                fileName,
+            {
+                method: "get",
             }
+        )
+            .then((res) => {
+                // console.log(res);
+                return res.json();
+            })
+            .then((data) => {
+                return JSON.parse(b64DecodeUnicode(data.content));
+            })
+            .then((data) => {
+                // 取出地图
+                var schools = data.list;
+                console.log(schools);
+                var targetSchool = decodeURI(
+                    decodeURI(getUrlParam("targetSchool"))
+                );
+                for (var school of schools) {
+                    if (school.schoolName == targetSchool) {
+                        map = school.data;
+                        break;
+                    }
+                }
 
-            // 加载存档
-            loadSave(JSON.stringify(map));
-            // 隐藏#musk
-            document.getElementById("musk").style.display = "none";
-            window.alert(`您正在参观${targetSchool}，您的操作不会被记录。`);
+                // 加载存档
+                loadSave(JSON.stringify(map));
+                // 隐藏#musk
+                document.getElementById("musk").style.display = "none";
+                window.alert(`您正在参观${targetSchool}，您的操作不会被记录。`);
 
-            // 设置title为targetSchool
-            document.title = targetSchool;
-        })
+                // 设置title为targetSchool
+                document.title = targetSchool;
+            });
     }
 
-
     //发起get请求，获取flow.json
-    var url = 'assets/data/flow.json'; //读取flow.json
+    var url = "assets/data/flow.json"; //读取flow.json
 
-    var promise = fetch(url).then(function(response) {
-
+    var promise = fetch(url).then(function (response) {
         //response.status表示响应的http状态码
         if (response.status === 200) {
             //json是返回的response提供的一个方法,会把返回的json字符串反序列化成对象,也被包装成一个Promise了
             return response.json();
         } else {
-            return {}
+            return {};
         }
     });
 
-    promise = promise.then(function(data) {
-        flow = data;
-        if (getCookie("mapSaved") != "") {
-            nowGameAt = "startGame2";
-        } else {
-            nowGameAt = "startGame";
-        }
-
-        keys = Object.keys(flow.text);
-
-        // 提取所有需要加载的资源，包括对话里的人物img、source里规定需要加载的资源
-        for (i = 0; i < keys.length; i++) {
-            para = flow.text[keys[i]];
-            for (j = 0; j < para.length; j++) {
-                if (para[j].type == "say" || para[j].type == "ask" || para[j].type == "source") {
-                    // console.log(para[j].img);
-                    if (para[j].img != "" && !contains(assetsToLoad, para[j].img)) {
-                        if (!PC && para[j].mobile != "none" || PC) {
-                            assetsToLoad.push(para[j].img);
-                            console.log(para[j].img);
-                        }
-                    }
-                }
+    promise = promise
+        .then(function (data) {
+            flow = data;
+            if (getCookie("mapSaved") != "") {
+                nowGameAt = "startGame2";
+            } else {
+                nowGameAt = "startGame";
             }
 
-        }
+            // --------------------------------
+            // TODO: 以下代码用于判断是否为chrome浏览器，如果是chrome浏览器则加载chrome字体，否则加载微软雅黑字体
+            // TODO: 但是目前在移动端钉钉浏览器上似乎有问题，所以暂时注释掉
+            // // 判断是否为chrome浏览器
+            // isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+            // // alert(isChrome);
+            // if (isChrome) {
+            //     assetsToLoad.push(flow.font.chrome);
+            // }
 
-        // --------------------------------
-        // TODO: 以下代码用于判断是否为chrome浏览器，如果是chrome浏览器则加载chrome字体，否则加载微软雅黑字体
-        // TODO: 但是目前在移动端钉钉浏览器上似乎有问题，所以暂时注释掉
-        // // 判断是否为chrome浏览器
-        // isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
-        // // alert(isChrome);
-        // if (isChrome) {
-        //     assetsToLoad.push(flow.font.chrome);
-        // }
+            // --------------------------------
 
-        // --------------------------------
+            // assetsToLoad = ["https://fastly.jsdelivr.net/gh/YubaC/2810security.github.io@latest/images/%E6%A0%A1%E5%9B%AD%E9%A3%8E%E6%99%AF/IMG_6837.JPG",
+            //     "https://fastly.jsdelivr.net/gh/YubaC/2810security.github.io@latest/images/%E6%A0%A1%E5%9B%AD%E9%A3%8E%E6%99%AF/IMG_6842.JPG",
+            //     "https://fastly.jsdelivr.net/gh/YubaC/2810security.github.io@latest/images/%E6%A0%A1%E5%9B%AD%E9%A3%8E%E6%99%AF/IMG_6843.JPG"
+            // ];
+            // console.log(assetsToLoad);
 
-        // assetsToLoad = ["https://fastly.jsdelivr.net/gh/YubaC/2810security.github.io@latest/images/%E6%A0%A1%E5%9B%AD%E9%A3%8E%E6%99%AF/IMG_6837.JPG",
-        //     "https://fastly.jsdelivr.net/gh/YubaC/2810security.github.io@latest/images/%E6%A0%A1%E5%9B%AD%E9%A3%8E%E6%99%AF/IMG_6842.JPG",
-        //     "https://fastly.jsdelivr.net/gh/YubaC/2810security.github.io@latest/images/%E6%A0%A1%E5%9B%AD%E9%A3%8E%E6%99%AF/IMG_6843.JPG"
-        // ];
-        // console.log(assetsToLoad);
+            // for (let i = 0; i < assetsToLoad.length; i++) {
+            //     let img = new Image();
+            //     img.src = assetsToLoad[i];
+            //     img.onload = function() {
+            //         load += 100 / assetsToLoad.length;
+            //         show_load(load);
+            //     }
+            // }
 
-        // for (let i = 0; i < assetsToLoad.length; i++) {
-        //     let img = new Image();
-        //     img.src = assetsToLoad[i];
-        //     img.onload = function() {
-        //         load += 100 / assetsToLoad.length;
-        //         show_load(load);
-        //     }
-        // }
+            loadAssets(); //加载资源
 
-        loadAssets(); //加载资源
-
-        animateBike(); //添加操场出现的动画
-        editDone(); //禁用一些按钮
-        // show_load(0); //加载进度条归零
-        // startGame(); //开始游戏
-
-    }).catch(function(err) {
-        console.log(err);
-    });
-}
+            animateBike(); //添加操场出现的动画
+            editDone(); //禁用一些按钮
+            // show_load(0); //加载进度条归零
+            // startGame(); //开始游戏
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
+};
