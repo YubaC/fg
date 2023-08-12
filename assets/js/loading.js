@@ -8,14 +8,14 @@ function loadAssets() {
     switch (window.location.protocol) {
         case "http:":
         case "https:":
-            load(flow);
+            load();
             break;
         case "file:":
             //local file
             show_load(100);
             break;
         default:
-            load(flow);
+            load();
             break;
         //some other protocol
     }
@@ -101,6 +101,12 @@ function load() {
                     }
                 }
             }
+            for (const key of Object.keys(flow.bgm)) {
+                if (flow.bgm[key] === asset) {
+                    flow.bgm[key] = blobURL;
+                }
+            }
+
             if (loaded === totalSize) {
                 done();
             }

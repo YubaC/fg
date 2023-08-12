@@ -32,6 +32,7 @@
         "askMore2": { "0": "giveMore2", "1": "refuse2" },
         "newTerm": { "0": "askEnroll" }
     },
+
     "text": {
         "startGame": [
             {
