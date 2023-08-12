@@ -1,5 +1,10 @@
-version = "v0.10.2";
-updateText = "v0.10.2更新：修复了刷金钱的漏洞。";
+"use strict";
+
+const version = "v0.10.2";
+const updateText = "v0.10.2更新：修复了刷金钱的漏洞。";
+
+var flow; // 整个游戏的流程
+var nowGameAt; // 当前游戏进行到的位置
 
 // 读取version的cookie
 if (getCookie("version") == "" || getCookie("version") != version) {
@@ -7,72 +12,72 @@ if (getCookie("version") == "" || getCookie("version") != version) {
     setCookie("version", version, 30 * 365);
 }
 
-alreadyLoaded = false;
+var alreadyLoaded = false;
 
 // *取消移动端不预加载Theme
 // PC = !IsPc();
-PC = true;
+const PC = true;
 
 // clicked_points = 0; //已选中的标记点个数
-clicked1 = ""; //选中的标记点1
-path_list = []; //路线
-point_list = []; //定位点
+var clicked1 = ""; //选中的标记点1
+var path_list = []; //路线
+var point_list = []; //定位点
 
 // 高一，高二，高三班级数
-grade1 = 10;
-grade1Special = 1;
-grade2 = 10;
-grade2Special = 1;
-grade3 = 10;
-grade3Special = 1;
+var grade1 = 10;
+var grade1Special = 1;
+var grade2 = 10;
+var grade2Special = 1;
+var grade3 = 10;
+var grade3Special = 1;
 
-grade1OK = false;
-diningHallLevelOK = false;
+var grade1OK = false;
+var diningHallLevelOK = false;
 
-class_number =
+var class_number =
     grade1 + grade2 + grade3 + grade1Special + grade2Special + grade3Special; //当前班级数
-day = 1;
-mood = 100;
-money = 100000;
+var day = 1;
+var mood = 100;
+var money = 100000;
 
-term = 15; //一学期15天
-todayInTerm = 0; //今天是这个学期中的第几天
+var term = 15; //一学期15天
+var todayInTerm = 0; //今天是这个学期中的第几天
 
-speed_now = 1;
+var speed_now = 1;
 
-stain = 0; //满100失业
+var stain = 0; //满100失业
 
-dailyCostEachClass = 2000; //学校每日每个班级开销
-receive_per_100px = 100; //每跑操100px的收入
-receive_now = receive_per_100px;
+var dailyCostEachClass = 2000; //学校每日每个班级开销
+var receive_per_100px = 100; //每跑操100px的收入
+var receive_now = receive_per_100px;
 
-complainDays = 0; // >0 => 投诉处理中，处理期间暂不受理新的投诉，处理期间收入减半
-classFundDays = 0; // >0 => 刚收了班费，等两天再割韭菜，如果再收=>心情 - 5 * classFundNumber
-classFundNumber = 0; //班费收取次数
+var complainDays = 0; // >0 => 投诉处理中，处理期间暂不受理新的投诉，处理期间收入减半
+var classFundDays = 0; // >0 => 刚收了班费，等两天再割韭菜，如果再收=>心情 - 5 * classFundNumber
+var classFundNumber = 0; //班费收取次数
 
-expect1 = 30000; //上级教育机构预期的封口费
-expect2 = 30000; //媒体预期的封口费
+var expect1 = 30000; //上级教育机构预期的封口费
+var expect2 = 30000; //媒体预期的封口费
 
-received1 = 0; //上级教育机构收到的封口费
-received2 = 0; //媒体收到的封口费
+var received1 = 0; //上级教育机构收到的封口费
+var received2 = 0; //媒体收到的封口费
 
-usedPlayClass = false; //今天是否加了体活课
+var usedPlayClass = false; //今天是否加了体活课
 
-airPollution = 0; //空气污染程度（每天刷新）
+var airPollution = 0; //空气污染程度（每天刷新）
 
-diningHallLevel = 5;
-diningHallMaxLevel = 10;
+var diningHallLevel = 5;
+const diningHallMaxLevel = 10;
 
-dormitoryLevel = 5;
-dormitoryMaxLevel = 10;
+var dormitoryLevel = 5;
+const dormitoryMaxLevel = 10;
 
-costPerLevel = 1000;
-moodPerLevel = 2;
+const costPerLevel = 1000;
+const moodPerLevel = 2;
 
-complainedBefore = false;
+var complainedBefore = false;
 
 // 😀🙂😐🙁😖😠😡🤬😈
-faceList = [
+const faceList = [
     "&#128512;",
     "&#128578;",
     "&#128528;",
@@ -84,13 +89,13 @@ faceList = [
     "&#128520;",
 ];
 faceList.reverse();
-justLoadedFromSave = false; //用于在上传存档后第一天避免事件的干扰，上传前=false，上传后=true，第一次跑操开始后=false
+var justLoadedFromSave = false; //用于在上传存档后第一天避免事件的干扰，上传前=false，上传后=true，第一次跑操开始后=false
 
 // now_timeScale = 1; //当前速度
 
-px_per_second = 80; //每秒钟移动的px
+var px_per_second = 80; //每秒钟移动的px
 
-undo_list = []; //撤销的序列，撤销一个多一个
+var undo_list = []; //撤销的序列，撤销一个多一个
 // redo_list = [];
 
 document.getElementById("go").disabled = true;
@@ -99,12 +104,12 @@ document.getElementById("redo").disabled = true;
 
 document.getElementById("exercising").style.display = "none";
 
-start = document.getElementById("exerciseStart"); //出发点
-end = document.getElementById("exerciseEnd"); //结束点
+const start = document.getElementById("exerciseStart"); //出发点
+const end = document.getElementById("exerciseEnd"); //结束点
 
 // 设置起始点（出发点）-------------
 start.classList.add("path_start");
-clicked1 = start;
+var clicked1 = start;
 // clicked1.setAttribute("class", "clicked");
 path_list.push([
     start.cx["animVal"]["valueAsString"],
@@ -117,17 +122,17 @@ document.getElementsByTagName("svg")[0].style.display = "none";
 // document.querySelector("html").classList.add("loading");
 // load = 0; //加载进度，数值0-100
 
-textok = false; //对话框是否打全了所有文字，打全了=true，否则false
+var textok = false; //对话框是否打全了所有文字，打全了=true，否则false
 
-stringToFormat = []; //用于格式化的字符串
+var stringToFormat = []; //用于格式化的字符串
 
-paraList = []; //这一次要说的话的整体集合，包含一句或多句话（在对话框里分开说）
-speakerAt = 0; //现在说的话在paraList中的位置（说的第几句话）
+var paraList = []; //这一次要说的话的整体集合，包含一句或多句话（在对话框里分开说）
+var speakerAt = 0; //现在说的话在paraList中的位置（说的第几句话）
 
-enable_text_touch = false; //是否允许通过点击的方式加速对话或说下一句话
-enable_choice_touch = false; //是否允许点击对话选项
+var enable_text_touch = false; //是否允许通过点击的方式加速对话或说下一句话
+var enable_choice_touch = false; //是否允许点击对话选项
 
-fadeOut1 = true; //开始页面变色后更换fadeOut动画
+var fadeOut1 = true; //开始页面变色后更换fadeOut动画
 
 // 退出提示
 window.onbeforeunload = function () {
@@ -154,7 +159,7 @@ function loadSave(fileString) {
 
         document.getElementById("musk").style.display = "block"; //用于在对话框出现前遮挡背景
 
-        loadedSave = JSON.parse(fileString); //JSON解码存档
+        const loadedSave = JSON.parse(fileString); //JSON解码存档
 
         // 从存档中读取数据
         class_number = loadedSave.class_number;
@@ -202,10 +207,10 @@ function loadSave(fileString) {
         }
 
         for (i = 0; i < point_list.length - 1; i++) {
-            from_x = point_list[i].cx["animVal"]["valueAsString"];
-            from_y = point_list[i].cy["animVal"]["valueAsString"];
-            to_x = point_list[i + 1].cx["animVal"]["valueAsString"];
-            to_y = point_list[i + 1].cy["animVal"]["valueAsString"];
+            const from_x = point_list[i].cx["animVal"]["valueAsString"];
+            const from_y = point_list[i].cy["animVal"]["valueAsString"];
+            const to_x = point_list[i + 1].cx["animVal"]["valueAsString"];
+            const to_y = point_list[i + 1].cy["animVal"]["valueAsString"];
             // console.log(from_x, from_y, to_x, to_y);
 
             document.getElementById(
@@ -232,9 +237,9 @@ function contains(arr, obj) {
 
 // cookie操作
 function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
+    let d = new Date();
     d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-    var expires = "expires=" + d.toGMTString();
+    let expires = "expires=" + d.toGMTString();
     document.cookie =
         cname + "=" + cvalue + "; " + expires + "; SameSite=None; Secure";
 }
@@ -242,8 +247,8 @@ function setCookie(cname, cvalue, exdays) {
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(";");
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i].trim();
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i].trim();
         if (c.indexOf(name) == 0) {
             return c.substring(name.length, c.length);
         }
@@ -267,8 +272,6 @@ function IsPc() {
         return userAgent.includes(i);
     });
 }
-
-assetsToLoad = []; //预加载的资源列表（无须手动编辑）
 
 window.onload = function () {
     // 提示浏览器
@@ -359,7 +362,7 @@ window.onload = function () {
         window.onbeforeunload = function () {};
 
         // 获取地图
-        var fileName = "rankingList.json";
+        const fileName = "rankingList.json";
         // 获取fileName的sha
         fetch(
             "https://api.github.com/repos/YubaC/FG-Ranking-List/contents/" +
@@ -377,12 +380,14 @@ window.onload = function () {
             })
             .then((data) => {
                 // 取出地图
-                var schools = data.list;
+                const schools = data.list;
                 console.log(schools);
-                var targetSchool = decodeURI(
+                const targetSchool = decodeURI(
                     decodeURI(getUrlParam("targetSchool"))
                 );
-                for (var school of schools) {
+
+                let map;
+                for (const school of schools) {
                     if (school.schoolName == targetSchool) {
                         map = school.data;
                         break;
@@ -401,20 +406,10 @@ window.onload = function () {
     }
 
     //发起get请求，获取flow.json
-    var url = "assets/data/flow.json"; //读取flow.json
-
-    var promise = fetch(url).then(function (response) {
-        //response.status表示响应的http状态码
-        if (response.status === 200) {
-            //json是返回的response提供的一个方法,会把返回的json字符串反序列化成对象,也被包装成一个Promise了
-            return response.json();
-        } else {
-            return {};
-        }
-    });
-
-    promise = promise
-        .then(function (data) {
+    var flowJSONUrl = "assets/data/flow.json";
+    fetch(flowJSONUrl)
+        .then((response) => response.json())
+        .then((data) => {
             flow = data;
             if (getCookie("mapSaved") != "") {
                 nowGameAt = "startGame2";
