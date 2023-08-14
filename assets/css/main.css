@@ -7,7 +7,7 @@
 @font-face {
     /*font-properties*/
     font-family: "s";
-    src: url('../font/seguisym.ttf');
+    src: url("../font/seguisym.ttf");
     /*IE9*/
 }
 
@@ -30,7 +30,6 @@ body {
     /*用户是否能够选中文本*/
 }
 
-
 /* body {
     background-color: #000;
 } */
@@ -41,7 +40,6 @@ body {
     background: black;
     position: fixed;
 }
-
 
 /* 用于Game Over */
 
@@ -62,7 +60,7 @@ body {
 }
 
 #upload div {
-    background-color: #FFF;
+    background-color: #fff;
     display: table;
     margin: 0 auto;
     margin-top: 150px;
@@ -112,7 +110,6 @@ body {
     overflow: hidden;
 }
 
-
 /* #playground {
             margin: 0 auto;
             display: block;
@@ -120,7 +117,7 @@ body {
             height: 100%;
         } */
 
-#points>circle:hover {
+#points > circle:hover {
     /* button:hover,
         #playground1:hover,
         #basketball_field1:hover { */
@@ -198,43 +195,18 @@ body {
 #dialog p {
     opacity: 100%;
     margin: 10px;
-    color: #FFF;
+    color: #fff;
     font-size: x-large;
     margin: 20px;
     margin-right: 20px;
-    text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;
+    text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000,
+        -1px -1px 0 #000;
 }
-
 
 /* #dialog p,
 #dialog img {
     float: left;
 } */
-
-#choice {
-    z-index: 11;
-    position: absolute;
-    right: 120px;
-    bottom: 220px;
-    border: 2px solid #a1a1a1;
-    /* padding: 10px 40px; */
-    background: rgba(0, 0, 0, 0.3);
-}
-
-#choice li {
-    /*删除<li>标签生成的点*/
-    color: #fff;
-    list-style: none;
-    /* background-color: #c2c1c1; */
-    border: #fff 1px solid;
-    border-radius: 3px;
-    /* text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000; */
-}
-
-#choice li:hover {
-    background: rgb(138, 138, 138);
-    /* color: #fff; */
-}
 
 #day {
     background: rgba(0, 0, 0, 0.3);
@@ -256,22 +228,22 @@ body {
     /* opacity: 100%; */
     margin: 10px auto;
     margin-bottom: 3px;
-    color: #FFF;
+    color: #fff;
     /* font-size: x-large; */
     margin: 5px;
     margin-right: 20px;
-    text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;
+    text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000,
+        -1px -1px 0 #000;
 }
 
 #day p {
     font-size: large;
 }
 
-
 /* 动画效果 */
 
 .muskPNG {
-    background: #87CEFA url("../images/cloud.png") no-repeat center center;
+    background: #87cefa url("../images/cloud.png") no-repeat center center;
     /* background: #000000 url("assets/images/cloud.png") no-repeat center center; */
     background-blend-mode: screen;
 }
@@ -290,7 +262,7 @@ body {
 
 @keyframes colorChange {
     0% {
-        background: #87CEFA url("../images/cloud.png") no-repeat center center;
+        background: #87cefa url("../images/cloud.png") no-repeat center center;
     }
     100% {
         background: #000000 url("../images/cloud.png") no-repeat center center;
@@ -299,7 +271,7 @@ body {
 
 @keyframes fadeOut1 {
     from {
-        background: #87CEFA url("../images/cloud.png") no-repeat center center;
+        background: #87cefa url("../images/cloud.png") no-repeat center center;
     }
     to {
         background: none;

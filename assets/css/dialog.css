@@ -1,0 +1,51 @@
+#choice-master {
+    z-index: 11;
+    min-width: 100px;
+}
+
+#choice {
+    user-select: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    z-index: 11;
+    position: absolute;
+    right: 10%;
+    bottom: 220px;
+    min-width: 150px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid #fff;
+    border-radius: 10px;
+}
+
+#choice li {
+    height: 32px;
+    line-height: 32px;
+    padding: 5px 20px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+}
+
+#choice li:first-child {
+    padding-top: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#choice li:last-child {
+    padding-bottom: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#choice li:hover,
+#choice li:focus,
+#choice li:active {
+    outline: 2px solid white;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#choice li.selected {
+    background-color: rgba(0, 0, 0, 0.7);
+}
